@@ -100,5 +100,31 @@ function downloadChat() {
         link.download = "chat-meme.png";
         link.href = canvas.toDataURL();
         link.click();
+        let dataURL = canvas.toDataURL();
+saveToGallery(dataURL);
+
+function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+
+
+
+function goHome() {
+    showPage('homePage');
+}
+
+function saveToGallery(imageURL) {
+    let gallery = document.getElementById("gallery");
+
+    let img = document.createElement("img");
+    img.src = imageURL;
+    img.style.width = "100px";
+    img.style.margin = "10px";
+
+    gallery.appendChild(img);
+}
     });
+
 }
