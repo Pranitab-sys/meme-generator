@@ -51,23 +51,34 @@ function downloadMeme() {
 
 // Split meme
 function generateSplitMeme() {
+    const leftText = document.getElementById("leftText").value;
+    const rightText = document.getElementById("rightText").value;
+    const leftColor = document.getElementById("leftColor").value;
+    const rightColor = document.getElementById("rightColor").value;
+
     canvas.width = 400;
     canvas.height = 400;
 
-    ctx.fillStyle = "#3498db";
+    // Left side
+    ctx.fillStyle = leftColor;
     ctx.fillRect(0, 0, 200, 400);
 
-    ctx.fillStyle = "#e74c3c";
+    // Right side
+    ctx.fillStyle = rightColor;
     ctx.fillRect(200, 0, 200, 400);
 
     ctx.fillStyle = "white";
-    ctx.font = "20px Arial";
+    ctx.font = "22px Arial";
     ctx.textAlign = "center";
 
-    ctx.fillText("Expectation", 100, 50);
-    ctx.fillText("Reality", 300, 50);
-}
+    // Titles
+    ctx.fillText("Expectation", 100, 40);
+    ctx.fillText("Reality", 300, 40);
 
+    // User text
+    ctx.fillText(leftText, 100, 200);
+    ctx.fillText(rightText, 300, 200);
+}
 // Chat messages
 function addMessage() {
     const text = document.getElementById("chatInput").value;
