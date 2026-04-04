@@ -30,7 +30,18 @@
 
     <!-- Split Meme -->
     <h2>😎 Split Meme</h2>
-    <button onclick="generateSplitMeme()">Generate Split Meme</button>
+
+<input type="text" id="leftText" placeholder="Left Text (Expectation)">
+<input type="text" id="rightText" placeholder="Right Text (Reality)">
+
+<label>Left Color:</label>
+<input type="color" id="leftColor" value="#3498db">
+
+<label>Right Color:</label>
+<input type="color" id="rightColor" value="#e74c3c">
+
+<button onclick="generateSplitMeme()">Generate Split Meme</button>
+<button onclick="downloadMeme()">Download</button>
 
     <!-- Chat Meme -->
     <h2>💬 Chat Meme</h2>
