@@ -54,26 +54,34 @@ function drawText(ctx, text, x, y, maxWidth) {
 
 // GENERATE MEME
 function generateMeme() {
-    if (!image) {
-        alert("Upload or select a template!");
+    if (!image.src) {
+        alert("Please upload or select an image first!");
         return;
     }
 
-    const canvas = document.getElementById("memeCanvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = image.width;
-    canvas.height = image.height;
-
-    ctx.drawImage(image, 0, 0);
-
     const top = document.getElementById("topText").value;
     const bottom = document.getElementById("bottomText").value;
+    const size = document.getElementById("fontSize").value;
+    const color = document.getElementById("fontColor").value;
+    const font = document.getElementById("fontFamily").value;
 
-    drawText(ctx, top, canvas.width / 2, 50, canvas.width - 20);
-    drawText(ctx, bottom, canvas.width / 2, canvas.height - 20, canvas.width - 20);
+    // redraw image
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-    saveMeme(canvas.toDataURL());
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    ctx.textAlign = "center";
+
+    ctx.font = size + "px " + font;
+
+    // top text
+    ctx.fillText(top, canvas.width / 2, 50);
+    ctx.strokeText(top, canvas.width / 2, 50);
+
+    // bottom text
+    ctx.fillText(bottom, canvas.width / 2, canvas.height - 20);
+    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 20);
 }
 
 // DOWNLOAD MEME
@@ -88,27 +96,125 @@ function downloadMeme() {
 // ==========================
 // SPLIT MEME
 // ==========================
+let leftImg = null;
+let rightImg = null;
+
+// LOAD LEFT IMAGE
+document.getElementById("leftImage").addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(ev){
+        leftImg = new Image();
+        leftImg.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
+// LOAD RIGHT IMAGE
+document.getElementById("rightImage").addEventListener("change", function(e){
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(ev){
+        rightImg = new Image();
+        rightImg.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
+// AUTO TEXT WRAP
+function drawWrappedText(ctx, text, x, y, maxWidth) {
+    const words = text.split(" ");
+    let line = "";
+    let lineHeight = 28;
+
+    ctx.font = "bold 24px Impact";
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    ctx.textAlign = "center";
+
+    for (let i = 0; i < words.length; i++) {
+        let testLine = line + words[i] + " ";
+        let width = ctx.measureText(testLine).width;
+
+        if (width > maxWidth && i > 0) {
+            ctx.fillText(line, x, y);
+            ctx.strokeText(line, x, y);
+            line = words[i] + " ";
+            y += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+
+    ctx.fillText(line, x, y);
+    ctx.strokeText(line, x, y);
+}
+
+// GENERATE SPLIT MEME (ADVANCED)
 function generateSplitMeme() {
     const canvas = document.getElementById("splitCanvas");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = 600;
-    canvas.height = 300;
+    canvas.width = 800;
+    canvas.height = 400;
 
-    ctx.fillStyle = "#ff4757";
-    ctx.fillRect(0, 0, 300, 300);
+    const leftColor = document.getElementById("leftColor").value;
+    const rightColor = document.getElementById("rightColor").value;
 
-    ctx.fillStyle = "#3742fa";
-    ctx.fillRect(300, 0, 300, 300);
+    // LEFT SIDE
+    if (leftImg) {
+        ctx.drawImage(leftImg, 0, 0, 400, 400);
+    } else {
+        ctx.fillStyle = leftColor;
+        ctx.fillRect(0, 0, 400, 400);
+    }
 
-    ctx.fillStyle = "white";
-    ctx.font = "25px Arial";
-    ctx.textAlign = "center";
+    // RIGHT SIDE
+    if (rightImg) {
+        ctx.drawImage(rightImg, 400, 0, 400, 400);
+    } else {
+        ctx.fillStyle = rightColor;
+        ctx.fillRect(400, 0, 400, 400);
+    }
 
-    ctx.fillText(document.getElementById("leftText").value, 150, 150);
-    ctx.fillText(document.getElementById("rightText").value, 450, 150);
+    // TEXT
+    const leftText = document.getElementById("leftText").value;
+    const rightText = document.getElementById("rightText").value;
+
+    drawWrappedText(ctx, leftText, 200, 60, 350);
+    drawWrappedText(ctx, rightText, 600, 60, 350);
+
+    // LABELS (Premium Touch)
+    ctx.font = "bold 18px Arial";
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.fillText("Expectation", 200, 30);
+    ctx.fillText("Reality", 600, 30);
+
+    // DIVIDER
+    if (document.getElementById("dividerStyle").value === "line") {
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(400, 0);
+        ctx.lineTo(400, 400);
+        ctx.stroke();
+    }
 
     saveMeme(canvas.toDataURL());
+}
+
+// DOWNLOAD
+function downloadSplit() {
+    const canvas = document.getElementById("splitCanvas");
+    const link = document.createElement("a");
+    link.download = "split-meme.png";
+    link.href = canvas.toDataURL();
+    link.click();
 }
 
 // ==========================
