@@ -1,6 +1,18 @@
 // ==========================
 // PAGE NAVIGATION
 // ==========================
+const canvas = document.getElementById("memeCanvas");
+const ctx = canvas.getContext("2d");
+
+let image = new Image();
+
+// 🔥 THIS PART WAS MISSING
+image.onload = function() {
+    canvas.width = 400;
+    canvas.height = 400;
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+};
+
 function openPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -160,8 +172,8 @@ function generateSplitMeme() {
     const canvas = document.getElementById("splitCanvas");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = 800;
-    canvas.height = 400;
+    canvas.width = 360;
+    canvas.height = 360;
 
     const leftColor = document.getElementById("leftColor").value;
     const rightColor = document.getElementById("rightColor").value;
@@ -206,6 +218,11 @@ function generateSplitMeme() {
     }
 
     saveMeme(canvas.toDataURL());
+    // LEFT
+ctx.drawImage(leftImg, 0, 0, 180, 360);
+
+// RIGHT
+ctx.drawImage(rightImg, 180, 0, 180, 360);
 }
 
 // DOWNLOAD
