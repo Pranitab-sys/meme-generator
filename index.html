@@ -1,26 +1,58 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Meme Generator</title>
+    <title>Ultimate Meme Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>🔥 Meme Generator</h1>
+<div class="container">
+    <h1>🔥 Ultimate Meme Generator</h1>
 
-        <input type="file" id="imageInput">
+    <!-- Image Meme -->
+    <h2>🖼️ Image Meme</h2>
+    <input type="file" id="imageInput">
 
-        <input type="text" id="topText" placeholder="Top Text">
-        <input type="text" id="bottomText" placeholder="Bottom Text">
+    <input type="text" id="topText" placeholder="Top Text">
+    <input type="text" id="bottomText" placeholder="Bottom Text">
 
-        <button onclick="generateMeme()">Generate Meme</button>
-        <button onclick="downloadMeme()">Download Meme</button>
+    <label>Color:</label>
+    <input type="color" id="textColor" value="#ffffff">
 
-        <canvas id="memeCanvas"></canvas>
-    </div>
+    <label>Size:</label>
+    <input type="range" id="fontSize" min="20" max="60" value="40">
 
-    <script src="script.js"></script>
+    <button onclick="generateMeme()">Generate Meme</button>
+    <button onclick="downloadMeme()">Download</button>
+
+    <canvas id="memeCanvas"></canvas>
+
+    <!-- Split Meme -->
+    <h2>😎 Split Meme</h2>
+    <button onclick="generateSplitMeme()">Generate Split Meme</button>
+
+    <!-- Chat Meme -->
+    <h2>💬 Chat Meme</h2>
+
+    <div class="chat-box" id="chatBox"></div>
+
+    <input type="text" id="chatInput" placeholder="Type message">
+    
+    <select id="sender">
+        <option value="me">Me</option>
+        <option value="friend">Friend</option>
+    </select>
+
+    <button onclick="addMessage()">Add Message</button>
+    <button onclick="downloadChat()">Download Chat Meme</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<!-- html2canvas for chat download -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 </body>
 </html>

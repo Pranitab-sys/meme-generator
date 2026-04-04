@@ -1,21 +1,68 @@
 body {
     font-family: Arial;
     text-align: center;
-    background: #111;
+    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
     color: white;
 }
 
 .container {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    width: 350px;
+    margin: auto;
     margin-top: 20px;
 }
 
-input, button {
-    margin: 10px;
+input, select, button {
+    margin: 8px;
     padding: 10px;
-    font-size: 16px;
+    width: 90%;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    background: #ff4757;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff6b81;
 }
 
 canvas {
-    margin-top: 20px;
+    margin-top: 15px;
+    max-width: 100%;
     border: 2px solid white;
+}
+
+/* Chat UI */
+.chat-box {
+    width: 300px;
+    height: 400px;
+    background: #ece5dd;
+    margin: 20px auto;
+    padding: 10px;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+.message {
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+    clear: both;
+}
+
+.me {
+    background: #dcf8c6;
+    float: right;
+}
+
+.friend {
+    background: white;
+    float: left;
 }
