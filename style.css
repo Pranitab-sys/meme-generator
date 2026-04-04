@@ -1,70 +1,55 @@
 body {
     font-family: Arial;
-    text-align: center;
-    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+    margin: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: white;
+    text-align: center;
 }
 
-.container {
-    background: rgba(255,255,255,0.1);
+/* Page system */
+.page {
+    display: none;
     padding: 20px;
-    border-radius: 15px;
-    width: 350px;
+}
+
+.active {
+    display: block;
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 300px;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
-input, select, button {
-    margin: 8px;
-    padding: 10px;
-    width: 90%;
-    border-radius: 8px;
-    border: none;
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 40px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
 }
 
+/* Hover effect */
+.card:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.2);
+}
+
+/* Back button */
 button {
-    background: #ff4757;
+    margin-bottom: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #ff4b2b;
     color: white;
     cursor: pointer;
-}
-
-button:hover {
-    background: #ff6b81;
-}
-
-canvas {
-    margin-top: 15px;
-    max-width: 100%;
-    border: 2px solid white;
-}
-
-/* Chat UI */
-.chat-box {
-    width: 300px;
-    height: 400px;
-    background: #ece5dd;
-    margin: 20px auto;
-    padding: 10px;
-    overflow-y: auto;
-    border-radius: 10px;
-}
-
-.message {
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 10px;
-    max-width: 70%;
-    clear: both;
-    color:black;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.me {
-    background: #dcf8c6;
-    float: right;
-}
-
-.friend {
-    background: white;
-    float: left;
 }
