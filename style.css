@@ -55,6 +55,8 @@ canvas {
     border-radius: 10px;
     max-width: 70%;
     clear: both;
+    color:black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .me {
