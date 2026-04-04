@@ -1,130 +1,168 @@
-const canvas = document.getElementById("memeCanvas");
-const ctx = canvas.getContext("2d");
+// ===============================
+// 🔊 SOUND EFFECT
+// ===============================
+function playClick() {
+    let audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
+    audio.play();
+}
+
+// ===============================
+// 🎴 DRAG + ROTATE + SNAP SYSTEM
+// ===============================
+let cards = document.querySelectorAll(".fun-card");
+
+cards.forEach(card => {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    card.addEventListener("mousedown", startDrag);
+    card.addEventListener("touchstart", startDrag);
+
+    function startDrag(e) {
+        isDragging = true;
+
+        let event = e.touches ? e.touches[0] : e;
+        offsetX = event.clientX - card.offsetLeft;
+        offsetY = event.clientY - card.offsetTop;
+
+        playClick();
+        burstColor(card);
+    }
+
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("touchmove", drag);
+
+    function drag(e) {
+        if (!isDragging) return;
+
+        let event = e.touches ? e.touches[0] : e;
+
+        let x = event.clientX - offsetX;
+        let y = event.clientY - offsetY;
+
+        card.style.left = x + "px";
+        card.style.top = y + "px";
+
+        // rotation effect
+        let rotate = (x % 40) - 20;
+        card.style.transform = `rotate(${rotate}deg)`;
+    }
+
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchend", stopDrag);
+
+    function stopDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        snapToGrid(card);
+    }
+});
+
+// ===============================
+// 🧲 SNAP TO GRID
+// ===============================
+function snapToGrid(card) {
+    let x = parseInt(card.style.left) || 0;
+    let y = parseInt(card.style.top) || 0;
+
+    let gridX = Math.round(x / 120) * 120;
+    let gridY = Math.round(y / 120) * 120;
+
+    card.style.left = gridX + "px";
+    card.style.top = gridY + "px";
+}
+
+// ===============================
+// 🎨 COLOR BURST
+// ===============================
+function burstColor(card) {
+    let colors = ["#ff4b2b", "#00c6ff", "#e100ff", "#00ff87", "#ffcc00"];
+    let random = colors[Math.floor(Math.random() * colors.length)];
+    card.style.background = random;
+}
+
+// ===============================
+// 🎲 SHUFFLE CARDS
+// ===============================
+function shuffleCards() {
+    document.querySelectorAll(".fun-card").forEach(card => {
+        card.style.left = Math.random() * 250 + "px";
+        card.style.top = Math.random() * 400 + "px";
+        card.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+    });
+}
+
+// ===============================
+// 🖼️ MEME GENERATOR
+// ===============================
+let canvas = document.getElementById("memeCanvas");
+let ctx = canvas.getContext("2d");
 
 let image = new Image();
 
-// Upload image
-document.getElementById("imageInput").addEventListener("change", function(e) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        image.src = event.target.result;
-    };
-    reader.readAsDataURL(e.target.files[0]);
-});
+function loadImage(event) {
+    let file = event.target.files[0];
+    if (!file) return;
 
-// Draw image
-image.onload = function() {
-    canvas.width = 400;
-    canvas.height = 400;
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    let reader = new FileReader();
+
+    reader.onload = function(e) {
+        image.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+image.onload = function () {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx.drawImage(image, 0, 0);
 };
 
-// Generate normal meme
+// ===============================
+// ✍️ GENERATE MEME TEXT
+// ===============================
 function generateMeme() {
-    const topText = document.getElementById("topText").value;
-    const bottomText = document.getElementById("bottomText").value;
-    const color = document.getElementById("textColor").value;
-    const size = document.getElementById("fontSize").value;
+    let topText = document.getElementById("topText").value;
+    let bottomText = document.getElementById("bottomText").value;
 
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0);
 
-    ctx.font = size + "px Impact";
-    ctx.fillStyle = color;
+    ctx.font = "40px Impact";
+    ctx.fillStyle = "white";
     ctx.strokeStyle = "black";
     ctx.lineWidth = 3;
     ctx.textAlign = "center";
 
+    // TOP TEXT
     ctx.fillText(topText, canvas.width / 2, 50);
     ctx.strokeText(topText, canvas.width / 2, 50);
 
+    // BOTTOM TEXT
     ctx.fillText(bottomText, canvas.width / 2, canvas.height - 20);
     ctx.strokeText(bottomText, canvas.width / 2, canvas.height - 20);
+
+    playClick();
 }
 
-// Download meme
+// ===============================
+// 💾 DOWNLOAD MEME
+// ===============================
 function downloadMeme() {
-    const link = document.createElement("a");
+    let link = document.createElement("a");
     link.download = "meme.png";
     link.href = canvas.toDataURL();
     link.click();
 }
 
-// Split meme
-function generateSplitMeme() {
-    const leftText = document.getElementById("leftText").value;
-    const rightText = document.getElementById("rightText").value;
-    const leftColor = document.getElementById("leftColor").value;
-    const rightColor = document.getElementById("rightColor").value;
-
-    canvas.width = 400;
-    canvas.height = 400;
-
-    // Left side
-    ctx.fillStyle = leftColor;
-    ctx.fillRect(0, 0, 200, 400);
-
-    // Right side
-    ctx.fillStyle = rightColor;
-    ctx.fillRect(200, 0, 200, 400);
-
-    ctx.fillStyle = "white";
-    ctx.font = "22px Arial";
-    ctx.textAlign = "center";
-
-    // Titles
-    ctx.fillText("Expectation", 100, 40);
-    ctx.fillText("Reality", 300, 40);
-
-    // User text
-    ctx.fillText(leftText, 100, 200);
-    ctx.fillText(rightText, 300, 200);
-}
-// Chat messages
-function addMessage() {
-    const text = document.getElementById("chatInput").value;
-    const sender = document.getElementById("sender").value;
-
-    const msg = document.createElement("div");
-    msg.classList.add("message", sender);
-    msg.innerText = text;
-
-    document.getElementById("chatBox").appendChild(msg);
-
-    document.getElementById("chatInput").value = "";
-}
-
-// Download chat meme
-function downloadChat() {
-    html2canvas(document.getElementById("chatBox")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "chat-meme.png";
-        link.href = canvas.toDataURL();
-        link.click();
-        let dataURL = canvas.toDataURL();
-saveToGallery(dataURL);
-
-function showPage(id) {
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-}
-
-
-
-
-function goHome() {
-    showPage('homePage');
-}
-
-function saveToGallery(imageURL) {
-    let gallery = document.getElementById("gallery");
-
-    let img = document.createElement("img");
-    img.src = imageURL;
-    img.style.width = "100px";
-    img.style.margin = "10px";
-
-    gallery.appendChild(img);
-}
+// ===============================
+// 🚀 PAGE NAVIGATION (OPTIONAL)
+// ===============================
+function showSection(id) {
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.style.display = "none";
     });
 
+    document.getElementById(id).style.display = "block";
 }
