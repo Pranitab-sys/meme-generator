@@ -1,3 +1,6 @@
+// ==========================
+// PAGE NAVIGATION
+// ==========================
 function openPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -7,125 +10,171 @@ function goHome() {
     openPage("home");
 }
 
-// Meme Generator
-const canvas = document.getElementById("memeCanvas");
-const ctx = canvas.getContext("2d");
-let image = new Image();
+// ==========================
+// MEME SYSTEM
+// ==========================
+let image = null;
 
 document.getElementById("imageInput").addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
     reader.onload = function(event) {
+        image = new Image();
         image.src = event.target.result;
     };
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(file);
 });
 
-image.onload = function() {
-    canvas.width = 400;
-    canvas.height = 400;
-    ctx.drawImage(image, 0, 0);
-};
+// TEMPLATE SELECT
+function selectTemplate(src) {
+    image = new Image();
+    image.crossOrigin = "anonymous";
+    image.src = src;
+    openPage("memePage");
+}
 
-function generateMeme() {
-    ctx.drawImage(image, 0, 0);
+// DRAW TEXT WITH STROKE + AUTO FIT
+function drawText(ctx, text, x, y, maxWidth) {
+    let fontSize = 40;
+    do {
+        ctx.font = fontSize + "px Impact";
+        fontSize--;
+    } while (ctx.measureText(text).width > maxWidth && fontSize > 10);
 
     ctx.fillStyle = "white";
-    ctx.font = "30px Arial";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
     ctx.textAlign = "center";
 
-    ctx.fillText(document.getElementById("topText").value, 200, 40);
-    ctx.fillText(document.getElementById("bottomText").value, 200, 380);
+    ctx.fillText(text, x, y);
+    ctx.strokeText(text, x, y);
 }
 
-function downloadMeme() {
-    const data = canvas.toDataURL();
+// GENERATE MEME
+function generateMeme() {
+    if (!image) {
+        alert("Upload or select a template!");
+        return;
+    }
 
+    const canvas = document.getElementById("memeCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    ctx.drawImage(image, 0, 0);
+
+    const top = document.getElementById("topText").value;
+    const bottom = document.getElementById("bottomText").value;
+
+    drawText(ctx, top, canvas.width / 2, 50, canvas.width - 20);
+    drawText(ctx, bottom, canvas.width / 2, canvas.height - 20, canvas.width - 20);
+
+    saveMeme(canvas.toDataURL());
+}
+
+// DOWNLOAD MEME
+function downloadMeme() {
+    const canvas = document.getElementById("memeCanvas");
     const link = document.createElement("a");
     link.download = "meme.png";
-    link.href = data;
+    link.href = canvas.toDataURL();
     link.click();
-
-    saveMeme(data);
 }
 
-// Split Meme
-const splitCanvas = document.getElementById("splitCanvas");
-const sctx = splitCanvas.getContext("2d");
-
+// ==========================
+// SPLIT MEME
+// ==========================
 function generateSplitMeme() {
-    splitCanvas.width = 400;
-    splitCanvas.height = 400;
+    const canvas = document.getElementById("splitCanvas");
+    const ctx = canvas.getContext("2d");
 
-    sctx.fillStyle = "blue";
-    sctx.fillRect(0, 0, 200, 400);
+    canvas.width = 600;
+    canvas.height = 300;
 
-    sctx.fillStyle = "red";
-    sctx.fillRect(200, 0, 200, 400);
+    ctx.fillStyle = "#ff4757";
+    ctx.fillRect(0, 0, 300, 300);
 
-    sctx.fillStyle = "white";
-    sctx.fillText(document.getElementById("leftText").value, 100, 200);
-    sctx.fillText(document.getElementById("rightText").value, 300, 200);
+    ctx.fillStyle = "#3742fa";
+    ctx.fillRect(300, 0, 300, 300);
+
+    ctx.fillStyle = "white";
+    ctx.font = "25px Arial";
+    ctx.textAlign = "center";
+
+    ctx.fillText(document.getElementById("leftText").value, 150, 150);
+    ctx.fillText(document.getElementById("rightText").value, 450, 150);
+
+    saveMeme(canvas.toDataURL());
 }
 
-// Chat
+// ==========================
+// CHAT SYSTEM
+// ==========================
 function addMessage() {
-    const input = document.getElementById("chatInput");
+    const text = document.getElementById("chatInput").value;
+    const sender = document.getElementById("sender").value;
+    const chatBox = document.getElementById("chatBox");
 
-    if (input.value.trim() === "") return;
+    if (!text.trim()) return;
 
     const msg = document.createElement("div");
-    msg.classList.add("message", document.getElementById("sender").value);
-    msg.innerText = input.value;
+    msg.classList.add("message", sender);
+    msg.innerText = text;
 
-    document.getElementById("chatBox").appendChild(msg);
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-    input.value = "";
-    document.getElementById("chatBox").scrollTop = 9999;
+    document.getElementById("chatInput").value = "";
 }
 
-// Templates
-function selectTemplate(src) {
-    openPage("memePage");
-    image.src = src;
-}
-
-// Save + Delete Memes
+// ==========================
+// STORAGE SYSTEM (LOCAL)
+// ==========================
 function saveMeme(data) {
     let memes = JSON.parse(localStorage.getItem("memes")) || [];
     memes.push(data);
     localStorage.setItem("memes", JSON.stringify(memes));
-    displayMemes();
+    renderSavedMemes();
 }
 
-function deleteMeme(index) {
-    let memes = JSON.parse(localStorage.getItem("memes")) || [];
-    memes.splice(index, 1);
-    localStorage.setItem("memes", JSON.stringify(memes));
-    displayMemes();
-}
-
-function displayMemes() {
+function renderSavedMemes() {
     const container = document.getElementById("savedMemes");
+    if (!container) return;
+
     container.innerHTML = "";
 
     let memes = JSON.parse(localStorage.getItem("memes")) || [];
 
     memes.forEach((src, index) => {
         const div = document.createElement("div");
-        div.classList.add("saved-item");
+        div.className = "saved-item";
 
         const img = document.createElement("img");
         img.src = src;
 
-        const btn = document.createElement("button");
-        btn.innerText = "X";
-        btn.classList.add("delete-btn");
-        btn.onclick = () => deleteMeme(index);
+        const del = document.createElement("button");
+        del.innerText = "X";
+        del.className = "delete-btn";
+        del.onclick = () => deleteMeme(index);
 
         div.appendChild(img);
-        div.appendChild(btn);
+        div.appendChild(del);
         container.appendChild(div);
     });
 }
 
-window.onload = displayMemes;
+function deleteMeme(index) {
+    let memes = JSON.parse(localStorage.getItem("memes")) || [];
+    memes.splice(index, 1);
+    localStorage.setItem("memes", JSON.stringify(memes));
+    renderSavedMemes();
+}
+
+// LOAD SAVED MEMES ON PAGE LOAD
+window.onload = function() {
+    renderSavedMemes();
+};
