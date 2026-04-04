@@ -1,55 +1,128 @@
 body {
-    font-family: Arial;
     margin: 0;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: white;
+    font-family: Arial;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* APP CONTAINER */
+.app {
+    width: 360px;
+    height: 640px;
+    background: #1e293b;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    background: #ff4b2b;
+    padding: 15px;
     text-align: center;
+    font-weight: bold;
+    color: white;
 }
 
-/* Page system */
+/* PAGE */
 .page {
+    flex: 1;
     display: none;
-    padding: 20px;
+    padding: 15px;
+    overflow-y: auto;
 }
 
-.active {
+.page.active {
     display: block;
 }
 
-/* Grid layout */
-.grid {
+/* MENU */
+.menu {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
-    width: 300px;
-    margin: auto;
-    margin-top: 30px;
 }
 
-/* Cards */
-.card {
-    background: rgba(255,255,255,0.1);
-    padding: 40px 10px;
+.menu-card {
+    background: #334155;
+    padding: 30px 10px;
     border-radius: 15px;
+    text-align: center;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
-    backdrop-filter: blur(10px);
 }
 
-/* Hover effect */
-.card:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,0.2);
+.menu-card:hover {
+    background: #475569;
 }
 
-/* Back button */
-button {
-    margin-bottom: 10px;
-    padding: 8px 15px;
+/* INPUT */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
     border: none;
-    border-radius: 8px;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
     background: #ff4b2b;
     color: white;
-    cursor: pointer;
+}
+
+/* BACK BUTTON */
+.back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+/* CANVAS */
+canvas {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* CHAT */
+.chat-box {
+    height: 250px;
+    background: #ece5dd;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.me {
+    background: #dcf8c6;
+    margin-left: auto;
+}
+
+.friend {
+    background: white;
+}
+
+/* GALLERY */
+#gallery img {
+    width: 80px;
+    margin: 5px;
+    border-radius: 10px;
 }
