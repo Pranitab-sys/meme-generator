@@ -66,12 +66,31 @@
 <!-- SPLIT PAGE -->
 <div id="splitPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
-    <h2>😎 Split Meme</h2>
+    <h2>😎 Split Meme Pro</h2>
 
-    <input type="text" id="leftText" placeholder="Left Text">
-    <input type="text" id="rightText" placeholder="Right Text">
+    <!-- TEXT -->
+    <input type="text" id="leftText" placeholder="Left Text (Expectation)">
+    <input type="text" id="rightText" placeholder="Right Text (Reality)">
+
+    <!-- OPTIONAL IMAGES -->
+    <input type="file" id="leftImage">
+    <input type="file" id="rightImage">
+
+    <!-- COLORS -->
+    <label>Left Color</label>
+    <input type="color" id="leftColor" value="#ff4757">
+
+    <label>Right Color</label>
+    <input type="color" id="rightColor" value="#3742fa">
+
+    <!-- OPTIONS -->
+    <select id="dividerStyle">
+        <option value="line">Divider Line</option>
+        <option value="none">No Divider</option>
+    </select>
 
     <button onclick="generateSplitMeme()">Generate</button>
+    <button onclick="downloadSplit()">Download</button>
 
     <canvas id="splitCanvas"></canvas>
 </div>

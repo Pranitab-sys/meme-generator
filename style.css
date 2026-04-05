@@ -239,3 +239,7 @@ button:first-child {
 .btn-group button {
     flex: 1;
 }
+input[type="color"] {
+    height: 40px;
+    padding: 5px;
+}
