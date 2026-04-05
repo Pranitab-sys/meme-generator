@@ -2,81 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Meme Playground</title>
+<title>Meme Studio</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="app">
+<!-- HOME -->
+<div id="home" class="page active">
+    <h1>🔥 Meme Studio</h1>
 
-    <!-- HOME -->
-    <div class="page active" id="homePage">
-        <h1 class="title">🎭 Meme Playground</h1>
-
-        <div class="playground">
-            <div class="fun-card c1" onclick="navigate('memePage')">😂 Meme</div>
-            <div class="fun-card c2" onclick="navigate('splitPage')">😎 Split</div>
-            <div class="fun-card c3" onclick="navigate('chatPage')">💬 Chat</div>
-            <div class="fun-card c4" onclick="navigate('galleryPage')">🖼️ Gallery</div>
-        </div>
+    <div class="grid">
+        <div class="box" onclick="openPage('memePage')">Meme Generator</div>
+        <div class="box" onclick="openPage('splitPage')">Split Meme</div>
+        <div class="box" onclick="openPage('chatPage')">Chat Meme</div>
+        <div class="box" onclick="openPage('templatePage')">Templates</div>
+        <div class="box" onclick="openPage('savedPage')">Saved Memes</div>
     </div>
+</div>
 
-    <!-- MEME -->
-    <div class="page" id="memePage">
-        <button onclick="goHome()">← Back</button>
+<!-- MEME PAGE -->
+<div id="memePage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>🖼️ Meme Generator</h2>
 
-        <input type="file" id="imageInput" onchange="loadImage(event)">
-        <input type="text" id="topText" placeholder="Top Text">
-        <input type="text" id="bottomText" placeholder="Bottom Text">
+    <input type="file" id="imageInput">
+    <input type="text" id="topText" placeholder="Top Text">
+    <input type="text" id="bottomText" placeholder="Bottom Text">
 
-        <button onclick="generateMeme()">Generate</button>
-        <button onclick="downloadMeme()">Download</button>
+    <button onclick="generateMeme()">Generate</button>
+    <button onclick="downloadMeme()">Download</button>
 
-        <canvas id="memeCanvas"></canvas>
+    <canvas id="memeCanvas"></canvas>
+</div>
+
+<!-- SPLIT PAGE -->
+<div id="splitPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>😎 Split Meme</h2>
+
+    <input type="text" id="leftText" placeholder="Left Text">
+    <input type="text" id="rightText" placeholder="Right Text">
+
+    <button onclick="generateSplitMeme()">Generate</button>
+
+    <canvas id="splitCanvas"></canvas>
+</div>
+
+<!-- CHAT PAGE -->
+<div id="chatPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>💬 Chat Meme</h2>
+
+    <div id="chatBox" class="chat-box"></div>
+
+    <input type="text" id="chatInput" placeholder="Message">
+    <select id="sender">
+        <option value="me">Me</option>
+        <option value="friend">Friend</option>
+    </select>
+
+    <button onclick="addMessage()">Add</button>
+</div>
+
+<!-- TEMPLATE PAGE -->
+<div id="templatePage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>🎭 Choose Template</h2>
+
+    <div class="template-grid">
+        <img src="https://i.imgflip.com/1bij.jpg" onclick="selectTemplate(this.src)">
+        <img src="https://i.imgflip.com/26am.jpg" onclick="selectTemplate(this.src)">
+        <img src="https://i.imgflip.com/30b1gx.jpg" onclick="selectTemplate(this.src)">
     </div>
+</div>
 
-    <!-- SPLIT -->
-    <div class="page" id="splitPage">
-        <button onclick="goHome()">← Back</button>
+<!-- SAVED MEMES -->
+<div id="savedPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>📁 Saved Memes</h2>
 
-        <input type="text" id="leftText" placeholder="Expectation">
-        <input type="text" id="rightText" placeholder="Reality">
-
-        <button onclick="generateSplit()">Generate</button>
-
-        <canvas id="splitCanvas"></canvas>
-    </div>
-
-    <!-- CHAT -->
-    <div class="page" id="chatPage">
-        <button onclick="goHome()">← Back</button>
-
-        <div class="chat-box" id="chatBox"></div>
-
-        <input type="text" id="chatInput" placeholder="Message">
-        <select id="sender">
-            <option value="me">Me</option>
-            <option value="friend">Friend</option>
-        </select>
-
-        <button onclick="addMessage()">Send</button>
-        <button onclick="downloadChat()">Download</button>
-    </div>
-
-    <!-- GALLERY -->
-    <div class="page" id="galleryPage">
-        <button onclick="goHome()">← Back</button>
-
-        <button onclick="shuffleCards()">Shuffle Cards</button>
-
-        <div id="gallery"></div>
-    </div>
-
+    <div id="savedMemes"></div>
 </div>
 
 <script src="script.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 </body>
 </html>
