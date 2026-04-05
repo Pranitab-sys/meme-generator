@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Meme Generator Pro</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Meme Studio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="dashboard">
-    <h1>😂 Meme Generator</h1>
+<!-- DASHBOARD -->
+<div id="home" class="page active">
+    <h1>🔥 Meme Studio</h1>
 
-    <div class="card">
-        <label>Upload Image</label>
-        <input type="file" id="imageInput">
+    <div class="template-row">
+        <div class="card" onclick="openPage('memePage')">Meme Generator</div>
+        <div class="card" onclick="openPage('splitPage')">Split Meme</div>
+        <div class="card" onclick="openPage('chatPage')">Chat Meme</div>
+        <div class="card" onclick="openPage('savedPage')">Saved Memes</div>
     </div>
+</div>
 
-    <div class="card">
-        <input type="text" id="topText" placeholder="Enter Top Text">
-        <input type="text" id="bottomText" placeholder="Enter Bottom Text">
-    </div>
+<!-- MEME PAGE -->
+<div id="memePage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>Meme Generator</h2>
 
-    <div class="buttons">
-        <button id="generateBtn">Generate Meme</button>
-        <button id="downloadBtn">Download</button>
-    </div>
+    <input type="file" id="imageInput">
+    <input type="text" id="topText" placeholder="Top Text">
+    <input type="text" id="bottomText" placeholder="Bottom Text">
 
-    <div class="preview">
-        <canvas id="memeCanvas"></canvas>
-    </div>
+    <button onclick="generateMeme()">Generate</button>
+    <button onclick="downloadMeme()">Download</button>
 
+    <canvas id="memeCanvas"></canvas>
+</div>
+
+<!-- SPLIT PAGE -->
+<div id="splitPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>Split Meme</h2>
+
+    <input type="text" id="leftText" placeholder="Left Text">
+    <input type="text" id="rightText" placeholder="Right Text">
+
+    <button onclick="generateSplit()">Generate</button>
+
+    <canvas id="splitCanvas"></canvas>
+</div>
+
+<!-- CHAT PAGE -->
+<div id="chatPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>Chat Meme</h2>
+
+    <div id="chatBox" style="background:white;color:black;height:200px;"></div>
+
+    <input type="text" id="chatInput">
+    <button onclick="addMessage()">Send</button>
+</div>
+
+<!-- SAVED PAGE -->
+<div id="savedPage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>Saved Memes</h2>
+
+    <div id="savedMemes"></div>
 </div>
 
 <script src="script.js"></script>

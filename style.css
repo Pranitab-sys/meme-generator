@@ -1,72 +1,42 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
+    font-family: Arial;
+    background: #1e1e2f;
     color: white;
-}
-
-.dashboard {
-    max-width: 600px;
-    margin: 40px auto;
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
+.page { display: none; }
+.active { display: block; }
+
+/* Dashboard row */
+.template-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
 }
 
+/* Cards */
 .card {
-    background: #1e2a38;
-    padding: 15px;
-    margin: 10px 0;
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
     border-radius: 10px;
-}
-
-input[type="text"], input[type="file"] {
-    width: 90%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-}
-
-.buttons {
-    margin-top: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 6px;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
-#generateBtn {
-    background: #00c6ff;
+.card:hover {
+    transform: scale(1.1);
 }
 
-#generateBtn:hover {
-    background: #0072ff;
+/* Inputs */
+input, button {
+    margin: 10px;
+    padding: 10px;
 }
 
-#downloadBtn {
-    background: #28a745;
-}
-
-#downloadBtn:hover {
-    background: #1e7e34;
-}
-
-.preview {
-    margin-top: 20px;
-}
-
+/* Canvas */
 canvas {
-    max-width: 100%;
-    border-radius: 10px;
+    margin-top: 15px;
     border: 2px solid white;
 }
