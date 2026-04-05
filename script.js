@@ -32,13 +32,29 @@ function generateMeme() {
         return;
     }
 
-    // Use original image size
-    canvas.width = image.width;
-    canvas.height = image.height;
+    const maxWidth = 500;
+    const maxHeight = 500;
 
+    // calculate ratio (fit inside box)
+    let ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
+
+    const drawWidth = image.width * ratio;
+    const drawHeight = image.height * ratio;
+
+    // keep canvas FIXED (important!)
+    canvas.width = maxWidth;
+    canvas.height = maxHeight;
+
+    // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, 0, 0);
 
+    // center image (THIS removes zoom feel)
+    const x = (canvas.width - drawWidth) / 2;
+    const y = (canvas.height - drawHeight) / 2;
+
+    ctx.drawImage(image, x, y, drawWidth, drawHeight);
+
+    // TEXT
     const top = document.getElementById("topText").value;
     const bottom = document.getElementById("bottomText").value;
     const size = document.getElementById("fontSize").value;
@@ -51,14 +67,12 @@ function generateMeme() {
     ctx.textAlign = "center";
     ctx.font = size + "px " + font;
 
-    ctx.fillText(top, canvas.width / 2, 40);
-    ctx.strokeText(top, canvas.width / 2, 40);
+    ctx.fillText(top, canvas.width / 2, size);
+    ctx.strokeText(top, canvas.width / 2, size);
 
-    ctx.fillText(bottom, canvas.width / 2, canvas.height - 20);
-    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 20);
+    ctx.fillText(bottom, canvas.width / 2, canvas.height - 10);
+    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 10);
 }
-   
-
 function downloadMeme() {
     const link = document.createElement("a");
     link.download = "meme.png";
