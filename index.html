@@ -64,35 +64,31 @@
 </div>
 
 <!-- SPLIT PAGE -->
-<div id="splitPage" class="page">
-    <button onclick="goHome()">⬅ Back</button>
-    <h2>😎 Split Meme Pro</h2>
+<div class="split-section">
+    <input type="text" id="leftText" placeholder="Expectation">
+    <input type="text" id="rightText" placeholder="Reality">
+</div>
 
-    <!-- TEXT -->
-    <input type="text" id="leftText" placeholder="Left Text (Expectation)">
-    <input type="text" id="rightText" placeholder="Right Text (Reality)">
-
-    <!-- OPTIONAL IMAGES -->
+<div class="split-section">
     <input type="file" id="leftImage">
     <input type="file" id="rightImage">
+</div>
 
-    <!-- COLORS -->
-    <label>Left Color</label>
-    <input type="color" id="leftColor" value="#ff4757">
+<div class="split-section color-row">
+    <input type="color" id="leftColor">
+    <input type="color" id="rightColor">
+</div>
 
-    <label>Right Color</label>
-    <input type="color" id="rightColor" value="#3742fa">
-
-    <!-- OPTIONS -->
+<div class="split-section">
     <select id="dividerStyle">
         <option value="line">Divider Line</option>
         <option value="none">No Divider</option>
     </select>
+</div>
 
+<div class="btn-group">
     <button onclick="generateSplitMeme()">Generate</button>
     <button onclick="downloadSplit()">Download</button>
-
-    <canvas id="splitCanvas"></canvas>
 </div>
 
 <!-- CHAT PAGE -->
