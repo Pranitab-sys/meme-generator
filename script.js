@@ -32,27 +32,13 @@ function generateMeme() {
         return;
     }
 
-    const maxWidth = 400;
-    const maxHeight = 400;
-
-    // Calculate scale
-    let ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
-
-    let newWidth = image.width * ratio;
-    let newHeight = image.height * ratio;
-
-    // Set canvas fixed size
-    canvas.width = maxWidth;
-    canvas.height = maxHeight;
-
-    // Center image
-    let x = (maxWidth - newWidth) / 2;
-    let y = (maxHeight - newHeight) / 2;
+    // Use original image size
+    canvas.width = image.width;
+    canvas.height = image.height;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, x, y, newWidth, newHeight);
+    ctx.drawImage(image, 0, 0);
 
-    // TEXT
     const top = document.getElementById("topText").value;
     const bottom = document.getElementById("bottomText").value;
     const size = document.getElementById("fontSize").value;
