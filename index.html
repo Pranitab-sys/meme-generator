@@ -21,31 +21,47 @@
 </div>
 
 <!-- MEME PAGE -->
-<h2>🖼️ Meme Generator</h2>
+<div id="memePage" class="page">
+    <button onclick="goHome()">⬅ Back</button>
+    <h2>🖼️ Meme Generator</h2>
 
-<input type="file" id="imageInput">
+    <div class="meme-container">
 
-<input type="text" id="topText" placeholder="Top Text">
-<input type="text" id="bottomText" placeholder="Bottom Text">
+        <!-- Image -->
+        <input type="file" id="imageInput">
 
-<label>Font Size</label>
-<input type="range" id="fontSize" min="20" max="60" value="30">
+        <!-- Text -->
+        <input type="text" id="topText" placeholder="Top Text">
+        <input type="text" id="bottomText" placeholder="Bottom Text">
 
-<label>Font Color</label>
-<input type="color" id="fontColor" value="#ffffff">
+        <!-- Controls Box -->
+        <div class="controls-box">
+            <label>Font Size</label>
+            <input type="range" id="fontSize" min="20" max="60" value="30">
 
-<label>Font Style</label>
-<select id="fontFamily">
-    <option value="Arial">Arial</option>
-    <option value="Impact">Impact</option>
-    <option value="Georgia">Georgia</option>
-    <option value="Courier New">Courier</option>
-</select>
+            <label>Font Color</label>
+            <input type="color" id="fontColor" value="#ffffff">
 
-<button onclick="generateMeme()">Generate</button>
-<button onclick="downloadMeme()">Download</button>
+            <label>Font Style</label>
+            <select id="fontFamily">
+                <option value="Impact">Impact</option>
+                <option value="Arial">Arial</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Courier New">Courier</option>
+            </select>
+        </div>
 
-<canvas id="memeCanvas"></canvas>
+        <!-- Buttons -->
+        <div class="btn-group">
+            <button onclick="generateMeme()">Generate</button>
+            <button onclick="downloadMeme()">Download</button>
+        </div>
+
+        <!-- Canvas -->
+        <canvas id="memeCanvas"></canvas>
+
+    </div>
+</div>
 
 <!-- SPLIT PAGE -->
 <div id="splitPage" class="page">

@@ -207,24 +207,35 @@ button:first-child {
     background: #888;
     border-radius: 10px;
 }
-/* Labels */
-label {
-    display: block;
+.meme-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Controls box */
+.controls-box {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 12px;
     margin-top: 10px;
-    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+/* Labels */
+.controls-box label {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
     opacity: 0.8;
 }
 
-/* Inputs upgrade */
-input, select {
-    background: rgba(255,255,255,0.1);
-    color: white;
+/* Buttons in row */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-/* Glass effect container */
-.container {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(15px);
-    padding: 20px;
-    border-radius: 15px;
+.btn-group button {
+    flex: 1;
 }
