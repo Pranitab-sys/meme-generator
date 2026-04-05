@@ -1,452 +1,72 @@
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #141e30, #243b55);
     color: white;
+}
+
+.dashboard {
+    max-width: 600px;
+    margin: 40px auto;
     text-align: center;
 }
 
-/* PAGES */
-.page {
-    display: none;
-    padding: 20px;
-    animation: fadeIn 0.4s ease;
+h1 {
+    margin-bottom: 20px;
 }
 
-.active {
-    display: block;
-}
-
-/* FADE ANIMATION */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
-/* HEADINGS */
-h1, h2 {
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-/* GRID (HOME) */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-/* BOXES (HOME BUTTONS) */
-.box {
-    background: rgba(255,255,255,0.08);
-    padding: 30px;
-    border-radius: 18px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.box:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,0.18);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-}
-
-/* INPUTS */
-input, select {
-    margin: 10px;
-    padding: 12px;
+.card {
+    background: #1e2a38;
+    padding: 15px;
+    margin: 10px 0;
     border-radius: 10px;
-    border: none;
+}
+
+input[type="text"], input[type="file"] {
     width: 90%;
-    background: rgba(255,255,255,0.1);
-    color: white;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: none;
     outline: none;
 }
 
-input::placeholder {
-    color: #ddd;
+.buttons {
+    margin-top: 10px;
 }
 
-/* BUTTONS */
 button {
-    margin: 10px;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    width: 90%;
-    background: linear-gradient(135deg, #ff4757, #ff6b81);
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: bold;
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(255, 75, 87, 0.5);
-}
-
-/* CANVAS */
-canvas {
-    margin-top: 15px;
-    max-width: 100%;
-    border-radius: 12px;
-    background: #111;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-}
-
-/* CHAT BOX */
-.chat-box {
-    background: #ece5dd;
-    height: 300px;
-    padding: 10px;
-    overflow-y: auto;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* CHAT MESSAGES */
-.message {
-    padding: 10px;
+    padding: 10px 15px;
     margin: 5px;
-    border-radius: 12px;
-    max-width: 65%;
-    font-size: 14px;
-    word-wrap: break-word;
-}
-
-/* ME MESSAGE */
-.me {
-    background: #dcf8c6;
-    margin-left: auto;
-    color: black;
-}
-
-/* FRIEND MESSAGE */
-.friend {
-    background: white;
-    color: black;
-}
-
-/* TEMPLATE GRID */
-.template-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-}
-
-/* TEMPLATE IMAGES */
-.template-grid img {
-    width: 100%;
-    border-radius: 12px;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.template-grid img:hover {
-    transform: scale(1.08);
-    border: 2px solid #ff6b81;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-/* SAVED MEMES */
-#savedMemes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.saved-item {
-    margin: 10px;
-    position: relative;
-}
-
-/* SAVED IMAGE */
-.saved-item img {
-    width: 110px;
-    border-radius: 10px;
+    font-weight: bold;
     transition: 0.3s;
 }
 
-.saved-item img:hover {
-    transform: scale(1.08);
+#generateBtn {
+    background: #00c6ff;
 }
 
-/* DELETE BUTTON */
-.delete-btn {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: red;
-    border: none;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 8px;
-    cursor: pointer;
-    font-size: 12px;
+#generateBtn:hover {
+    background: #0072ff;
 }
 
-/* BACK BUTTON */
-button:first-child {
-    width: auto;
-    padding: 8px 15px;
-    background: #444;
+#downloadBtn {
+    background: #28a745;
 }
 
-/* SCROLLBAR (MODERN LOOK) */
-::-webkit-scrollbar {
-    width: 6px;
+#downloadBtn:hover {
+    background: #1e7e34;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-}
-.meme-container {
-    max-width: 400px;
-    margin: auto;
-}
-
-/* Controls box */
-.controls-box {
-    background: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 10px;
-    backdrop-filter: blur(10px);
-}
-
-/* Labels */
-.controls-box label {
-    display: block;
-    margin-top: 8px;
-    font-size: 13px;
-    opacity: 0.8;
-}
-
-/* Buttons in row */
-.btn-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.btn-group button {
-    flex: 1;
-}
-input[type="color"] {
-    height: 40px;
-    padding: 5px;
-}
-/* SPLIT PAGE CONTAINER */
-#splitPage {
-    background: linear-gradient(135deg, #1f1f2e, #2a2a40);
-    border-radius: 15px;
-}
-
-/* SECTION GROUPING */
-#splitPage input,
-#splitPage select {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white;
-    transition: 0.2s;
-}
-
-#splitPage input:focus,
-#splitPage select:focus {
-    border: 1px solid #ff6b81;
-    box-shadow: 0 0 10px rgba(255,107,129,0.4);
-}
-
-/* COLOR PICKER STYLE */
-#splitPage input[type="color"] {
-    width: 90%;
-    height: 45px;
-    border-radius: 12px;
-    padding: 5px;
-    cursor: pointer;
-    border: none;
-}
-
-/* LABEL STYLE */
-#splitPage label {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-/* BUTTONS (PREMIUM LOOK) */
-#splitPage button {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-#splitPage button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 65, 108, 0.5);
-}
-
-/* CANVAS FRAME (LIKE CARD) */
-#splitCanvas {
+.preview {
     margin-top: 20px;
-    border-radius: 15px;
-    background: #111;
-    box-shadow: 
-        0 15px 40px rgba(0,0,0,0.7),
-        inset 0 0 20px rgba(255,255,255,0.05);
-    padding: 5px;
 }
 
-/* FILE INPUT STYLE */
-#splitPage input[type="file"] {
-    border: 1px dashed rgba(255,255,255,0.2);
-    padding: 12px;
-    cursor: pointer;
-}
-
-#splitPage input[type="file"]:hover {
-    border-color: #ff6b81;
-}
-
-/* SELECT DROPDOWN */
-#splitPage select {
-    cursor: pointer;
-}
-
-/* SECTION SPACING */
-#splitPage > * {
-    margin-bottom: 10px;
-}
-
-/* COOL GLOW EFFECT */
-#splitPage h2 {
-    background: linear-gradient(90deg, #ff4b2b, #ff6b81);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* MINI ANIMATION */
-#splitPage input,
-#splitPage button,
-#splitPage select {
-    transition: all 0.2s ease;
-}
-
-/* HOVER EFFECT ON INPUTS */
-#splitPage input:hover,
-#splitPage select:hover {
-    transform: scale(1.02);
-}
-/* MAIN SPLIT CONTAINER */
-#splitPage {
-    max-width: 380px;
-    margin: auto;
-    background: linear-gradient(145deg, #1a1a2e, #16213e);
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-}
-
-/* GROUP SECTIONS */
-.split-section {
-    background: rgba(255,255,255,0.05);
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 14px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-/* TITLE */
-#splitPage h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff4b2b, #ff6b81);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* INPUT STYLE */
-#splitPage input,
-#splitPage select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
+canvas {
+    max-width: 100%;
     border-radius: 10px;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    outline: none;
-}
-
-/* COLOR PICKER INLINE */
-.color-row {
-    display: flex;
-    gap: 10px;
-}
-
-.color-row input {
-    flex: 1;
-    height: 40px;
-    padding: 0;
-}
-
-/* FILE INPUT */
-#splitPage input[type="file"] {
-    border: 1px dashed rgba(255,255,255,0.2);
-    text-align: center;
-}
-
-/* BUTTON GROUP */
-.btn-group {
-    display: flex;
-    gap: 10px;
-}
-
-.btn-group button {
-    flex: 1;
-}
-
-/* PREMIUM BUTTON */
-#splitPage button {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    border-radius: 12px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-#splitPage button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 65, 108, 0.5);
-}
-
-/* CANVAS FRAME */
-#splitCanvas {
-    width: 100%;
-    border-radius: 15px;
-    margin-top: 15px;
-    background: #000;
-    box-shadow: 
-        0 20px 50px rgba(0,0,0,0.8),
-        inset 0 0 15px rgba(255,255,255,0.05);
-}
-
-/* SLIDER (OPTIONAL FUTURE) */
-input[type="range"] {
-    width: 100%;
-}
-
-/* MICRO INTERACTIONS */
-#splitPage input:hover,
-#splitPage select:hover {
-    transform: scale(1.02);
+    border: 2px solid white;
 }
