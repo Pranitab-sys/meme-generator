@@ -1,146 +1,182 @@
 body {
-    margin:0;
-    background:#0f0f0f;
-    font-family:Arial;
-    color:white;
+    margin: 0;
+    background: #0f0f0f;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
+/* APP CONTAINER */
 .app {
-    width:360px;
-    height:640px;
-    margin:auto;
-    position:relative;
-    overflow:hidden;
-    background:#000;
-    border-radius:20px;
+    width: 360px;
+    height: 640px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a1a1a, #000);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
 }
 
 /* PAGES */
 .page {
-    display:none;
-    padding:15px;
-    height:100%;
-    overflow-y:auto;
+    display: none;
+    padding: 15px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .page.active {
-    display:block;
+    display: block;
 }
 
 /* TITLE */
 .title {
-    text-align:center;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* PLAYGROUND */
-.playground {
-    position:relative;
-    height:500px;
-}
-
-/* FLOATING CARDS */
-.fun-card {
-    position:absolute;
-    width:130px;
-    height:130px;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-    color:white;
-}
-
-/* POSITIONS */
-.c1 { top:50px; left:30px; background:#ff4b2b; transform:rotate(-10deg);}
-.c2 { top:80px; right:30px; background:#0072ff; transform:rotate(8deg);}
-.c3 { bottom:120px; left:60px; background:#e100ff; transform:rotate(5deg);}
-.c4 { bottom:80px; right:50px; background:#00ff87; transform:rotate(-7deg);}
-
-/* HOVER */
-.fun-card:hover {
-    transform:scale(1.2) rotate(0deg);
-    box-shadow:0 10px 30px rgba(255,255,255,0.4);
-}
-
-/* CANVAS */
-canvas {
-    width:100%;
-    margin-top:10px;
-}
-
-/* CHAT */
-.chat-box {
-    height:200px;
-    background:white;
-    color:black;
-    overflow:auto;
-}
-
-.me {
-    background:#dcf8c6;
-    text-align:right;
-    margin:5px;
-}
-
-.friend {
-    background:#fff;
-    text-align:left;
-    margin:5px;
-}
-
-/* GALLERY */
-#gallery img {
-    width:100px;
-    margin:5px;
-}
-/* SHUFFLE BUTTON */
-.shuffle-btn {
-    display:block;
-    margin:10px auto;
-    padding:8px 15px;
-    border:none;
-    border-radius:10px;
-    background:#ff4b2b;
-    color:white;
-    cursor:pointer;
-}
-
-/* PARTICLES */
-.particle {
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    pointer-events:none;
-    animation:explode 0.6s linear forwards;
-}
-
-@keyframes explode {
-    to {
-        transform:translate(var(--x), var(--y));
-        opacity:0;
-    }
-}
-
-/* 3D HOVER */
-.fun-card {
-    transform-style: preserve-3d;
-}
-
-.fun-card:hover {
-    transform: rotateY(15deg) scale(1.1);
-}
 .playground {
     position: relative;
     height: 500px;
 }
 
-/* MAKE CARDS FREE-MOVE */
+/* CARDS (STRAIGHT, NO ROTATION) */
 .fun-card {
     position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+
+    transform: none;
+    transition: all 0.25s ease;
+}
+
+/* CARD POSITIONS */
+.c1 { top: 50px; left: 30px; }
+.c2 { top: 50px; right: 30px; background: linear-gradient(135deg, #0072ff, #00c6ff); }
+.c3 { bottom: 120px; left: 30px; background: linear-gradient(135deg, #e100ff, #7f00ff); }
+.c4 { bottom: 120px; right: 30px; background: linear-gradient(135deg, #00ff87, #00c9a7); }
+
+/* HOVER EFFECT (CLEAN) */
+.fun-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* BUTTONS */
+button {
+    padding: 8px 12px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    color: white;
+    cursor: pointer;
     transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* INPUT FIELDS */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+/* CANVAS */
+canvas {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: #111;
+}
+
+/* CHAT */
+.chat-box {
+    height: 200px;
+    background: #ece5dd;
+    color: black;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.me {
+    background: #dcf8c6;
+    text-align: right;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.friend {
+    background: white;
+    text-align: left;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+/* GALLERY */
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#gallery img {
+    width: 100px;
+    margin: 5px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* SHUFFLE BUTTON */
+.shuffle-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4b2b;
+    color: white;
+    cursor: pointer;
+}
+
+/* PARTICLES (OPTIONAL EFFECT) */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 0.6s linear forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
 }

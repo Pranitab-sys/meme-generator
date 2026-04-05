@@ -15,7 +15,6 @@
         <h1 class="title">🎭 Meme Playground</h1>
 
         <div class="playground">
-            
             <div class="fun-card c1" onclick="navigate('memePage')">😂 Meme</div>
             <div class="fun-card c2" onclick="navigate('splitPage')">😎 Split</div>
             <div class="fun-card c3" onclick="navigate('chatPage')">💬 Chat</div>
@@ -27,14 +26,14 @@
     <div class="page" id="memePage">
         <button onclick="goHome()">← Back</button>
 
-        <input type="file" id="imageInput">
+        <input type="file" id="imageInput" onchange="loadImage(event)">
         <input type="text" id="topText" placeholder="Top Text">
         <input type="text" id="bottomText" placeholder="Bottom Text">
 
         <button onclick="generateMeme()">Generate</button>
         <button onclick="downloadMeme()">Download</button>
 
-        <canvas id="canvas"></canvas>
+        <canvas id="memeCanvas"></canvas>
     </div>
 
     <!-- SPLIT -->
@@ -68,6 +67,9 @@
     <!-- GALLERY -->
     <div class="page" id="galleryPage">
         <button onclick="goHome()">← Back</button>
+
+        <button onclick="shuffleCards()">Shuffle Cards</button>
+
         <div id="gallery"></div>
     </div>
 
