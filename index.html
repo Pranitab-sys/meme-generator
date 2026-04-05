@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Meme Studio</title>
+<title>Meme Playground</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,55 +10,48 @@
 
 <div class="app">
 
-    <!-- HEADER -->
-    <div class="header">
-        🔥 Meme Studio
-    </div>
-
     <!-- HOME -->
-    <div id="homePage" class="page active">
-        <div class="menu">
-            <div class="menu-card" onclick="showPage('memePage')">😂 Meme Generator</div>
-            <div class="menu-card" onclick="showPage('splitPage')">😎 Split Meme</div>
-            <div class="menu-card" onclick="showPage('chatPage')">💬 Chat Meme</div>
-            <div class="menu-card" onclick="showPage('galleryPage')">🖼️ My Memes</div>
+    <div class="page active" id="homePage">
+        <h1 class="title">🎭 Meme Playground</h1>
+
+        <div class="playground">
+            
+            <div class="fun-card c1" onclick="navigate('memePage')">😂 Meme</div>
+            <div class="fun-card c2" onclick="navigate('splitPage')">😎 Split</div>
+            <div class="fun-card c3" onclick="navigate('chatPage')">💬 Chat</div>
+            <div class="fun-card c4" onclick="navigate('galleryPage')">🖼️ Gallery</div>
         </div>
     </div>
 
     <!-- MEME -->
-    <div id="memePage" class="page">
-        <button class="back" onclick="goHome()">←</button>
+    <div class="page" id="memePage">
+        <button onclick="goHome()">← Back</button>
 
         <input type="file" id="imageInput">
         <input type="text" id="topText" placeholder="Top Text">
         <input type="text" id="bottomText" placeholder="Bottom Text">
 
-        <input type="color" id="textColor">
-        <input type="range" id="fontSize" min="20" max="60">
-
         <button onclick="generateMeme()">Generate</button>
         <button onclick="downloadMeme()">Download</button>
 
-        <canvas id="memeCanvas"></canvas>
+        <canvas id="canvas"></canvas>
     </div>
 
     <!-- SPLIT -->
-    <div id="splitPage" class="page">
-        <button class="back" onclick="goHome()">←</button>
+    <div class="page" id="splitPage">
+        <button onclick="goHome()">← Back</button>
 
         <input type="text" id="leftText" placeholder="Expectation">
         <input type="text" id="rightText" placeholder="Reality">
 
-        <input type="color" id="leftColor">
-        <input type="color" id="rightColor">
+        <button onclick="generateSplit()">Generate</button>
 
-        <button onclick="generateSplitMeme()">Generate</button>
-        <button onclick="downloadMeme()">Download</button>
+        <canvas id="splitCanvas"></canvas>
     </div>
 
     <!-- CHAT -->
-    <div id="chatPage" class="page">
-        <button class="back" onclick="goHome()">←</button>
+    <div class="page" id="chatPage">
+        <button onclick="goHome()">← Back</button>
 
         <div class="chat-box" id="chatBox"></div>
 
@@ -73,8 +66,8 @@
     </div>
 
     <!-- GALLERY -->
-    <div id="galleryPage" class="page">
-        <button class="back" onclick="goHome()">←</button>
+    <div class="page" id="galleryPage">
+        <button onclick="goHome()">← Back</button>
         <div id="gallery"></div>
     </div>
 
