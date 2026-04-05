@@ -21,19 +21,31 @@
 </div>
 
 <!-- MEME PAGE -->
-<div id="memePage" class="page">
-    <button onclick="goHome()">⬅ Back</button>
-    <h2>🖼️ Meme Generator</h2>
+<h2>🖼️ Meme Generator</h2>
 
-    <input type="file" id="imageInput">
-    <input type="text" id="topText" placeholder="Top Text">
-    <input type="text" id="bottomText" placeholder="Bottom Text">
+<input type="file" id="imageInput">
 
-    <button onclick="generateMeme()">Generate</button>
-    <button onclick="downloadMeme()">Download</button>
+<input type="text" id="topText" placeholder="Top Text">
+<input type="text" id="bottomText" placeholder="Bottom Text">
 
-    <canvas id="memeCanvas"></canvas>
-</div>
+<label>Font Size</label>
+<input type="range" id="fontSize" min="20" max="60" value="30">
+
+<label>Font Color</label>
+<input type="color" id="fontColor" value="#ffffff">
+
+<label>Font Style</label>
+<select id="fontFamily">
+    <option value="Arial">Arial</option>
+    <option value="Impact">Impact</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Courier New">Courier</option>
+</select>
+
+<button onclick="generateMeme()">Generate</button>
+<button onclick="downloadMeme()">Download</button>
+
+<canvas id="memeCanvas"></canvas>
 
 <!-- SPLIT PAGE -->
 <div id="splitPage" class="page">
