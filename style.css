@@ -151,6 +151,7 @@ canvas {
     height: auto;       /* maintain ratio */
     background: #000;
     border-radius: 10px;
+    object-fit:contain;
 }
 
 /* Inputs */
