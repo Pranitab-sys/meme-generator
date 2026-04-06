@@ -11,15 +11,15 @@
 <div id="home" class="page active">
     <h1>🔥 Meme Studio</h1>
 
-    <div class="template-row">
-        <div class="card" onclick="openPage('memePage')">Meme Generator</div>
-        <div class="card" onclick="openPage('splitPage')">Split Meme</div>
-        <div class="card" onclick="openPage('chatPage')">Chat Meme</div>
-        <div class="card" onclick="openPage('savedPage')">Saved Memes</div>
+    <div class="vertical-menu">
+        <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
+        <div class="card" onclick="openPage('splitPage')">😎 Split Meme</div>
+        <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
+        <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
 
-<!-- MEME PAGE -->
+<!-- MEME GENERATOR -->
 <div id="memePage" class="page">
     <button onclick="goHome()">⬅ Back</button>
     <h2>Meme Generator</h2>
@@ -34,7 +34,7 @@
     <canvas id="memeCanvas"></canvas>
 </div>
 
-<!-- SPLIT PAGE -->
+<!-- SPLIT MEME -->
 <div id="splitPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
     <h2>Split Meme</h2>
@@ -47,18 +47,18 @@
     <canvas id="splitCanvas"></canvas>
 </div>
 
-<!-- CHAT PAGE -->
+<!-- CHAT MEME -->
 <div id="chatPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
     <h2>Chat Meme</h2>
 
-    <div id="chatBox" style="background:white;color:black;height:200px;"></div>
+    <div id="chatBox" class="chat-box"></div>
 
     <input type="text" id="chatInput">
     <button onclick="addMessage()">Send</button>
 </div>
 
-<!-- SAVED PAGE -->
+<!-- SAVED MEMES -->
 <div id="savedPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
     <h2>Saved Memes</h2>
