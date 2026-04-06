@@ -184,20 +184,26 @@ button {
 }
 /* BACK BUTTON */
 .back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 8px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
     border: none;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
+    z-index:1000;
 }
 
 .back-btn:hover {
     background: rgba(255,255,255,0.4);
+}
+.preview canvas {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    background: #000;
 }
