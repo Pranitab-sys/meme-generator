@@ -112,22 +112,28 @@ canvas {
 .main-layout {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     gap: 30px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* Left controls */
 .controls {
     width: 300px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
-
 /* Right preview */
 .preview {
     background: rgba(255,255,255,0.1);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
+
 
 /* Canvas styling */
 canvas {
@@ -137,21 +143,61 @@ canvas {
 
 /* Control box */
 .control-box {
-    background: rgba(255,255,255,0.1);
-    padding: 10px;
-    border-radius: 8px;
     margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
 }
 
 /* Inputs */
 input, select {
     width: 100%;
+    padding: 10px;
     margin: 8px 0;
-    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
 }
 
 /* Buttons */
 button {
     width: 100%;
     margin-top: 10px;
+}
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.btn-grid button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-grid button:hover {
+    transform: scale(1.05);
+}
+/* BACK BUTTON */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.4);
 }
