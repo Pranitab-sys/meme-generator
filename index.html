@@ -24,47 +24,42 @@
     <button onclick="goHome()">⬅ Back</button>
     <h2>Meme Generator</h2>
 
-    <div class="meme-container">
+    <div class="main-layout">
 
-        <input type="file" id="imageInput">
+        <!-- LEFT SIDE (CONTROLS) -->
+        <div class="controls">
 
-        <input type="text" id="topText" placeholder="Top Text">
-        <input type="text" id="bottomText" placeholder="Bottom Text">
+            <input type="file" id="imageInput">
 
-        <!-- 🔥 CONTROL BOX -->
-        <div class="control-box">
+            <input type="text" id="topText" placeholder="Top Text">
+            <input type="text" id="bottomText" placeholder="Bottom Text">
 
-            <div class="control-item">
+            <div class="control-box">
                 <label>Font Size</label>
                 <input type="range" id="fontSize" min="20" max="60" value="30">
-            </div>
 
-            <div class="control-item">
                 <label>Font Color</label>
                 <input type="color" id="fontColor" value="#ffffff">
-            </div>
 
-            <div class="control-item">
                 <label>Font Style</label>
                 <select id="fontFamily">
                     <option value="Impact">Impact</option>
                     <option value="Arial">Arial</option>
-                    <option value="Georgia">Georgia</option>
                 </select>
             </div>
 
-        </div>
-
-        <div class="btn-group">
             <button onclick="generateMeme()">Generate</button>
             <button onclick="downloadMeme()">Download</button>
+
         </div>
 
-        <canvas id="memeCanvas"></canvas>
+        <!-- RIGHT SIDE (CANVAS) -->
+        <div class="preview">
+            <canvas id="memeCanvas"></canvas>
+        </div>
 
     </div>
 </div>
-
 <!-- SPLIT MEME -->
 <div id="splitPage" class="page">
     <button onclick="goHome()">⬅ Back</button>

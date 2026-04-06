@@ -108,3 +108,50 @@ canvas {
 .btn-group button {
     flex: 1;
 }
+/* Layout */
+.main-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Left controls */
+.controls {
+    width: 300px;
+}
+
+/* Right preview */
+.preview {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Canvas styling */
+canvas {
+    width: 400px;
+    border-radius: 10px;
+}
+
+/* Control box */
+.control-box {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    margin-top: 10px;
+}
