@@ -97,7 +97,24 @@ function generateSplit() {
 
 // Chat Meme
 function addMessage() {
+    const input = document.getElementById("chatInput");
+    const emoji = document.getElementById("emojiPicker").value;
+    const chatBox = document.getElementById("chatBox");
+
+    if (input.value.trim() === "") return;
+
     const msg = document.createElement("div");
-    msg.innerText = document.getElementById("chatInput").value;
-    document.getElementById("chatBox").appendChild(msg);
+
+    // Random sender (for meme feel)
+    const isMe = Math.random() > 0.5;
+
+    msg.classList.add("message");
+    msg.classList.add(isMe ? "sent" : "received");
+
+    msg.innerText = input.value + " " + emoji;
+
+    chatBox.appendChild(msg);
+
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
