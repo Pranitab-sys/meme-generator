@@ -104,47 +104,58 @@ function addMessage() {
 
     if (input.value.trim() === "") return;
 
-    const msg = document.createElement("div");
+    const row = document.createElement("div");
+    row.classList.add("msg-row");
 
+    const msg = document.createElement("div");
     msg.classList.add("message");
+
+    // Time
+    const now = new Date();
+    let time = now.getHours() + ":" + now.getMinutes();
 
     if (sender === "me") {
         msg.classList.add("sent");
+
+        msg.innerHTML = `
+            ${input.value} ${emoji}
+            <span class="time">${time} <span class="tick">✔✔</span></span>
+        `;
+
     } else {
         msg.classList.add("received");
+
+        msg.innerHTML = `
+            ${input.value} ${emoji}
+            <span class="time">${time}</span>
+        `;
     }
 
-    msg.innerText = input.value + " " + emoji;
+    // DP (profile pic)
+    const dp = document.createElement("img");
+    dp.classList.add("dp");
 
-    chatBox.appendChild(msg);
+    if (sender === "me") {
+        dp.src = "https://i.pravatar.cc/30?img=3";
+        row.appendChild(msg);
+        row.appendChild(dp);
+    } else {
+        dp.src = "https://i.pravatar.cc/30?img=5";
+        row.appendChild(dp);
+        row.appendChild(msg);
+    }
+
+    chatBox.appendChild(row);
 
     input.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
 function downloadChat() {
-    const chatBox = document.getElementById("chatBox");
-
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = 400;
-    canvas.height = chatBox.scrollHeight;
-
-    ctx.fillStyle = "#e5ddd5";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "black";
-    ctx.font = "14px Arial";
-
-    let y = 20;
-
-    chatBox.childNodes.forEach(msg => {
-        ctx.fillText(msg.innerText, 10, y);
-        y += 25;
+    html2canvas(document.querySelector(".chat-container")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "chat-meme.png";
+        link.href = canvas.toDataURL();
+        link.click();
     });
-
-    const link = document.createElement("a");
-    link.download = "chat-meme.png";
-    link.href = canvas.toDataURL();
-    link.click();
 }
