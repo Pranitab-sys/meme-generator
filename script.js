@@ -99,17 +99,20 @@ function generateSplit() {
 function addMessage() {
     const input = document.getElementById("chatInput");
     const emoji = document.getElementById("emojiPicker").value;
+    const sender = document.getElementById("sender").value;
     const chatBox = document.getElementById("chatBox");
 
     if (input.value.trim() === "") return;
 
     const msg = document.createElement("div");
 
-    // Random sender (for meme feel)
-    const isMe = Math.random() > 0.5;
-
     msg.classList.add("message");
-    msg.classList.add(isMe ? "sent" : "received");
+
+    if (sender === "me") {
+        msg.classList.add("sent");
+    } else {
+        msg.classList.add("received");
+    }
 
     msg.innerText = input.value + " " + emoji;
 
@@ -117,4 +120,31 @@ function addMessage() {
 
     input.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
+}
+function downloadChat() {
+    const chatBox = document.getElementById("chatBox");
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = 400;
+    canvas.height = chatBox.scrollHeight;
+
+    ctx.fillStyle = "#e5ddd5";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "black";
+    ctx.font = "14px Arial";
+
+    let y = 20;
+
+    chatBox.childNodes.forEach(msg => {
+        ctx.fillText(msg.innerText, 10, y);
+        y += 25;
+    });
+
+    const link = document.createElement("a");
+    link.download = "chat-meme.png";
+    link.href = canvas.toDataURL();
+    link.click();
 }
