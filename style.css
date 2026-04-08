@@ -146,8 +146,9 @@ canvas {
     background: rgba(0,0,0,0.2);
 }
 .preview canvas {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    max-width: 500%;
     display: block;
     margin: auto;
 }
@@ -207,4 +208,76 @@ button {
 
 .back-btn:hover {
     background: rgba(255,255,255,0.4);
+}
+/* Chat container box (same theme as meme generator) */
+.chat-container {
+    width: 350px;
+    margin: auto;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Chat box */
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    background: #0b141a;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Messages */
+.message {
+    max-width: 70%;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Sent message */
+.sent {
+    background: #25d366;
+    color: black;
+    margin-left: auto;
+}
+
+/* Received message */
+.received {
+    background: #202c33;
+    color: white;
+    margin-right: auto;
+}
+
+/* Input area */
+.chat-input-area {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+/* Input */
+.chat-input-area input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* Emoji dropdown */
+#emojiPicker {
+    border-radius: 8px;
+    padding: 5px;
+}
+
+/* Send button */
+.chat-input-area button {
+    background: #25d366;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
