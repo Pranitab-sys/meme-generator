@@ -216,7 +216,6 @@ button {
     background: rgba(255,255,255,0.1);
     padding: 15px;
     border-radius: 15px;
-    backdrop-filter: blur(15px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
@@ -224,7 +223,7 @@ button {
 .chat-box {
     height: 300px;
     overflow-y: auto;
-    background: #0b141a;
+    background: #e5ddd5;
     padding: 10px;
     border-radius: 10px;
 }
@@ -236,20 +235,23 @@ button {
     margin: 5px;
     border-radius: 10px;
     font-size: 14px;
+    word-wrap:break-word;
 }
 
 /* Sent message */
 .sent {
-    background: #25d366;
+    background: #dcf8c6;
     color: black;
     margin-left: auto;
+    border-radius:10px 10px 0 10px;
 }
 
 /* Received message */
 .received {
-    background: #202c33;
-    color: white;
+    background: white;
+    color: black;
     margin-right: auto;
+    border-radius: 10px 10px 0 10px;
 }
 
 /* Input area */
@@ -262,9 +264,12 @@ button {
 /* Input */
 .chat-input-area input {
     flex: 1;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 20px;
     border: none;
+    background:#ffffff;
+    color:black;
+    outline: none;
 }
 
 /* Emoji dropdown */
@@ -277,7 +282,8 @@ button {
 .chat-input-area button {
     background: #25d366;
     border: none;
-    padding: 8px 10px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 50%;
     cursor: pointer;
+    color:white;
 }
