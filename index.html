@@ -91,13 +91,22 @@
 
             <!-- Emoji dropdown -->
             <select id="emojiPicker">
-                <option value="">😊</option>
+                <option value=""></option>
+                <option value="😊">😊</option>
                 <option value="😂">😂</option>
                 <option value="🔥">🔥</option>
                 <option value="💀">💀</option>
                 <option value="😎">😎</option>
                 <option value="❤️">❤️</option>
             </select>
+            <select id="sender">
+    <option value="me">Me</option>
+    <option value="friend">Friend</option>
+</select>
+                        <div class="btn-grid">
+    <button onclick="generateMeme()">Generate</button>
+    <button onclick="downloadMeme()">Download</button>
+</div>
 
             <button onclick="addMessage()">Send</button>
         </div>
