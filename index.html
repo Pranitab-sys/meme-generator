@@ -79,40 +79,36 @@
 <div id="chatPage" class="page">
     <button class="back-btn" onclick="goHome()">⬅</button>
     <h2>Chat Meme</h2>
+<div class="chat-container">
 
-    <div class="chat-container">
+    <!-- CHAT BOX -->
+    <div id="chatBox" class="chat-box"></div>
 
-        <!-- CHAT BOX -->
-        <div id="chatBox" class="chat-box"></div>
+    <!-- INPUT AREA -->
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message...">
 
-        <!-- INPUT AREA -->
-        <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Type a message...">
+        <select id="emojiPicker">
+            <option value="">😊</option>
+            <option value="😂">😂</option>
+            <option value="🔥">🔥</option>
+            <option value="💀">💀</option>
+            <option value="😎">😎</option>
+        </select>
 
-            <!-- Emoji dropdown -->
-            <select id="emojiPicker">
-                <option value=""></option>
-                <option value="😊">😊</option>
-                <option value="😂">😂</option>
-                <option value="🔥">🔥</option>
-                <option value="💀">💀</option>
-                <option value="😎">😎</option>
-                <option value="❤️">❤️</option>
-            </select>
-            <select id="sender">
-    <option value="me">Me</option>
-    <option value="friend">Friend</option>
-</select>
-                        <div class="btn-grid">
-    <button onclick="generateMeme()">Generate</button>
-    <button onclick="downloadMeme()">Download</button>
-</div>
-
-            <button onclick="addMessage()">Send</button>
-        </div>
-
+        <select id="sender">
+            <option value="me">Me</option>
+            <option value="friend">Friend</option>
+        </select>
     </div>
-</div>
+
+    <!-- 🔥 BUTTONS OUTSIDE -->
+    <div class="chat-btns">
+        <button onclick="downloadChat()">Download</button>
+        <button onclick="addMessage()">Send</button>
+    </div>
+
+</div></div>
 
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">
