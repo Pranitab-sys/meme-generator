@@ -323,3 +323,56 @@ button {
 .chat-btns button:hover {
     transform: scale(1.05);
 }
+/* Message wrapper */
+.msg-row {
+    display: flex;
+    align-items: flex-end;
+    margin: 5px 0;
+}
+
+/* Profile pic */
+.dp {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+/* Message bubble */
+.message {
+    max-width: 65%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Sent */
+.sent {
+    background: #dcf8c6;
+    margin-left: auto;
+    border-radius: 10px 10px 0 10px;
+}
+
+/* Received */
+.received {
+    background: white;
+    margin-right: auto;
+    border-radius: 10px 10px 10px 0;
+}
+
+/* Time */
+.time {
+    font-size: 10px;
+    color: gray;
+    display: block;
+    margin-top: 3px;
+    text-align: right;
+}
+
+/* Tick */
+.tick {
+    font-size: 10px;
+    margin-left: 5px;
+    color: gray;
+}
