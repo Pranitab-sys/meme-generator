@@ -61,17 +61,44 @@ function generateMeme() {
     const color = document.getElementById("fontColor").value;
     const font = document.getElementById("fontFamily").value;
 
+    ctx.font = size + "px " + font;
     ctx.fillStyle = color;
     ctx.strokeStyle = "black";
     ctx.lineWidth = 3;
     ctx.textAlign = "center";
-    ctx.font = size + "px " + font;
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+   
+// 🔥 TEXT DRAWING (REPLACE THIS PART ONLY)
 
-    ctx.fillText(top, canvas.width / 2, size);
-    ctx.strokeText(top, canvas.width / 2, size);
+ctx.save();
 
-    ctx.fillText(bottom, canvas.width / 2, canvas.height - 10);
-    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 10);
+ctx.font = size + "px " + font;
+ctx.textAlign = "center";
+ctx.fillStyle = color;
+
+// Apply stroke only for Impact
+if (font === "Impact") {
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+} else {
+    ctx.strokeStyle = "transparent";
+    ctx.lineWidth = 0;
+}
+
+// TOP TEXT
+ctx.fillText(top, canvas.width / 2, 40);
+if (font === "Impact") {
+    ctx.strokeText(top, canvas.width / 2, 40);
+}
+
+// BOTTOM TEXT
+ctx.fillText(bottom, canvas.width / 2, canvas.height - 20);
+if (font === "Impact") {
+    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 20);
+}
+
+ctx.restore();
 }
 function downloadMeme() {
     const link = document.createElement("a");
