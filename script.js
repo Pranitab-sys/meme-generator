@@ -179,7 +179,7 @@ function addMessage() {
 }
 
 function downloadChat() {
-    html2canvas(document.querySelector(".chat-container")).then(canvas => {
+    html2canvas(document.querySelector(".chat-box")).then(canvas => {
         const link = document.createElement("a");
         link.download = "chat-meme.png";
         link.href = canvas.toDataURL();
