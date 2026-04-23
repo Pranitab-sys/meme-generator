@@ -116,16 +116,21 @@
 </div></div>
 
 <!-- AI meme -->
- <h1>🤖 AI Absurd Meme Generator</h1>
+<div id="aiMemeSection" class="section">
 
-<div class="meme-box" id="memeBox">
-    <img id="memeImg" src="" alt="meme">
-    <p id="caption"></p>
+    <h1>🤖 AI Absurd Meme Generator</h1>
+
+    <div class="meme-box" id="memeBox">
+        <img id="memeImg" src="" alt="meme">
+        <p id="caption"></p>
+    </div>
+
+    <div class="btn-group">
+        <button onclick="generateMeme()">Generate Meme</button>
+        <button onclick="downloadMeme()">Download</button>
+    </div>
+
 </div>
-
-<button onclick="generateMeme()">Generate Meme</button>
-<button onclick="downloadMeme()">Download</button>
-
 
 
 <!-- SAVED MEMES -->
