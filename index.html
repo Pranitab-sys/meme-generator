@@ -14,8 +14,8 @@
 
     <div class="vertical-menu">
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
-        <div class="card" onclick="openPage('splitPage')">😎 Split Meme</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
+        <div class="card" onclick="openPage('aiburst')">🤖 AI Burst Meme</div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -71,18 +71,6 @@
 
     </div>
 </div>
-<!-- SPLIT MEME -->
-<div id="splitPage" class="page">
-    <button onclick="goHome()">⬅ Back</button>
-    <h2>Split Meme</h2>
-
-    <input type="text" id="leftText" placeholder="Left Text">
-    <input type="text" id="rightText" placeholder="Right Text">
-
-    <button onclick="generateSplit()">Generate</button>
-
-    <canvas id="splitCanvas"></canvas>
-</div>
 
 <!-- CHAT MEME -->
 <div id="chatPage" class="page">
@@ -126,6 +114,19 @@
     </div>
 
 </div></div>
+
+<!-- AI meme -->
+ <h1>🤖 AI Absurd Meme Generator</h1>
+
+<div class="meme-box" id="memeBox">
+    <img id="memeImg" src="" alt="meme">
+    <p id="caption"></p>
+</div>
+
+<button onclick="generateMeme()">Generate Meme</button>
+<button onclick="downloadMeme()">Download</button>
+
+
 
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">

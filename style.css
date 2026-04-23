@@ -376,3 +376,27 @@ button {
     margin-left: 5px;
     color: blue;
 }
+body {
+    text-align: center;
+    font-family: Arial;
+    background: #111;
+    color: white;
+}
+
+.meme-box {
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #222;
+    border-radius: 15px;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 18px;
+}
