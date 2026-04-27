@@ -107,20 +107,6 @@ function downloadMeme() {
     link.click();
 }
 
-// Split Meme
-const splitCanvas = document.getElementById("splitCanvas");
-const sctx = splitCanvas.getContext("2d");
-
-function generateSplit() {
-    splitCanvas.width = 400;
-    splitCanvas.height = 400;
-
-    sctx.fillStyle = "blue";
-    sctx.fillRect(0, 0, 200, 400);
-
-    sctx.fillStyle = "red";
-    sctx.fillRect(200, 0, 200, 400);
-}
 
 // Chat Meme
 function addMessage() {
@@ -185,4 +171,45 @@ function downloadChat() {
         link.href = canvas.toDataURL();
         link.click();
     });
+}
+
+const captions = [
+    "When assignment deadline is tomorrow 💀",
+    "Me after opening exam paper 😭",
+    "Brain loading... 1% 🧠",
+    "When teacher says 'easy test' 😡",
+    "Me pretending I understand everything 😎"
+];
+
+const prompts = [
+    "dog office suit",
+    "cat laptop work",
+    "student crying exam",
+    "funny monkey computer",
+    "alien street food"
+];
+
+function generateAIMeme() {
+    const caption = captions[Math.floor(Math.random() * captions.length)];
+    const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+
+    const img = `https://source.unsplash.com/300x300/?${prompt}`;
+
+    document.getElementById("memeImg").src = img;
+    document.getElementById("caption").innerText = caption;
+}
+function downloadAIMeme() {
+    html2canvas(document.getElementById("memeBox")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "ai-meme.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.style.display = "none";
+    });
+
+    document.getElementById(sectionId).style.display = "block";
 }
