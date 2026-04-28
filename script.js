@@ -173,43 +173,37 @@ function downloadChat() {
     });
 }
 
-const captions = [
-    "When assignment deadline is tomorrow 💀",
-    "Me after opening exam paper 😭",
-    "Brain loading... 1% 🧠",
-    "When teacher says 'easy test' 😡",
-    "Me pretending I understand everything 😎"
+const funnyCaptions = [
+    "me after doing this 😂",
+    "this was not in the plan 💀",
+    "why did I do this 😭",
+    "expectation vs reality 😎",
+    "this escalated quickly 🔥"
 ];
 
-const prompts = [
-    "dog office suit",
-    "cat laptop work",
-    "student crying exam",
-    "funny monkey computer",
-    "alien street food"
-];
+function generateBurst() {
+    const prompt = document.getElementById("userPrompt").value;
 
-function generateAIMeme() {
-    const caption = captions[Math.floor(Math.random() * captions.length)];
-    const prompt = prompts[Math.floor(Math.random() * prompts.length)];
+    if (prompt.trim() === "") {
+        alert("Enter something!");
+        return;
+    }
 
-    const img = `https://source.unsplash.com/300x300/?${prompt}`;
+    // 🔥 Generate image using user prompt
+    const imgUrl = `https://source.unsplash.com/400x400/?${prompt}`;
 
-    document.getElementById("memeImg").src = img;
-    document.getElementById("caption").innerText = caption;
+    // 🎭 Random caption
+    const caption = funnyCaptions[Math.floor(Math.random() * funnyCaptions.length)];
+
+    document.getElementById("burstImg").src = imgUrl;
+    document.getElementById("burstCaption").innerText = caption;
 }
-function downloadAIMeme() {
-    html2canvas(document.getElementById("memeBox")).then(canvas => {
+
+function downloadBurst() {
+    html2canvas(document.getElementById("burstBox")).then(canvas => {
         const link = document.createElement("a");
-        link.download = "ai-meme.png";
+        link.download = "ai-burst-meme.png";
         link.href = canvas.toDataURL();
         link.click();
     });
-}
-function showSection(sectionId) {
-    document.querySelectorAll(".section").forEach(sec => {
-        sec.style.display = "none";
-    });
-
-    document.getElementById(sectionId).style.display = "block";
 }
