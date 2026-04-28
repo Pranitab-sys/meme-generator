@@ -173,12 +173,12 @@ function downloadChat() {
     });
 }
 
-const funnyCaptions = [
+const captions = [
     "me after doing this 😂",
-    "this was not in the plan 💀",
-    "why did I do this 😭",
-    "expectation vs reality 😎",
-    "this escalated quickly 🔥"
+    "this escalated quickly 💀",
+    "not what I expected 😭",
+    "this is chaos 🔥",
+    "why did I do this 😎"
 ];
 
 function generateBurst() {
@@ -189,14 +189,12 @@ function generateBurst() {
         return;
     }
 
-    // 🔥 Generate image using user prompt
+    const randomCaption = captions[Math.floor(Math.random() * captions.length)];
+
     const imgUrl = `https://source.unsplash.com/400x400/?${prompt}`;
 
-    // 🎭 Random caption
-    const caption = funnyCaptions[Math.floor(Math.random() * funnyCaptions.length)];
-
     document.getElementById("burstImg").src = imgUrl;
-    document.getElementById("burstCaption").innerText = caption;
+    document.getElementById("burstCaption").innerText = randomCaption;
 }
 
 function downloadBurst() {
