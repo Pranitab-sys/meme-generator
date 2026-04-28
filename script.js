@@ -173,6 +173,7 @@ function downloadChat() {
     });
 }
 
+// 🎭 Captions
 const captions = [
     "me after doing this 😂",
     "this escalated quickly 💀",
@@ -181,6 +182,8 @@ const captions = [
     "why did I do this 😎"
 ];
 
+
+// 🚀 GENERATE AI BURST MEME
 function generateBurst() {
     const prompt = document.getElementById("userPrompt").value;
 
@@ -189,14 +192,29 @@ function generateBurst() {
         return;
     }
 
+    const img = document.getElementById("burstImg");
+
+    // 🧠 Random caption
     const randomCaption = captions[Math.floor(Math.random() * captions.length)];
 
-    const imgUrl = `https://source.unsplash.com/400x400/?${prompt}`;
+    // 🌐 Unsplash image (main)
+    const imgUrl = `https://source.unsplash.com/400x400/?${prompt}&t=${new Date().getTime()}`;
 
-    document.getElementById("burstImg").src = imgUrl;
+    // ❌ If Unsplash fails → fallback image
+    img.onerror = function () {
+        console.log("Fallback image used");
+        img.src = `https://picsum.photos/400?random=${Math.random()}`;
+    };
+
+    // ✅ Set image
+    img.src = imgUrl;
+
+    // 📝 Set caption
     document.getElementById("burstCaption").innerText = randomCaption;
 }
 
+
+// 📥 DOWNLOAD ONLY MEME BOX
 function downloadBurst() {
     html2canvas(document.getElementById("burstBox")).then(canvas => {
         const link = document.createElement("a");
