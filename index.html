@@ -16,6 +16,7 @@
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
         <div class="card" onclick="openPage('aiburst')">🤖 AI Burst Meme</div>
+
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -115,22 +116,28 @@
 
 </div></div>
 
-<!-- AI meme -->
-<div id="aiMemeSection" class="section">
+<!-- 🏠 DASHBOARD -->
+<div id="home" class="section">
+    <h1>Welcome to Meme App 😎</h1>
+    <button onclick="showSection('aiMemeSection')">🤖 AI Burst Meme</button>
+</div>
 
-    <h1>🤖 AI Absurd Meme Generator</h1>
+<!-- 🤖 AI MEME SECTION -->
+<div id="aiMemeSection" class="section">
+    <h1>AI Absurd Meme Generator</h1>
 
     <div class="meme-box" id="memeBox">
-        <img id="memeImg" src="" alt="meme">
+        <img id="memeImg" src="https://via.placeholder.com/300">
         <p id="caption"></p>
     </div>
 
     <div class="btn-group">
         <button onclick="generateMeme()">Generate Meme</button>
         <button onclick="downloadMeme()">Download</button>
+        <button onclick="showSection('home')">⬅ Back</button>
     </div>
-
 </div>
+
 
 
 <!-- SAVED MEMES -->
