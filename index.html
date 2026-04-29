@@ -15,7 +15,6 @@
     <div class="vertical-menu">
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
-        <div class="card" onclick="openPage('aiBurstPage')">⚡ AI Burst Meme</div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -114,27 +113,6 @@
     </div>
 
 </div></div>
-
-<!-- Ai burst memes-->
-<div id="aiBurstPage" class="page">
-    
-    <button class="back-btn" onclick="goHome()">⬅</button>
-    
-    <h2>⚡ AI Burst Meme</h2>
-
-    <div class="ai-container" id="burstBox">
-        <input type="text" id="userPrompt" placeholder="Enter anything...">
-
-        <img id="burstImg" src="">
-        <p id="burstCaption"></p>
-    </div>
-
-    <div class="btn-grid">
-        <button onclick="generateBurst()">Generate</button>
-        <button onclick="downloadBurst()">Download</button>
-    </div>
-
-</div>
 
 
 <!-- SAVED MEMES -->
