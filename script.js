@@ -1,3 +1,23 @@
+
+
+import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// test function
+async function testSave() {
+    alert("Saving data...");
+
+    await addDoc(collection(db, "memes"), {
+        name: "Test Meme",
+        createdAt: Date.now()
+    });
+
+    alert("Data saved to Firebase 🚀");
+}
+
+// make function available to HTML
+window.testSave = testSave;
+
 function openPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -100,13 +120,23 @@ if (font === "Impact") {
 
 ctx.restore();
 }
-function downloadMeme() {
+async function downloadMeme() {
+    const data = canvas.toDataURL();
+
+    // Download
     const link = document.createElement("a");
     link.download = "meme.png";
-    link.href = canvas.toDataURL();
+    link.href = data;
     link.click();
-}
 
+    // Save to Firebase
+    await addDoc(collection(db, "memes"), {
+        imageUrl: data,
+        createdAt: Date.now()
+    });
+
+    alert("Saved to Firebase 🚀");
+}
 
 // Chat Meme
 function addMessage() {
@@ -173,53 +203,3 @@ function downloadChat() {
     });
 }
 
-// 🎭 Captions
-const captions = [
-    "me after doing this 😂",
-    "this escalated quickly 💀",
-    "not what I expected 😭",
-    "this is chaos 🔥",
-    "why did I do this 😎"
-];
-
-
-// 🚀 GENERATE AI BURST MEME
-function generateBurst() {
-    const prompt = document.getElementById("userPrompt").value;
-
-    if (prompt.trim() === "") {
-        alert("Enter something!");
-        return;
-    }
-
-    const img = document.getElementById("burstImg");
-
-    // 🧠 Random caption
-    const randomCaption = captions[Math.floor(Math.random() * captions.length)];
-
-    // 🌐 Unsplash image (main)
-    const imgUrl = `https://source.unsplash.com/400x400/?${prompt}&t=${new Date().getTime()}`;
-
-    // ❌ If Unsplash fails → fallback image
-    img.onerror = function () {
-        console.log("Fallback image used");
-        img.src = `https://picsum.photos/400?random=${Math.random()}`;
-    };
-
-    // ✅ Set image
-    img.src = imgUrl;
-
-    // 📝 Set caption
-    document.getElementById("burstCaption").innerText = randomCaption;
-}
-
-
-// 📥 DOWNLOAD ONLY MEME BOX
-function downloadBurst() {
-    html2canvas(document.getElementById("burstBox")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "ai-burst-meme.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-}
