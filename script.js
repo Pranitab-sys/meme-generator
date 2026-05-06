@@ -245,10 +245,7 @@ async function loadSavedMemes() {
             // ✅ TEXT MEME (for testSave)
             else {
 
-                const text = document.createElement("p");
-                text.innerText = meme.name || "No Image";
-
-                box.appendChild(text);
+                return;
             }
 
             container.appendChild(box);
