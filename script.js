@@ -1,52 +1,49 @@
-
-
 import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// test function
-async function testSave() {
-    alert("Saving data...");
+// ---------------- GLOBAL FUNCTIONS ----------------
 
-    await addDoc(collection(db, "memes"), {
-        name: "Test Meme",
-        createdAt: Date.now()
-    });
 
-    alert("Data saved to Firebase 🚀");
-}
 
-// make function available to HTML
-window.testSave = testSave;
-
-window.openPage = function(id) {
+window.openPage = function (id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
-}
 
-window.goHome = function() {
-    openPage("home");
-}
-
-// Meme Generator
-const canvas = document.getElementById("memeCanvas");
-const ctx = canvas.getContext("2d");
-let image = new Image();
-
-image.onload = function() {
-    canvas.width = 400;
-    canvas.height = 400;
-    ctx.drawImage(image, 0, 0);
+    if (id === "savedPage") loadSavedMemes();
 };
 
-document.getElementById("imageInput").addEventListener("change", function(e) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        image.src = event.target.result;
-    };
-    reader.readAsDataURL(e.target.files[0]);
-});
+window.goHome = function () {
+    openPage("home");
+};
 
-window.generateMeme = function() {
+// ---------------- DOM LOADED ----------------
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const canvas = document.getElementById("memeCanvas");
+    const ctx = canvas.getContext("2d");
+    let image = new Image();
+
+    image.onload = function () {
+        canvas.width = 400;
+        canvas.height = 400;
+        ctx.drawImage(image, 0, 0);
+    };
+
+    const imageInput = document.getElementById("imageInput");
+    if (imageInput) {
+        imageInput.addEventListener("change", function (e) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                image.src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    }
+
+    // -------- MEME GENERATOR --------
+
+    window.generateMeme = function () {
     if (!image.src) {
         alert("Upload image first!");
         return;
@@ -55,97 +52,81 @@ window.generateMeme = function() {
     const maxWidth = 500;
     const maxHeight = 500;
 
-    // calculate ratio (fit inside box)
     let ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
-
     const drawWidth = image.width * ratio;
     const drawHeight = image.height * ratio;
 
-    // keep canvas FIXED (important!)
     canvas.width = maxWidth;
     canvas.height = maxHeight;
 
-    // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // center image (THIS removes zoom feel)
     const x = (canvas.width - drawWidth) / 2;
     const y = (canvas.height - drawHeight) / 2;
 
     ctx.drawImage(image, x, y, drawWidth, drawHeight);
 
-    // TEXT
+    // TEXT INPUTS
     const top = document.getElementById("topText").value;
     const bottom = document.getElementById("bottomText").value;
     const size = document.getElementById("fontSize").value;
     const color = document.getElementById("fontColor").value;
     const font = document.getElementById("fontFamily").value;
 
+    ctx.save();
+
     ctx.font = size + "px " + font;
-    ctx.fillStyle = color;
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 3;
     ctx.textAlign = "center";
-    ctx.shadowBlur = 0;
-    ctx.globalAlpha = 1;
-   
-// 🔥 TEXT DRAWING (REPLACE THIS PART ONLY)
+    ctx.fillStyle = color;
 
-ctx.save();
+    if (font === "Impact") {
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 3;
+    } else {
+        ctx.strokeStyle = "transparent";
+        ctx.lineWidth = 0;
+    }
 
-ctx.font = size + "px " + font;
-ctx.textAlign = "center";
-ctx.fillStyle = color;
+    // TOP TEXT
+    ctx.fillText(top, canvas.width / 2, 40);
+    if (font === "Impact") {
+        ctx.strokeText(top, canvas.width / 2, 40);
+    }
 
-// Apply stroke only for Impact
-if (font === "Impact") {
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 3;
-} else {
-    ctx.strokeStyle = "transparent";
-    ctx.lineWidth = 0;
-}
+    // BOTTOM TEXT
+    ctx.fillText(bottom, canvas.width / 2, canvas.height - 20);
+    if (font === "Impact") {
+        ctx.strokeText(bottom, canvas.width / 2, canvas.height - 20);
+    }
 
-// TOP TEXT
-ctx.fillText(top, canvas.width / 2, 40);
-if (font === "Impact") {
-    ctx.strokeText(top, canvas.width / 2, 40);
-}
+    ctx.restore();
+};
 
-// BOTTOM TEXT
-ctx.fillText(bottom, canvas.width / 2, canvas.height - 20);
-if (font === "Impact") {
-    ctx.strokeText(bottom, canvas.width / 2, canvas.height - 20);
-}
+    window.downloadMeme = async function () {
+        const data = canvas.toDataURL();
 
-ctx.restore();
-}
-window.downloadMeme = async function() {
-    const data = canvas.toDataURL();
+        const link = document.createElement("a");
+        link.download = "meme.png";
+        link.href = data;
+        link.click();
 
-    // Download
-    const link = document.createElement("a");
-    link.download = "meme.png";
-    link.href = data;
-    link.click();
+        await addDoc(collection(db, "memes"), {
+            imageUrl: data,
+            createdAt: Date.now()
+        });
 
-    // Save to Firebase
-    await addDoc(collection(db, "memes"), {
-        imageUrl: data,
-        createdAt: Date.now()
-    });
+        alert("Saved to Firebase 🚀");
+    };
 
-    alert("Saved to Firebase 🚀");
-}
+    // -------- CHAT MEME --------
 
-// Chat Meme
-window.addMessage = function() {
+    window.addMessage = function() {
     const input = document.getElementById("chatInput");
     const emoji = document.getElementById("emojiPicker").value;
     const sender = document.getElementById("sender").value;
     const chatBox = document.getElementById("chatBox");
 
-    if (input.value.trim() === "") return;
+    if (!input.value.trim()) return;
 
     const row = document.createElement("div");
     row.classList.add("msg-row");
@@ -153,19 +134,19 @@ window.addMessage = function() {
     const msg = document.createElement("div");
     msg.classList.add("message");
 
-    // Time
     const now = new Date();
-    let time = now.getHours() + ":" + now.getMinutes();
+    let time = now.getHours() + ":" + String(now.getMinutes()).padStart(2, '0');
 
     if (sender === "me") {
+        row.classList.add("right");
         msg.classList.add("sent");
 
         msg.innerHTML = `
             ${input.value} ${emoji}
-            <span class="time">${time} <span class="tick">✔✔</span></span>
+            <span class="time">${time} ✔✔</span>
         `;
-
     } else {
+        row.classList.add("left");
         msg.classList.add("received");
 
         msg.innerHTML = `
@@ -174,32 +155,110 @@ window.addMessage = function() {
         `;
     }
 
-    // DP (profile pic)
     const dp = document.createElement("img");
     dp.classList.add("dp");
 
+    dp.src = sender === "me"
+        ? "https://i.pravatar.cc/30?img=3"
+        : "https://i.pravatar.cc/30?img=5";
+
     if (sender === "me") {
-        dp.src = "https://i.pravatar.cc/30?img=3";
         row.appendChild(msg);
         row.appendChild(dp);
     } else {
-        dp.src = "https://i.pravatar.cc/30?img=5";
         row.appendChild(dp);
         row.appendChild(msg);
     }
 
     chatBox.appendChild(row);
-
     input.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
-}
+};
 
-window.downloadChat = function() {
-    html2canvas(document.querySelector(".chat-box")).then(canvas => {
+    window.downloadChat = function () {
+    const chatBox = document.getElementById("chatBox");
+
+    html2canvas(chatBox).then(async (canvas) => {
+
+        const data = canvas.toDataURL();
+
+        // ✅ Download
         const link = document.createElement("a");
         link.download = "chat-meme.png";
-        link.href = canvas.toDataURL();
+        link.href = data;
         link.click();
-    });
-}
 
+        // ✅ Save to Firebase
+        await addDoc(collection(db, "memes"), {
+            imageUrl: data,
+            type: "chat",
+            createdAt: Date.now()
+        });
+
+        alert("Chat meme saved 🚀");
+    });
+};
+
+});
+
+// ---------------- SAVED MEMES ----------------
+
+async function loadSavedMemes() {
+
+    const container = document.getElementById("savedContainer");
+
+    container.innerHTML = "Loading...";
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "memes"));
+
+        container.innerHTML = "";
+
+        if (snapshot.empty) {
+            container.innerHTML = "<p>No memes saved 😢</p>";
+            return;
+        }
+
+        snapshot.forEach(docSnap => {
+
+            const meme = docSnap.data();
+
+            console.log(meme);
+
+            const box = document.createElement("div");
+            box.classList.add("meme-box");
+
+            // ✅ IMAGE MEME
+            if (meme.imageUrl) {
+
+                const img = document.createElement("img");
+                img.src = meme.imageUrl;
+
+                img.style.width = "100%";
+                img.style.borderRadius = "10px";
+
+                box.appendChild(img);
+
+            }
+
+            // ✅ TEXT MEME (for testSave)
+            else {
+
+                const text = document.createElement("p");
+                text.innerText = meme.name || "No Image";
+
+                box.appendChild(text);
+            }
+
+            container.appendChild(box);
+
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        container.innerHTML = "Error loading memes ❌";
+    }
+}
