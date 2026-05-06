@@ -18,12 +18,12 @@ async function testSave() {
 // make function available to HTML
 window.testSave = testSave;
 
-function openPage(id) {
+window.openPage = function(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-function goHome() {
+window.goHome = function() {
     openPage("home");
 }
 
@@ -46,7 +46,7 @@ document.getElementById("imageInput").addEventListener("change", function(e) {
     reader.readAsDataURL(e.target.files[0]);
 });
 
-function generateMeme() {
+window.generateMeme = function() {
     if (!image.src) {
         alert("Upload image first!");
         return;
@@ -120,7 +120,7 @@ if (font === "Impact") {
 
 ctx.restore();
 }
-async function downloadMeme() {
+window.downloadMeme = async function() {
     const data = canvas.toDataURL();
 
     // Download
@@ -139,7 +139,7 @@ async function downloadMeme() {
 }
 
 // Chat Meme
-function addMessage() {
+window.addMessage = function() {
     const input = document.getElementById("chatInput");
     const emoji = document.getElementById("emojiPicker").value;
     const sender = document.getElementById("sender").value;
@@ -194,7 +194,7 @@ function addMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function downloadChat() {
+window.downloadChat = function() {
     html2canvas(document.querySelector(".chat-box")).then(canvas => {
         const link = document.createElement("a");
         link.download = "chat-meme.png";
