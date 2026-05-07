@@ -466,3 +466,34 @@ button:hover {
 .msg-row.right{
     justify-content: flex-end;
 }
+/* SAVED MEMES GRID */
+#savedContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Each meme card */
+.saved-card {
+    background: rgba(255,255,255,0.08);
+    padding: 10px;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.saved-card:hover {
+    transform: scale(1.03);
+}
+
+/* Saved images */
+.saved-card img {
+    width: 100%;
+    border-radius: 10px;
+}
