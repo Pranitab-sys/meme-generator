@@ -497,3 +497,18 @@ button:hover {
     width: 100%;
     border-radius: 10px;
 }
+/* Delete Selected Button */
+#deleteSelectedBtn {
+    margin: 20px;
+    background: crimson;
+}
+
+#deleteSelectedBtn:hover {
+    background: darkred;
+}
+
+/* Checkbox */
+.meme-check {
+    margin-top: 10px;
+    transform: scale(1.3);
+}
