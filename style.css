@@ -227,6 +227,8 @@ button {
     overflow-y: auto;
     background: #e5ddd5;
     padding: 10px;
+    display:flex;
+    flex-direction: column;
     border-radius: 10px;
 }
 
@@ -237,6 +239,8 @@ button {
     margin: 5px;
     border-radius: 10px;
     font-size: 14px;
+    display: flex;
+    align-items: flex-end;
     word-wrap:break-word;
 }
 
@@ -327,15 +331,15 @@ button {
 .msg-row {
     display: flex;
     align-items: flex-end;
-    margin: 5px 0;
+    margin: 6px 0;
 }
 
 /* Profile pic */
 .dp {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    margin: 5px;
+    margin: 0 5px;
 }
 
 /* Message bubble */
@@ -453,4 +457,12 @@ button:hover {
 }
 .section {
     display: none;
+}
+/* LEFT(friend)*/
+.msg-row.left{
+    justify-content: flex-start;
+}
+/* RIGHT(you)*/
+.msg-row.right{
+    justify-content: flex-end;
 }
