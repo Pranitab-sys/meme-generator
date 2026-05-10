@@ -330,25 +330,40 @@ window.generateNotification = function () {
 
 // ================= DOWNLOAD =================
 
-window.downloadNotification = function () {
+window.downloadNotification = async function () {
 
-    const card = document.getElementById("notifyCard");
+    const element = document.querySelector(".notification-preview");
 
-    if (!card) {
-
-        alert("Generate notification first!");
-
+    if (!element) {
+        alert("Notification preview not found ❌");
         return;
     }
 
-    html2canvas(card).then(canvas => {
+    try {
 
+        const canvas = await html2canvas(element);
+
+        const data = canvas.toDataURL("image/png");
+
+        // DOWNLOAD
         const link = document.createElement("a");
-
+        link.href = data;
         link.download = "notification-meme.png";
-
-        link.href = canvas.toDataURL();
-
         link.click();
-    });
+
+        // SAVE TO FIREBASE
+        await addDoc(collection(db, "memes"), {
+            imageUrl: data,
+            type: "notification",
+            createdAt: Date.now()
+        });
+
+        alert("Notification saved 🚀");
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Download failed ❌");
+    }
 };
