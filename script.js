@@ -259,3 +259,55 @@ async function loadSavedMemes() {
         container.innerHTML = "Error loading memes ❌";
     }
 }
+
+const apps = {
+      whatsapp: {
+        name: "WhatsApp",
+        icon: "https://cdn-icons-png.flaticon.com/512/733/733585.png"
+      },
+
+      instagram: {
+        name: "Instagram",
+        icon: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+      },
+
+      discord: {
+        name: "Discord",
+        icon: "https://cdn-icons-png.flaticon.com/512/5968/5968756.png"
+      },
+
+      gmail: {
+        name: "Gmail",
+        icon: "https://cdn-icons-png.flaticon.com/512/281/281769.png"
+      }
+    };
+
+    function generateMeme(){
+
+      const selectedApp =
+      document.getElementById("appSelect").value;
+
+      const username =
+      document.getElementById("username").value;
+
+      const message =
+      document.getElementById("message").value;
+
+      const time =
+      document.getElementById("timeInput").value;
+
+      document.getElementById("previewApp").innerText =
+      apps[selectedApp].name;
+
+      document.getElementById("previewIcon").src =
+      apps[selectedApp].icon;
+
+      document.getElementById("previewUser").innerText =
+      username || "Unknown User";
+
+      document.getElementById("previewMessage").innerText =
+      message || "Funny notification here 💀";
+
+      document.getElementById("previewTime").innerText =
+      time || "now";
+    }
