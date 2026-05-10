@@ -262,6 +262,8 @@ async function loadSavedMemes() {
 
 // ================= GENERATE NOTIFICATION =================
 
+// ================= GENERATE NOTIFICATION =================
+
 window.generateNotification = function () {
 
     const app = document.getElementById("appType").value;
@@ -278,25 +280,17 @@ window.generateNotification = function () {
 
     // APP LOGOS
 
-    if (app === "WhatsApp") {
+    if(app === "Telegram"){
+    logo = "images/telegram.png";
+}
 
-        logo =
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg";
+if(app === "WhatsApp"){
+    logo= "images/whatsapp.jpg";
+}
 
-    }
-
-    else if (app === "Instagram") {
-
-        logo =
-        "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png";
-
-    }
-
-    else {
-
-        logo =
-        "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg";
-    }
+if(app === "Instagram"){
+    logo = "images/instagram.jpg";
+}
 
     // CREATE CARD
 
@@ -328,42 +322,37 @@ window.generateNotification = function () {
     `;
 };
 
-// ================= DOWNLOAD =================
+// ================= DOWNLOAD + SAVE =================
 
 window.downloadNotification = async function () {
 
-    const element = document.querySelector(".notification-preview");
+    const preview =
+    document.getElementById("notificationPreview");
 
-    if (!element) {
-        alert("Notification preview not found ❌");
-        return;
-    }
+    html2canvas(preview).then(async canvas => {
 
-    try {
-
-        const canvas = await html2canvas(element);
-
-        const data = canvas.toDataURL("image/png");
+        const data = canvas.toDataURL();
 
         // DOWNLOAD
         const link = document.createElement("a");
+
+        link.download = "notification.png";
+
         link.href = data;
-        link.download = "notification-meme.png";
+
         link.click();
 
         // SAVE TO FIREBASE
         await addDoc(collection(db, "memes"), {
+
             imageUrl: data,
-            type: "notification",
+
             createdAt: Date.now()
+
         });
 
-        alert("Notification saved 🚀");
+        alert("Saved 🚀");
 
-    } catch (err) {
+    });
 
-        console.error(err);
-
-        alert("Download failed ❌");
-    }
 };
