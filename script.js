@@ -260,54 +260,95 @@ async function loadSavedMemes() {
     }
 }
 
-const apps = {
-      whatsapp: {
-        name: "WhatsApp",
-        icon: "https://cdn-icons-png.flaticon.com/512/733/733585.png"
-      },
+// ================= GENERATE NOTIFICATION =================
 
-      instagram: {
-        name: "Instagram",
-        icon: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-      },
+window.generateNotification = function () {
 
-      discord: {
-        name: "Discord",
-        icon: "https://cdn-icons-png.flaticon.com/512/5968/5968756.png"
-      },
+    const app = document.getElementById("appType").value;
 
-      gmail: {
-        name: "Gmail",
-        icon: "https://cdn-icons-png.flaticon.com/512/281/281769.png"
-      }
-    };
+    const user = document.getElementById("notifyUser").value;
 
-    function generateMeme(){
+    const msg = document.getElementById("notifyMsg").value;
 
-      const selectedApp =
-      document.getElementById("appSelect").value;
+    const time = document.getElementById("notifyTime").value;
 
-      const username =
-      document.getElementById("username").value;
+    const preview = document.getElementById("notificationPreview");
 
-      const message =
-      document.getElementById("message").value;
+    let logo = "";
 
-      const time =
-      document.getElementById("timeInput").value;
+    // APP LOGOS
 
-      document.getElementById("previewApp").innerText =
-      apps[selectedApp].name;
+    if (app === "WhatsApp") {
 
-      document.getElementById("previewIcon").src =
-      apps[selectedApp].icon;
+        logo =
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg";
 
-      document.getElementById("previewUser").innerText =
-      username || "Unknown User";
-
-      document.getElementById("previewMessage").innerText =
-      message || "Funny notification here 💀";
-
-      document.getElementById("previewTime").innerText =
-      time || "now";
     }
+
+    else if (app === "Instagram") {
+
+        logo =
+        "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png";
+
+    }
+
+    else {
+
+        logo =
+        "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg";
+    }
+
+    // CREATE CARD
+
+    preview.innerHTML = `
+
+        <div class="notify-card" id="notifyCard">
+
+            <img src="${logo}" class="notify-logo">
+
+            <div class="notify-content">
+
+                <div class="notify-top">
+
+                    <span>${user}</span>
+
+                    <span>${time}</span>
+
+                </div>
+
+                <div class="notify-msg">
+
+                    ${msg}
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+};
+
+// ================= DOWNLOAD =================
+
+window.downloadNotification = function () {
+
+    const card = document.getElementById("notifyCard");
+
+    if (!card) {
+
+        alert("Generate notification first!");
+
+        return;
+    }
+
+    html2canvas(card).then(canvas => {
+
+        const link = document.createElement("a");
+
+        link.download = "notification-meme.png";
+
+        link.href = canvas.toDataURL();
+
+        link.click();
+    });
+};
