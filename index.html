@@ -16,7 +16,7 @@
     <div class="vertical-menu">
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
-        <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme </div>
+        <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme  </div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -157,7 +157,19 @@
         </div>
 
         <!-- PREVIEW -->
-        <div id="notificationPreview"></div>
+       <div id="notificationPreview" class="notification-preview">
+
+    <img id="appLogo"
+    src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
+
+    <div class="notify-text">
+        <h3 id="previewName">Name</h3>
+        <p id="previewMessage">Message</p>
+    </div>
+
+    <span id="previewTime">7:55 pm</span>
+
+</div>
 
     </div>
 
