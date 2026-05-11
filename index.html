@@ -203,17 +203,27 @@
     <button onclick="generateVideoMeme()">
         Generate Video Meme
     </button>
-<div class="video-preview-box">
+   <div class="video-preview-box">
 
     <video id="videoPreview" controls></video>
 
-    <div id="videoTextOverlay">
-        MEME TEXT
+    <!-- TOP TEXT -->
+    <div id="videoTopOverlay"
+    class="video-overlay top-overlay">
+
+    TOP TEXT
+
+    </div>
+
+    <!-- BOTTOM TEXT -->
+    <div id="videoBottomOverlay"
+    class="video-overlay bottom-overlay">
+
+    BOTTOM TEXT
+
     </div>
 
 </div>
-</div>
-
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
