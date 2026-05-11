@@ -115,6 +115,94 @@
 
 </div></div>
 
+<!-- Notify memes-->
+
+ <div class="container">
+
+    <!-- Editor -->
+    <div class="editor">
+
+      <h2>Notify Meme Generator</h2>
+
+      <div class="input-group">
+        <label>Select App</label>
+        <select id="appSelect">
+          <option value="whatsapp">WhatsApp</option>
+          <option value="instagram">Instagram</option>
+          <option value="discord">Discord</option>
+          <option value="gmail">Gmail</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>User Name</label>
+        <input type="text" id="username" placeholder="Enter username">
+      </div>
+
+      <div class="input-group">
+        <label>Meme Message</label>
+        <textarea id="message" placeholder="Enter funny notification"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label>Time</label>
+        <input type="text" id="timeInput" placeholder="2m ago">
+      </div>
+
+      <button onclick="generateMeme()">
+        Generate Meme
+      </button>
+
+    </div>
+
+    <!-- Preview -->
+    <div class="preview-area">
+
+      <div class="phone">
+
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>🔋 98%</span>
+        </div>
+
+        <div class="notification">
+
+          <div class="app-icon">
+            <img id="previewIcon"
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+          </div>
+
+          <div class="content">
+
+            <div class="top">
+              <span class="app-name" id="previewApp">
+                WhatsApp
+              </span>
+
+              <span class="time" id="previewTime">
+                now
+              </span>
+            </div>
+
+            <div class="user" id="previewUser">
+              Friend
+            </div>
+
+            <div class="message" id="previewMessage">
+              Bro wake up, exam starts in 5 minutes 💀
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
 
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">
