@@ -16,6 +16,7 @@
     <div class="vertical-menu">
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
+        <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme </div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -115,94 +116,55 @@
 
 </div></div>
 
-<!-- Notify memes-->
+<!-- ================= NOTIFICATION MEME PAGE ================= -->
 
- <div class="container">
+<div id="notificationPage" class="page">
 
-    <!-- Editor -->
-    <div class="editor">
+    <!-- BACK BUTTON -->
+    <button class="back-btn" onclick="goHome()">⬅</button>
 
-      <h2>Notify Meme Generator</h2>
+    <h2>🔔 Notification Meme</h2>
 
-      <div class="input-group">
-        <label>Select App</label>
-        <select id="appSelect">
-          <option value="whatsapp">WhatsApp</option>
-          <option value="instagram">Instagram</option>
-          <option value="discord">Discord</option>
-          <option value="gmail">Gmail</option>
+    <div class="notify-container">
+
+        <!-- APP SELECT -->
+        <select id="appType">
+            <option>WhatsApp</option>
+            <option>Instagram</option>
+            <option>Telegram</option>
         </select>
-      </div>
 
-      <div class="input-group">
-        <label>User Name</label>
-        <input type="text" id="username" placeholder="Enter username">
-      </div>
+        <!-- USERNAME -->
+        <input type="text" id="notifyUser" placeholder="Enter username">
 
-      <div class="input-group">
-        <label>Meme Message</label>
-        <textarea id="message" placeholder="Enter funny notification"></textarea>
-      </div>
+        <!-- MESSAGE -->
+        <input type="text" id="notifyMsg" placeholder="Enter message">
 
-      <div class="input-group">
-        <label>Time</label>
-        <input type="text" id="timeInput" placeholder="2m ago">
-      </div>
+        <!-- TIME -->
+        <input type="text" id="notifyTime" placeholder="2:45 PM">
 
-      <button onclick="generateMeme()">
-        Generate Meme
-      </button>
+        <!-- BUTTONS -->
+        <div class="btn-grid">
 
-    </div>
+            <button onclick="generateNotification()">
+                Generate
+            </button>
 
-    <!-- Preview -->
-    <div class="preview-area">
-
-      <div class="phone">
-
-        <div class="status-bar">
-          <span>9:41</span>
-          <span>🔋 98%</span>
-        </div>
-
-        <div class="notification">
-
-          <div class="app-icon">
-            <img id="previewIcon"
-            src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-          </div>
-
-          <div class="content">
-
-            <div class="top">
-              <span class="app-name" id="previewApp">
-                WhatsApp
-              </span>
-
-              <span class="time" id="previewTime">
-                now
-              </span>
-            </div>
-
-            <div class="user" id="previewUser">
-              Friend
-            </div>
-
-            <div class="message" id="previewMessage">
-              Bro wake up, exam starts in 5 minutes 💀
-            </div>
-
-          </div>
+            <button onclick="downloadNotification()">
+                Download
+            </button>
 
         </div>
 
-      </div>
+        <!-- PREVIEW -->
+        <div id="notificationPreview"></div>
 
     </div>
 
-  </div>
+</div>
 
-
+<!-- html2canvas -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">
