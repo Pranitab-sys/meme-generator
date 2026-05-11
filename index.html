@@ -17,6 +17,7 @@
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
         <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme  </div>
+        <div class="card" onclick="openPage('videoPage')">Video Meme</div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -159,7 +160,7 @@
         <!-- PREVIEW -->
        <div id="notificationPreview" class="notification-preview">
 
-    <img id="appLogo" crossorigin="anonymous"
+    <img id="appLogo" crossorigin="anonymous" 
     src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
 
     <div class="notify-text">
@@ -178,14 +179,45 @@
 <!-- html2canvas -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
+<!-- Video meme-->
+ <div id="videoMemePage" class="page">
+
+    <button onclick="goHome()">
+        Back
+    </button>
+
+    <h2>🎥 Video Meme Generator</h2>
+
+    <input type="file"
+    id="videoInput"
+    accept="video/*">
+
+    <input type="text"
+    id="topVideoText"
+    placeholder="Top text">
+
+    <input type="text"
+    id="bottomVideoText"
+    placeholder="Bottom text">
+
+    <button onclick="generateVideoMeme()">
+        Generate Video Meme
+    </button>
+
+    <video id="videoPreview"
+    controls
+    width="400"></video>
+
+</div>
+
 <!-- SAVED MEMES -->
 <div id="savedPage" class="page">
     <button onclick="goHome()">⬅ Back</button>
     <h2>Saved Memes</h2>
-
     <div id="savedContainer"></div>
 </div>
 
 <script type="module" src="./script.js"></script>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
 </body>
 </html>

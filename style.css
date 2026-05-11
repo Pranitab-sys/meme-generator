@@ -469,8 +469,8 @@ button:hover {
 /* SAVED MEMES GRID */
 #savedContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(5,1fr);
+    gap: 15px;
 
     padding: 20px;
     margin-top: 20px;
