@@ -681,5 +681,7 @@ button:hover {
 
     text-shadow: 2px 2px 5px black;
 
+    z-index: 10;
+
     pointer-events: none;
 }
