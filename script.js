@@ -356,3 +356,119 @@ window.downloadNotification = async function () {
     });
 
 };
+
+// ================= VIDEO MEME =================
+
+const videoInput =
+document.getElementById("videoInput");
+
+const videoPreview =
+document.getElementById("videoPreview");
+
+let uploadedVideo = null;
+
+// VIDEO PREVIEW
+
+videoInput.addEventListener("change", (e) => {
+
+    uploadedVideo = e.target.files[0];
+
+    if (!uploadedVideo) return;
+
+    const url =
+    URL.createObjectURL(uploadedVideo);
+
+    videoPreview.src = url;
+});
+
+// GENERATE VIDEO MEME
+
+window.generateVideoMeme = async function () {
+
+    if (!uploadedVideo) {
+
+        alert("Upload video first!");
+
+        return;
+    }
+
+    const topText =
+    document.getElementById("topVideoText").value;
+
+    const bottomText =
+    document.getElementById("bottomVideoText").value;
+
+    // SHOW OVERLAY TEXT
+
+    document.getElementById("videoTopOverlay")
+    .innerText = topText;
+
+    document.getElementById("videoBottomOverlay")
+    .innerText = bottomText;
+
+    alert("Processing video... ⏳");
+
+    try {
+
+        const { createFFmpeg, fetchFile } = FFmpeg;
+
+        const ffmpeg = createFFmpeg({
+            log: true
+        });
+
+        await ffmpeg.load();
+
+        ffmpeg.FS(
+            "writeFile",
+            "input.mp4",
+            await fetchFile(uploadedVideo)
+        );
+
+        await ffmpeg.run(
+
+            "-i", "input.mp4",
+
+            "-vf",
+
+            `drawtext=text='${topText}':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=40`,
+
+            "-codec:a",
+            "copy",
+
+            "output.mp4"
+        );
+
+        const data =
+        ffmpeg.FS("readFile", "output.mp4");
+
+        const videoURL =
+        URL.createObjectURL(
+
+            new Blob(
+                [data.buffer],
+                { type: "video/mp4" }
+            )
+        );
+
+        videoPreview.src = videoURL;
+
+        // AUTO DOWNLOAD
+
+        const link =
+        document.createElement("a");
+
+        link.href = videoURL;
+
+        link.download = "video-meme.mp4";
+
+        link.click();
+
+        alert("Video meme created 🚀");
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Error generating video meme ❌");
+    }
+};
