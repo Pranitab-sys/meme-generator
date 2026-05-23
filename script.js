@@ -472,3 +472,39 @@ window.generateVideoMeme = async function () {
         alert("Error generating video meme ❌");
     }
 };
+
+window.downloadVideoMeme = async function () {
+
+    const preview =
+    document.querySelector(".video-preview-box");
+
+    html2canvas(preview).then(async canvas => {
+
+        const data = canvas.toDataURL();
+
+        // DOWNLOAD
+
+        const link =
+        document.createElement("a");
+
+        link.download = "video-meme.png";
+
+        link.href = data;
+
+        link.click();
+
+        // SAVE TO FIREBASE
+
+        await addDoc(collection(db, "memes"), {
+
+            imageUrl: data,
+
+            createdAt: Date.now()
+
+        });
+
+        alert("Video meme saved 🚀");
+
+    });
+
+};
