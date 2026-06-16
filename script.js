@@ -252,12 +252,15 @@ async function loadSavedMemes() {
 
         });
 
-    } catch (err) {
+    } 
+    catch (err) {
 
-        console.error(err);
+    console.error(err);
 
-        container.innerHTML = "Error loading memes ❌";
-    }
+    alert(err.message);
+
+    container.innerHTML = "Error loading memes ❌";
+}
 }
 
 // ================= GENERATE NOTIFICATION =================
@@ -359,38 +362,24 @@ window.downloadNotification = async function () {
 
 // ================= VIDEO MEME =================
 
-const videoInput =
-document.getElementById("videoInput");
+const videoInput = document.getElementById("videoInput");
+const videoPreview = document.getElementById("videoPreview");
 
-const videoPreview =
-document.getElementById("videoPreview");
+if (videoInput && videoPreview) {
 
-let uploadedVideo = null;
+    videoInput.addEventListener("change", (e) => {
 
-// VIDEO PREVIEW
+        const file = e.target.files[0];
 
-videoInput.addEventListener("change", (e) => {
+        if (!file) return;
 
-    uploadedVideo = e.target.files[0];
+        videoPreview.src = URL.createObjectURL(file);
 
-    if (!uploadedVideo) return;
+    });
 
-    const url =
-    URL.createObjectURL(uploadedVideo);
+}
 
-    videoPreview.src = url;
-});
-
-// GENERATE VIDEO MEME
-
-window.generateVideoMeme = async function () {
-
-    if (!uploadedVideo) {
-
-        alert("Upload video first!");
-
-        return;
-    }
+window.generateVideoMeme = function () {
 
     const topText =
     document.getElementById("topVideoText").value;
@@ -398,79 +387,32 @@ window.generateVideoMeme = async function () {
     const bottomText =
     document.getElementById("bottomVideoText").value;
 
-    // SHOW OVERLAY TEXT
+    const size =
+    document.getElementById("videoFontSize")?.value || 32;
 
-    document.getElementById("videoTopOverlay")
-    .innerText = topText;
+    const color =
+    document.getElementById("videoFontColor")?.value || "#ffffff";
 
-    document.getElementById("videoBottomOverlay")
-    .innerText = bottomText;
+    const font =
+    document.getElementById("videoFontFamily")?.value || "Impact";
 
-    alert("Processing video... ⏳");
+    const topOverlay =
+    document.getElementById("videoTopOverlay");
 
-    try {
+    const bottomOverlay =
+    document.getElementById("videoBottomOverlay");
 
-        const { createFFmpeg, fetchFile } = FFmpeg;
+    topOverlay.innerText = topText;
+    bottomOverlay.innerText = bottomText;
 
-        const ffmpeg = createFFmpeg({
-            log: true
-        });
+    topOverlay.style.fontSize = size + "px";
+    bottomOverlay.style.fontSize = size + "px";
 
-        await ffmpeg.load();
+    topOverlay.style.color = color;
+    bottomOverlay.style.color = color;
 
-        ffmpeg.FS(
-            "writeFile",
-            "input.mp4",
-            await fetchFile(uploadedVideo)
-        );
-
-        await ffmpeg.run(
-
-            "-i", "input.mp4",
-
-            "-vf",
-
-            `drawtext=text='${topText}':fontcolor=white:fontsize=40:x=(w-text_w)/2:y=40`,
-
-            "-codec:a",
-            "copy",
-
-            "output.mp4"
-        );
-
-        const data =
-        ffmpeg.FS("readFile", "output.mp4");
-
-        const videoURL =
-        URL.createObjectURL(
-
-            new Blob(
-                [data.buffer],
-                { type: "video/mp4" }
-            )
-        );
-
-        videoPreview.src = videoURL;
-
-        // AUTO DOWNLOAD
-
-        const link =
-        document.createElement("a");
-
-        link.href = videoURL;
-
-        link.download = "video-meme.mp4";
-
-        link.click();
-
-        alert("Video meme created 🚀");
-
-    } catch (err) {
-
-        console.error(err);
-
-        alert("Error generating video meme ❌");
-    }
+    topOverlay.style.fontFamily = font;
+    bottomOverlay.style.fontFamily = font;
 };
 
 window.downloadVideoMeme = async function () {
