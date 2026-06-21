@@ -1,5 +1,12 @@
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // ---------------- GLOBAL FUNCTIONS ----------------
 
@@ -448,5 +455,142 @@ window.downloadVideoMeme = async function () {
         alert("Video meme saved 🚀");
 
     });
+
+};
+
+// ================= SHOW PAGES =================
+
+window.showSignup = function(){
+
+    openPage("signupPage");
+
+}
+
+window.showLogin = function(){
+
+    openPage("loginPage");
+
+}
+
+// ================= SIGNUP =================
+
+window.signupUser = async function(){
+
+    const email =
+    document.getElementById("signupEmail").value;
+
+    const password =
+    document.getElementById("signupPassword").value;
+
+    try{
+
+        await createUserWithEmailAndPassword(
+
+            auth,
+
+            email,
+
+            password
+
+        );
+
+        alert("Account Created Successfully 🎉");
+
+        openPage("home");
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+// ================= LOGIN =================
+
+window.loginUser = async function(){
+
+    const email =
+    document.getElementById("loginEmail").value;
+
+    const password =
+    document.getElementById("loginPassword").value;
+
+    try{
+
+        await signInWithEmailAndPassword(
+
+            auth,
+
+            email,
+
+            password
+
+        );
+
+        alert("Login Successful 🎉");
+
+        openPage("home");
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+// ================= AUTO LOGIN =================
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(user){
+
+        openPage("home");
+
+    }
+
+    else{
+
+        openPage("loginPage");
+
+    }
+
+});
+window.logoutUser = async function(){
+
+    await signOut(auth);
+
+    alert("Logged Out");
+
+    openPage("loginPage");
+
+}
+
+// ================= LOGOUT =================
+
+window.logoutuser = async function () {
+
+    try {
+
+        console.log("Logging out...");
+
+        await signOut(auth);
+
+        console.log("Logged out!");
+
+        openPage("loginPage");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 };
