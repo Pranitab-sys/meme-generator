@@ -1,5 +1,17 @@
 import { db, auth } from "./firebase.js";
-import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+
+collection,
+
+addDoc,
+
+getDocs,
+
+deleteDoc,
+
+doc
+
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 import {
     createUserWithEmailAndPassword,
@@ -119,7 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await addDoc(collection(db, "memes"), {
             imageUrl: data,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            ownerId: auth.currentUser.uid
         });
 
         alert("Saved to Firebase 🚀");
@@ -159,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         msg.innerHTML = `
             ${input.value} ${emoji}
             <span class="time">${time}</span>
-        `;
+        `
     }
 
     const dp = document.createElement("img");
@@ -199,7 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
         await addDoc(collection(db, "memes"), {
             imageUrl: data,
             type: "chat",
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            ownerId: auth.currentUser.uid
         });
 
         alert("Chat meme saved 🚀");
@@ -230,24 +244,72 @@ async function loadSavedMemes() {
         snapshot.forEach(docSnap => {
 
             const meme = docSnap.data();
+            const currentUser = auth.currentUser;
 
             console.log(meme);
 
             const box = document.createElement("div");
             box.classList.add("meme-box");
+            
 
             // ✅ IMAGE MEME
             if (meme.imageUrl) {
 
-                const img = document.createElement("img");
-                img.src = meme.imageUrl;
+    const img = document.createElement("img");
+    img.src = meme.imageUrl;
 
-                img.style.width = "100%";
-                img.style.borderRadius = "10px";
+    img.style.width = "100%";
+    img.style.borderRadius = "10px";
 
-                box.appendChild(img);
+    box.appendChild(img);
 
-            }
+    // ================= DOWNLOAD BUTTON =================
+
+    const downloadBtn = document.createElement("button");
+
+    downloadBtn.innerText = "⬇ Download";
+
+    downloadBtn.onclick = function () {
+
+        const link = document.createElement("a");
+
+        link.href = meme.imageUrl;
+
+        link.download = "meme.png";
+
+        link.click();
+
+    };
+
+    box.appendChild(downloadBtn);
+
+    // ================= DELETE BUTTON =================
+
+    if (currentUser && meme.ownerId === currentUser.uid) {
+
+        const deleteBtn = document.createElement("button");
+
+        deleteBtn.innerText = "🗑 Delete";
+
+        deleteBtn.onclick = async function () {
+
+            const confirmDelete = confirm("Delete this meme?");
+
+            if (!confirmDelete) return;
+
+            await deleteDoc(doc(db, "memes", docSnap.id));
+
+            alert("Deleted Successfully ✅");
+
+            loadSavedMemes();
+
+        };
+
+        box.appendChild(deleteBtn);
+
+    }
+
+}
 
             // ✅ TEXT MEME (for testSave)
             else {
@@ -355,11 +417,13 @@ window.downloadNotification = async function () {
         // SAVE TO FIREBASE
         await addDoc(collection(db, "memes"), {
 
-            imageUrl: data,
+    imageUrl: data,
 
-            createdAt: Date.now()
+    createdAt: Date.now(),
 
-        });
+    ownerId: auth.currentUser.uid
+
+});
 
         alert("Saved 🚀");
 
@@ -446,11 +510,13 @@ window.downloadVideoMeme = async function () {
 
         await addDoc(collection(db, "memes"), {
 
-            imageUrl: data,
+    imageUrl: data,
 
-            createdAt: Date.now()
+    createdAt: Date.now(),
 
-        });
+    ownerId: auth.currentUser.uid
+
+});
 
         alert("Video meme saved 🚀");
 
@@ -561,15 +627,7 @@ onAuthStateChanged(auth,(user)=>{
     }
 
 });
-window.logoutUser = async function(){
 
-    await signOut(auth);
-
-    alert("Logged Out");
-
-    openPage("loginPage");
-
-}
 
 // ================= LOGOUT =================
 
