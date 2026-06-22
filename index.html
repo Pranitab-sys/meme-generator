@@ -17,7 +17,7 @@
         <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
         <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
         <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme  </div>
-        <div class="card" onclick="openPage('videoMemePage')">Video Meme</div>
+        <div class="card" onclick="openPage('videoMemePage')">🎥 Video Meme</div>
         <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
     </div>
 </div>
@@ -188,7 +188,7 @@
 
     </button>
 
-    <h1>🎥 Video Meme Generator</h1>
+    <h1> Video Meme Generator</h1>
 
     <div class="main-layout">
 
@@ -208,12 +208,12 @@
             id="bottomVideoText"
             placeholder="Bottom Text">
 
-            <div class="btn-grid">
-
+          
 <!-- FONT SIZE -->
 
 <div class="control-box">
 
+<div class="control-item">
     <h3>Font Size</h3>
 
     <input type="range"
@@ -221,14 +221,17 @@
     min="20"
     max="60"
     value="32">
+</div>
 
-    <h3>Font Color</h3>
+<div class="control-item">
+        <h3>Font Color</h3>
 
     <input type="color"
     id="videoFontColor"
     value="#ffffff">
-
-    <h3>Font Style</h3>
+</div>
+<div class="control-item">
+       <h3>Font Style</h3>
 
     <select id="videoFontFamily">
 
@@ -244,7 +247,11 @@
 
     </select>
 
+</div>
+ 
 </div>            
+  <div class="btn-grid">
+
                 <button onclick="generateVideoMeme()">
 
                     Generate
