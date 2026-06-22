@@ -8,9 +8,77 @@
 
 </head>
 <body>
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="page active">
 
+    <div class="login-box">
+
+        <h1>🎭 MemeVerse</h1>
+
+        <p>Login to continue</p>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter Email">
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter Password">
+
+        <button onclick="loginUser()">
+            Login
+        </button>
+
+        <br><br>
+
+        <span>
+            Don't have an account?
+        </span>
+
+        <button onclick="showSignup()">
+            Create Account
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SIGNUP PAGE -->
+<div id="signupPage" class="page">
+
+    <div class="login-box">
+
+        <h1>🎭 MemeVerse</h1>
+
+        <p>Create Account</p>
+
+        <input
+            type="email"
+            id="signupEmail"
+            placeholder="Enter Email">
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Enter Password">
+
+        <button onclick="signupUser()">
+            Sign Up
+        </button>
+
+        <br><br>
+
+        <button onclick="showLogin()">
+            Back to Login
+        </button>
+
+    </div>
+
+</div>
 <!-- DASHBOARD -->
-<div id="home" class="page active">
+<div id="home" class="page">
     <h1>🔥 Meme Studio</h1>
 
     <div class="vertical-menu">
