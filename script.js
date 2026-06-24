@@ -261,7 +261,8 @@ async function loadSavedMemes() {
     img.style.width = "100%";
     img.style.borderRadius = "10px";
     img.style.height = "300px";
-img.style.objectFit = "cover";
+img.style.objectFit = "contain";
+img.style.background = "#222";
 
     box.appendChild(img);
 
