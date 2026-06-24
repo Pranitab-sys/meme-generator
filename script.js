@@ -262,7 +262,7 @@ async function loadSavedMemes() {
     img.style.borderRadius = "10px";
     img.style.height = "300px";
 img.style.objectFit = "contain";
-img.style.background = "#222";
+img.style.background = "#222";   
 
     box.appendChild(img);
 
@@ -664,3 +664,75 @@ window.logoutuser = async function () {
     }
 
 };
+/* ===========================
+   DASHBOARD UI
+=========================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Sidebar active menu
+    const menus = document.querySelectorAll(".menu");
+
+    menus.forEach(menu => {
+
+        menu.addEventListener("click", () => {
+
+            menus.forEach(m => m.classList.remove("active"));
+
+            menu.classList.add("active");
+
+        });
+
+    });
+
+    // Card hover animation
+    const cards = document.querySelectorAll(".action-card");
+
+    cards.forEach(card => {
+
+        card.addEventListener("mouseenter", () => {
+
+            card.style.transform = "translateY(-8px) scale(1.02)";
+
+        });
+
+        card.addEventListener("mouseleave", () => {
+
+            card.style.transform = "translateY(0) scale(1)";
+
+        });
+
+    });
+
+    // Welcome button animation
+    const createBtn = document.querySelector(".welcome button");
+
+    if (createBtn) {
+
+        createBtn.addEventListener("mouseenter", () => {
+
+            createBtn.style.transform = "scale(1.05)";
+
+        });
+
+        createBtn.addEventListener("mouseleave", () => {
+
+            createBtn.style.transform = "scale(1)";
+
+        });
+
+    }
+
+});
+
+/* ===========================
+   MOBILE MENU
+=========================== */
+
+function toggleSidebar(){
+
+    const sidebar = document.querySelector(".sidebar");
+
+    sidebar.classList.toggle("show");
+
+}
