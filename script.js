@@ -260,54 +260,65 @@ async function loadSavedMemes() {
 
     img.style.width = "100%";
     img.style.borderRadius = "10px";
+    img.style.height = "300px";
+img.style.objectFit = "cover";
 
     box.appendChild(img);
 
-    // ================= DOWNLOAD BUTTON =================
+// ================= DOWNLOAD BUTTON =================
 
-    const downloadBtn = document.createElement("button");
+const downloadBtn = document.createElement("button");
 
-    downloadBtn.innerText = "⬇ Download";
+downloadBtn.innerText = "⬇ Download";
 
-    downloadBtn.onclick = function () {
+downloadBtn.onclick = function () {
 
-        const link = document.createElement("a");
+    const link = document.createElement("a");
 
-        link.href = meme.imageUrl;
+    link.href = meme.imageUrl;
 
-        link.download = "meme.png";
+    link.download = "meme.png";
 
-        link.click();
+    link.click();
+
+};
+
+// ================= BUTTON ROW =================
+
+const buttonRow = document.createElement("div");
+buttonRow.className = "saved-buttons";
+
+// Always add Download button
+buttonRow.appendChild(downloadBtn);
+
+// ================= DELETE BUTTON =================
+
+if (currentUser && meme.ownerId === currentUser.uid) {
+
+    const deleteBtn = document.createElement("button");
+
+    deleteBtn.innerText = "🗑 Delete";
+
+    deleteBtn.onclick = async function () {
+
+        const confirmDelete = confirm("Delete this meme?");
+
+        if (!confirmDelete) return;
+
+        await deleteDoc(doc(db, "memes", docSnap.id));
+
+        alert("Deleted Successfully ✅");
+
+        loadSavedMemes();
 
     };
 
-    box.appendChild(downloadBtn);
+    // Add Delete button only for the owner
+    buttonRow.appendChild(deleteBtn);
+}
 
-    // ================= DELETE BUTTON =================
-
-    if (currentUser && meme.ownerId === currentUser.uid) {
-
-        const deleteBtn = document.createElement("button");
-
-        deleteBtn.innerText = "🗑 Delete";
-
-        deleteBtn.onclick = async function () {
-
-            const confirmDelete = confirm("Delete this meme?");
-
-            if (!confirmDelete) return;
-
-            await deleteDoc(doc(db, "memes", docSnap.id));
-
-            alert("Deleted Successfully ✅");
-
-            loadSavedMemes();
-
-        };
-
-        box.appendChild(deleteBtn);
-
-    }
+// Finally add the row to the card
+box.appendChild(buttonRow);
 
 }
 
