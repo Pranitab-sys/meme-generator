@@ -86,133 +86,209 @@
 
     <aside class="sidebar">
 
-        <div class="brand">
-            <h2>😂 UK Memes</h2>
+        <div class="logo-box">
+
+            <div class="logo-icon">😀</div>
+
+            <div class="logo-text">
+                <h2>UK <span>MEMES</span></h2>
+            </div>
+
         </div>
 
-        <ul>
+        <nav>
 
-            <li class="active">
-                🏠 Home
-            </li>
+            <div class="menu active">
+                <span>🏠</span>
+                <p>Home</p>
+            </div>
 
-            <li onclick="openPage('memePage')">
-                🖼 Meme Generator
-            </li>
+            <div class="menu" onclick="openPage('memePage')">
+                <span>🖍️</span>
+                <p>Meme Generator</p>
+            </div>
 
-            <li onclick="openPage('chatPage')">
-                💬 Chat Meme
-            </li>
+            <div class="menu" onclick="openPage('chatPage')">
+                <span>💬</span>
+                <p>Chat Meme</p>
+            </div>
 
-            <li onclick="openPage('notificationPage')">
-                🔔 Notification
-            </li>
+            <div class="menu" onclick="openPage('notificationPage')">
+                <span>🔔</span>
+                <p>Notification Meme</p>
+            </div>
 
-            <li onclick="openPage('videoMemePage')">
-                🎥 Video Meme
-            </li>
+            <div class="menu" onclick="openPage('videoMemePage')">
+                <span>🎥</span>
+                <p>Video Meme</p>
+            </div>
 
-            <li onclick="openPage('savedPage')">
-                📁 Saved Memes
-            </li>
+            <div class="menu" onclick="openPage('savedPage')">
+                <span>📁</span>
+                <p>Saved Memes</p>
+            </div>
 
-        </ul>
+        </nav>
+
+        <div class="upgrade">
+
+            <h3>👑 Upgrade to Pro</h3>
+
+            <p>Unlock premium features</p>
+
+        </div>
 
     </aside>
-
 
 
     <!-- Main -->
 
     <main class="dashboard">
 
+        <!-- Top Bar -->
+
         <div class="topbar">
 
-            <button class="logout-btn"
-            onclick="logoutuser()">
-                Logout
-            </button>
+            <div class="profile-icons">
+
+                <div class="notify">🔔</div>
+
+                <div class="avatar">👦</div>
+
+                <button class="logout-btn"
+                    onclick="logoutuser()">
+                    Logout
+                </button>
+
+            </div>
 
         </div>
+
 
         <!-- Welcome -->
 
         <section class="welcome">
 
-            <div>
+            <div class="welcome-left">
 
-                <h1>Welcome Back 👋</h1>
+                <h1>Welcome back! 👋</h1>
 
-                <p>Create the funniest memes today.</p>
+                <p>What meme are we creating today?</p>
 
-                <button onclick="openPage('memePage')">
-                    + Create Meme
+                <button
+                    onclick="openPage('memePage')">
+
+                    + Create New Meme
+
                 </button>
 
             </div>
 
-            <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png">
+            <div class="welcome-right">
+
+                😀😎
+
+            </div>
 
         </section>
 
 
+        <h2 class="section-title">
 
-        <h2>Quick Actions</h2>
+            Quick Actions
 
-        <div class="cards">
+        </h2>
 
-            <div class="card pink"
-            onclick="openPage('memePage')">
 
-                🖼
+        <div class="action-grid">
 
-                <h3>Meme Generator</h3>
 
-                <p>Create funny memes</p>
+            <div class="action-card pink"
+                onclick="openPage('memePage')">
 
-            </div>
+                <div class="circle">🖍️</div>
 
-            <div class="card blue"
-            onclick="openPage('chatPage')">
+                <div>
 
-                💬
+                    <h3>Meme Generator</h3>
 
-                <h3>Chat Meme</h3>
+                    <p>Create funny memes</p>
 
-                <p>Create fake chats</p>
+                </div>
 
-            </div>
-
-            <div class="card yellow"
-            onclick="openPage('notificationPage')">
-
-                🔔
-
-                <h3>Notification</h3>
-
-                <p>Create notifications</p>
+                <span class="arrow">→</span>
 
             </div>
 
-            <div class="card green"
-            onclick="openPage('videoMemePage')">
 
-                🎥
+            <div class="action-card blue"
+                onclick="openPage('chatPage')">
 
-                <h3>Video Meme</h3>
+                <div class="circle">💬</div>
 
-                <p>Create video memes</p>
+                <div>
+
+                    <h3>Chat Meme</h3>
+
+                    <p>Create fake chats</p>
+
+                </div>
+
+                <span class="arrow">→</span>
 
             </div>
 
-            <div class="card purple"
-            onclick="openPage('savedPage')">
 
-                📁
+            <div class="action-card yellow"
+                onclick="openPage('notificationPage')">
 
-                <h3>Saved Memes</h3>
+                <div class="circle">🔔</div>
 
-                <p>View saved memes</p>
+                <div>
+
+                    <h3>Notification Meme</h3>
+
+                    <p>Create notification memes</p>
+
+                </div>
+
+                <span class="arrow">→</span>
+
+            </div>
+
+
+            <div class="action-card green"
+                onclick="openPage('videoMemePage')">
+
+                <div class="circle">🎥</div>
+
+                <div>
+
+                    <h3>Video Meme</h3>
+
+                    <p>Create video memes</p>
+
+                </div>
+
+                <span class="arrow">→</span>
+
+            </div>
+
+
+            <div class="action-card purple full"
+                onclick="openPage('savedPage')">
+
+                <div class="circle">📁</div>
+
+                <div>
+
+                    <h3>Saved Memes</h3>
+
+                    <p>View your saved memes</p>
+
+                </div>
+
+                <span class="arrow">→</span>
 
             </div>
 
