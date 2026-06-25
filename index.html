@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <title>Meme Studio</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
+
 
 </head>
 <body>
@@ -79,19 +81,87 @@
 </div>
 <!-- DASHBOARD -->
 <div id="home" class="page">
-      <button onclick="logoutuser()">
-    Logout
-</button>
 
-    <h1>🔥 Meme Studio</h1>
+    <button class="logout-btn" onclick="logoutuser()">
+        Logout
+    </button>
 
-    <div class="vertical-menu">
-        <div class="card" onclick="openPage('memePage')">🖼 Meme Generator</div>
-        <div class="card" onclick="openPage('chatPage')">💬 Chat Meme</div>
-        <div class="card" onclick="openPage('notificationPage')"> 🔔 Notification Meme  </div>
-        <div class="card" onclick="openPage('videoMemePage')">🎥 Video Meme</div>
-        <div class="card" onclick="openPage('savedPage')">📁 Saved Memes</div>
+    <div class="retro-container">
+
+        <h1 class="logo">
+            🔥 UK MEMES
+        </h1>
+
+        <p class="tagline">
+            CREATE • SHARE • LAUGH 😎
+        </p>
+
+        <div class="retro-menu">
+
+            <div class="retro-card"
+                 onclick="openPage('memePage')">
+
+                <div class="icon">🖼</div>
+
+                <div>
+                    <h3>Meme Generator</h3>
+                    <p>Create funny memes</p>
+                </div>
+
+            </div>
+
+            <div class="retro-card"
+                 onclick="openPage('chatPage')">
+
+                <div class="icon">💬</div>
+
+                <div>
+                    <h3>Chat Meme</h3>
+                    <p>Create fake chats</p>
+                </div>
+
+            </div>
+
+            <div class="retro-card"
+                 onclick="openPage('notificationPage')">
+
+                <div class="icon">🔔</div>
+
+                <div>
+                    <h3>Notification Meme</h3>
+                    <p>Create notification memes</p>
+                </div>
+
+            </div>
+
+            <div class="retro-card"
+                 onclick="openPage('videoMemePage')">
+
+                <div class="icon">🎥</div>
+
+                <div>
+                    <h3>Video Meme</h3>
+                    <p>Create video memes</p>
+                </div>
+
+            </div>
+
+            <div class="retro-card"
+                 onclick="openPage('savedPage')">
+
+                <div class="icon">📁</div>
+
+                <div>
+                    <h3>Saved Memes</h3>
+                    <p>View your saved memes</p>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
 </div>
 
 <!-- MEME GENERATOR -->

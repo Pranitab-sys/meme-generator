@@ -1,0 +1,218 @@
+/* home page */
+/* ===========================
+   RETRO HOME PAGE
+=========================== */
+
+body{
+
+    margin:0;
+
+    font-family:Arial,sans-serif;
+
+    background:
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),
+    repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(0,0,0,.08) 40px
+    ),
+    repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 39px,
+        rgba(0,0,0,.08) 40px
+    );
+
+    background-color:#fff4c7;
+}
+
+.retro-container{
+
+    max-width:430px;
+
+    margin:auto;
+
+    padding:20px;
+}
+
+.logo{
+
+    text-align:center;
+
+    font-size:48px;
+
+    color:#ffb300;
+
+    text-shadow:
+    4px 4px black;
+
+    font-weight:900;
+
+    margin-top:20px;
+}
+
+.tagline{
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:20px;
+
+    margin-bottom:30px;
+
+    color:#111;
+}
+
+.retro-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.retro-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:18px;
+
+    border:4px solid black;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:8px 8px black;
+}
+
+.retro-card:nth-child(1){
+
+    background:#ffd6ec;
+}
+
+.retro-card:nth-child(2){
+
+    background:#bfe5ff;
+}
+
+.retro-card:nth-child(3){
+
+    background:#ffe59d;
+}
+
+.retro-card:nth-child(4){
+
+    background:#b8ffd3;
+}
+
+.retro-card:nth-child(5){
+
+    background:#d7c6ff;
+}
+
+.retro-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:12px 12px black;
+}
+
+.icon{
+
+    font-size:42px;
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    border:3px solid black;
+}
+
+.retro-card h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:#111;
+}
+
+.retro-card p{
+
+    margin-top:5px;
+
+    color:#333;
+
+    font-size:15px;
+}
+
+.logout-btn{
+
+    position:fixed;
+
+    top:15px;
+
+    right:15px;
+
+    background:#ff4d5a;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+.logo{
+
+    font-size:38px;
+}
+
+.retro-card{
+
+    padding:15px;
+}
+
+.retro-card h3{
+
+    font-size:20px;
+}
+
+.icon{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:35px;
+}
+
+}
