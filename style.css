@@ -485,11 +485,14 @@ button:hover {
 /* Each meme card */
 .saved-card {
     background: rgba(255,255,255,0.08);
-    padding: 10px;
+    padding: 15px;
     border-radius: 15px;
-
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between ;
+    min-height: 500px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-
     transition: 0.3s;
 }
 
@@ -828,51 +831,4 @@ button:hover {
 
     background:#ff2e43;
 
-}
-/* ================= MENU ================= */
-
-.menu-container{
-    position:absolute;
-    top:10px;
-    right:10px;
-}
-
-.menu-btn{
-    width:35px;
-    height:35px;
-    border:none;
-    border-radius:50%;
-    background:white;
-    color:black;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 10px rgba(0,0,0,.3);
-}
-
-.menu-btn:hover{
-    background:#f0f0f0;
-}
-
-.menu-content{
-    display:none;
-    position:absolute;
-    top:40px;
-    right:0;
-    min-width:150px;
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
-    z-index:999;
-}
-
-.menu-content div{
-    padding:12px;
-    cursor:pointer;
-    color:black;
-}
-
-.menu-content div:hover{
-    background:#eeeeee;
 }
