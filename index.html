@@ -80,90 +80,147 @@
 
 </div>
 <!-- DASHBOARD -->
-<div id="home" class="page">
+<div id="home" class="page active">
 
-    <button class="logout-btn" onclick="logoutuser()">
-        Logout
-    </button>
+    <!-- Sidebar -->
 
-    <div class="retro-container">
+    <aside class="sidebar">
 
-        <h1 class="logo">
-            🔥 UK MEMES
-        </h1>
+        <div class="brand">
+            <h2>😂 UK Memes</h2>
+        </div>
 
-        <p class="tagline">
-            CREATE • SHARE • LAUGH 😎
-        </p>
+        <ul>
 
-        <div class="retro-menu">
+            <li class="active">
+                🏠 Home
+            </li>
 
-            <div class="retro-card"
-                 onclick="openPage('memePage')">
+            <li onclick="openPage('memePage')">
+                🖼 Meme Generator
+            </li>
 
-                <div class="icon">🖼</div>
+            <li onclick="openPage('chatPage')">
+                💬 Chat Meme
+            </li>
 
-                <div>
-                    <h3>Meme Generator</h3>
-                    <p>Create funny memes</p>
-                </div>
+            <li onclick="openPage('notificationPage')">
+                🔔 Notification
+            </li>
+
+            <li onclick="openPage('videoMemePage')">
+                🎥 Video Meme
+            </li>
+
+            <li onclick="openPage('savedPage')">
+                📁 Saved Memes
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- Main -->
+
+    <main class="dashboard">
+
+        <div class="topbar">
+
+            <button class="logout-btn"
+            onclick="logoutuser()">
+                Logout
+            </button>
+
+        </div>
+
+        <!-- Welcome -->
+
+        <section class="welcome">
+
+            <div>
+
+                <h1>Welcome Back 👋</h1>
+
+                <p>Create the funniest memes today.</p>
+
+                <button onclick="openPage('memePage')">
+                    + Create Meme
+                </button>
 
             </div>
 
-            <div class="retro-card"
-                 onclick="openPage('chatPage')">
+            <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png">
 
-                <div class="icon">💬</div>
+        </section>
 
-                <div>
-                    <h3>Chat Meme</h3>
-                    <p>Create fake chats</p>
-                </div>
 
-            </div>
 
-            <div class="retro-card"
-                 onclick="openPage('notificationPage')">
+        <h2>Quick Actions</h2>
 
-                <div class="icon">🔔</div>
+        <div class="cards">
 
-                <div>
-                    <h3>Notification Meme</h3>
-                    <p>Create notification memes</p>
-                </div>
+            <div class="card pink"
+            onclick="openPage('memePage')">
+
+                🖼
+
+                <h3>Meme Generator</h3>
+
+                <p>Create funny memes</p>
 
             </div>
 
-            <div class="retro-card"
-                 onclick="openPage('videoMemePage')">
+            <div class="card blue"
+            onclick="openPage('chatPage')">
 
-                <div class="icon">🎥</div>
+                💬
 
-                <div>
-                    <h3>Video Meme</h3>
-                    <p>Create video memes</p>
-                </div>
+                <h3>Chat Meme</h3>
+
+                <p>Create fake chats</p>
 
             </div>
 
-            <div class="retro-card"
-                 onclick="openPage('savedPage')">
+            <div class="card yellow"
+            onclick="openPage('notificationPage')">
 
-                <div class="icon">📁</div>
+                🔔
 
-                <div>
-                    <h3>Saved Memes</h3>
-                    <p>View your saved memes</p>
-                </div>
+                <h3>Notification</h3>
+
+                <p>Create notifications</p>
+
+            </div>
+
+            <div class="card green"
+            onclick="openPage('videoMemePage')">
+
+                🎥
+
+                <h3>Video Meme</h3>
+
+                <p>Create video memes</p>
+
+            </div>
+
+            <div class="card purple"
+            onclick="openPage('savedPage')">
+
+                📁
+
+                <h3>Saved Memes</h3>
+
+                <p>View saved memes</p>
 
             </div>
 
         </div>
 
-    </div>
+    </main>
 
 </div>
-
 <!-- MEME GENERATOR -->
 <div id="memePage" class="page">
     <button class="back-btn" onclick="goHome()">⬅</button>
