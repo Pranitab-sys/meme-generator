@@ -550,14 +550,14 @@ button:hover {
 
     background: rgba(255,255,255,0.15);
 
-    color: white;
+    color: black;
 
     font-size: 14px;
 }
 
 /* PLACEHOLDER */
 .notify-container input::placeholder {
-    color: rgba(255,255,255,0.7);
+    color: rgba(11, 1, 1, 0.833);
 }
 
 /* BUTTON GRID */
