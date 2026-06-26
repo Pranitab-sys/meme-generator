@@ -840,3 +840,25 @@ button:hover {
     background:#ff2e43;
 
 }
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+    animation:openPageAnimation .45s ease;
+}
+
+@keyframes openPageAnimation{
+
+    from{
+        transform:translateX(40px);
+        opacity:0;
+    }
+
+    to{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+}
