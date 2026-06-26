@@ -614,8 +614,20 @@ transition:.35s;
 }
 
 .page.active{
-    display:block;
     animation:openPageAnimation .45s ease;
+}
+#home.active{
+    display:flex;
+}
+
+#memePage.active,
+#chatPage.active,
+#notificationPage.active,
+#videoMemePage.active,
+#savedPage.active,
+#loginPage.active,
+#signupPage.active{
+    display:block;
 }
 
 @keyframes openPageAnimation{
