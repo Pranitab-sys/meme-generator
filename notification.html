@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notification Meme</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="notificationPage" class="page active">
+
+    <!-- Back Button -->
+
+    <button class="back-btn" onclick="goHome()">
+
+        ⬅ Back
+
+    </button>
+
+    <h2 style="color:black;">
+
+        🔔 Notification Meme
+
+    </h2>
+
+    <div class="notify-container">
+
+        <!-- APP -->
+
+        <select id="appType">
+
+            <option>WhatsApp</option>
+
+            <option>Instagram</option>
+
+            <option>Telegram</option>
+
+        </select>
+
+        <!-- USER -->
+
+        <input
+            type="text"
+            id="notifyUser"
+            placeholder="Enter Username">
+
+        <!-- MESSAGE -->
+
+        <input
+            type="text"
+            id="notifyMsg"
+            placeholder="Enter Message">
+
+        <!-- TIME -->
+
+        <input
+            type="text"
+            id="notifyTime"
+            placeholder="2:45 PM">
+
+        <!-- BUTTONS -->
+
+        <div class="btn-grid">
+
+            <button onclick="generateNotification()">
+
+                Generate
+
+            </button>
+
+            <button onclick="downloadNotification()">
+
+                Download
+
+            </button>
+
+        </div>
+
+        <!-- PREVIEW -->
+
+        <div id="notificationPreview">
+
+            <div class="notify-card">
+
+                <img
+                    src="images/whatsapp.jpg"
+                    class="notify-logo">
+
+                <div class="notify-content">
+
+                    <div class="notify-top">
+
+                        <span>Username</span>
+
+                        <span>2:45 PM</span>
+
+                    </div>
+
+                    <div class="notify-msg">
+
+                        Your notification will appear here...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script type="module" src="firebase.js"></script>
+<script src="js/common.js"></script>
+<script type="module" src="js/notification.js"></script>
+</body>
+
+</html>

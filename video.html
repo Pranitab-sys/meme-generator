@@ -1,0 +1,178 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Video Meme Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="videoMemePage" class="page active">
+
+    <!-- Back Button -->
+
+    <button class="back-btn" onclick="goHome()">
+
+        ⬅ Back
+
+    </button>
+
+    <h1 style="color:black;">
+
+        🎥 Video Meme Generator
+
+    </h1>
+
+    <div class="main-layout">
+
+        <!-- LEFT SIDE -->
+
+        <div class="controls">
+
+            <input
+                type="file"
+                id="videoInput"
+                accept="video/*">
+
+            <input
+                type="text"
+                id="topVideoText"
+                placeholder="Top Text">
+
+            <input
+                type="text"
+                id="bottomVideoText"
+                placeholder="Bottom Text">
+
+            <!-- FONT OPTIONS -->
+
+            <div class="control-box">
+
+                <div class="control-item">
+
+                    <h3>Font Size</h3>
+
+                    <input
+                        type="range"
+                        id="videoFontSize"
+                        min="20"
+                        max="60"
+                        value="32">
+
+                </div>
+
+                <div class="control-item">
+
+                    <h3>Font Color</h3>
+
+                    <input
+                        type="color"
+                        id="videoFontColor"
+                        value="#ffffff">
+
+                </div>
+
+                <div class="control-item">
+
+                    <h3>Font Style</h3>
+
+                    <select id="videoFontFamily">
+
+                        <option>Impact</option>
+
+                        <option>Arial</option>
+
+                        <option>Poppins</option>
+
+                        <option>Comic Sans MS</option>
+
+                        <option>Calibri</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="btn-grid">
+
+                <button onclick="generateVideoMeme()">
+
+                    Generate
+
+                </button>
+
+                <button onclick="downloadVideoMeme()">
+
+                    Download
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="preview">
+
+            <div class="video-preview-box">
+
+                <video
+                    id="videoPreview"
+                    controls>
+
+                </video>
+
+                <!-- TOP TEXT -->
+
+                <div
+                    id="videoTopOverlay"
+                    class="video-overlay top-overlay">
+
+                    TOP TEXT
+
+                </div>
+
+                <!-- BOTTOM TEXT -->
+
+                <div
+                    id="videoBottomOverlay"
+                    class="video-overlay bottom-overlay">
+
+                    BOTTOM TEXT
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script type="module" src="firebase.js"></script>
+<script src="js/common.js"></script>
+<script type="module" src="js/video.js"></script>
+
+</body>
+
+</html>
+```

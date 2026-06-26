@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<meta charset="UTF-8">
-<title>Meme Studio</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="home.css">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UK MEMES</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
 
 </head>
+
 <body>
-<!-- LOGIN PAGE -->
+
+<!-- ==========================
+LOGIN PAGE
+========================== -->
+
 <div id="loginPage" class="page active">
 
     <div class="login-box">
@@ -30,29 +38,40 @@
             placeholder="Enter Password">
 
         <button onclick="loginUser()">
+
             Login
+
         </button>
 
         <br><br>
 
         <span>
+
             Don't have an account?
+
         </span>
 
+        <br><br>
+
         <button onclick="showSignup()">
+
             Create Account
+
         </button>
 
     </div>
 
 </div>
 
-<!-- SIGNUP PAGE -->
+<!-- ==========================
+SIGNUP PAGE
+========================== -->
+
 <div id="signupPage" class="page">
 
     <div class="login-box">
 
-        <h1>🎭 MemeVerse</h1>
+        <h1>🎭 UK Meme</h1>
 
         <p>Create Account</p>
 
@@ -67,20 +86,28 @@
             placeholder="Enter Password">
 
         <button onclick="signupUser()">
+
             Sign Up
+
         </button>
 
         <br><br>
 
         <button onclick="showLogin()">
+
             Back to Login
+
         </button>
-<     
+
     </div>
 
 </div>
-<!-- DASHBOARD -->
-<div id="home" class="page active">
+
+<!-- ==========================
+HOME DASHBOARD
+========================== -->
+
+<div id="home" class="page">
 
     <!-- Sidebar -->
 
@@ -88,10 +115,20 @@
 
         <div class="logo-box">
 
-            <div class="logo-icon">😀</div>
+            <div class="logo-icon">
+
+                😀
+
+            </div>
 
             <div class="logo-text">
-                <h2 style="color: rgb(173, 36, 107);">UK <span>MEMES</span></h2>
+
+                <h2 style="color:#ad246b;">
+
+                    UK <span>MEMES</span>
+
+                </h2>
+
             </div>
 
         </div>
@@ -99,47 +136,101 @@
         <nav>
 
             <div class="menu active">
+
                 <span>🏠</span>
-                <p style="color: lightcoral;">Home</p>
+
+                <p style="color:lightcoral;">
+
+                    Home
+
+                </p>
+
             </div>
 
-            <div class="menu" onclick="openPage('memePage')">
+            <div class="menu"
+                onclick="window.location.href='meme.html'">
+
                 <span>🖍️</span>
-                <p style="color: lightcoral;">Meme Generator</p>
+
+                <p style="color:lightcoral;">
+
+                    Meme Generator
+
+                </p>
+
             </div>
 
-            <div class="menu" onclick="openPage('chatPage')">
+            <div class="menu"
+                onclick="window.location.href='chat.html'">
+
                 <span>💬</span>
-                <p style="color: lightcoral;">Chat Meme</p>
+
+                <p style="color:lightcoral;">
+
+                    Chat Meme
+
+                </p>
+
             </div>
 
-            <div class="menu" onclick="openPage('notificationPage')">
+            <div class="menu"
+                onclick="window.location.href='notification.html'">
+
                 <span>🔔</span>
-                <p style="color: lightcoral;">Notification Meme</p>
+
+                <p style="color:lightcoral;">
+
+                    Notification Meme
+
+                </p>
+
             </div>
 
-            <div class="menu" onclick="openPage('videoMemePage')">
+            <div class="menu"
+                onclick="window.location.href='video.html'">
+
                 <span>🎥</span>
-                <p style="color: lightcoral;">Video Meme</p>
+
+                <p style="color:lightcoral;">
+
+                    Video Meme
+
+                </p>
+
             </div>
 
-            <div class="menu" onclick="openPage('savedPage')">
+            <div class="menu"
+                onclick="window.location.href='saved.html'">
+
                 <span>📁</span>
-                <p style="color: lightcoral;">Saved Memes</p>
+
+                <p style="color:lightcoral;">
+
+                    Saved Memes
+
+                </p>
+
             </div>
 
         </nav>
 
         <div class="upgrade">
 
-            <h3>👑 Upgrade to Pro</h3>
+            <h3>
 
-            <p>Unlock premium features</p>
+                👑 Upgrade to Pro
+
+            </h3>
+
+            <p>
+
+                Unlock Premium Features
+
+            </p>
 
         </div>
 
     </aside>
-
 
     <!-- Main -->
 
@@ -151,19 +242,29 @@
 
             <div class="profile-icons">
 
-                <div class="notify">🔔</div>
+                <div class="notify">
 
-                <div class="avatar">👦</div>
+                    🔔
 
-                <button class="logout-btn"
+                </div>
+
+                <div class="avatar">
+
+                    👦
+
+                </div>
+
+                <button
+                    class="logout-btn"
                     onclick="logoutuser()">
+
                     Logout
+
                 </button>
 
             </div>
 
         </div>
-
 
         <!-- Welcome -->
 
@@ -171,12 +272,20 @@
 
             <div class="welcome-left">
 
-                <h1>Welcome back! 👋</h1>
+                <h1>
 
-                <p>What meme are we creating today?</p>
+                    Welcome Back! 👋
+
+                </h1>
+
+                <p>
+
+                    What meme are we creating today?
+
+                </p>
 
                 <button
-                    onclick="openPage('memePage')">
+                    onclick="window.location.href='meme.html'">
 
                     + Create New Meme
 
@@ -192,19 +301,19 @@
 
         </section>
 
-
-        <h2 class="section-title" style="color: lightcoral;">
+        <h2
+            class="section-title"
+            style="color:lightcoral;">
 
             Quick Actions
 
         </h2>
 
-
         <div class="action-grid">
-
+            <!-- Meme Generator -->
 
             <div class="action-card pink"
-                onclick="openPage('memePage')">
+                onclick="window.location.href='meme.html'">
 
                 <div class="circle">🖍️</div>
 
@@ -220,9 +329,10 @@
 
             </div>
 
+            <!-- Chat Meme -->
 
             <div class="action-card blue"
-                onclick="openPage('chatPage')">
+                onclick="window.location.href='chat.html'">
 
                 <div class="circle">💬</div>
 
@@ -238,9 +348,10 @@
 
             </div>
 
+            <!-- Notification Meme -->
 
             <div class="action-card yellow"
-                onclick="openPage('notificationPage')">
+                onclick="window.location.href='notification.html'">
 
                 <div class="circle">🔔</div>
 
@@ -256,9 +367,10 @@
 
             </div>
 
+            <!-- Video Meme -->
 
             <div class="action-card green"
-                onclick="openPage('videoMemePage')">
+                onclick="window.location.href='video.html'">
 
                 <div class="circle">🎥</div>
 
@@ -274,9 +386,10 @@
 
             </div>
 
+            <!-- Saved Memes -->
 
             <div class="action-card purple full"
-                onclick="openPage('savedPage')">
+                onclick="window.location.href='saved.html'">
 
                 <div class="circle">📁</div>
 
@@ -297,294 +410,10 @@
     </main>
 
 </div>
-<!-- MEME GENERATOR -->
-<div id="memePage" class="page">
-    <button class="back-btn" onclick="goHome()">⬅</button>
-    <h2 style="color: black;">Meme Generator</h2>
+<script type="module" src="firebase.js"></script>
+<script src="js/common.js"></script>
+<script type="module" src="js/auth.js"></script>
 
-    <div class="main-layout">
-
-        <!-- LEFT SIDE (CONTROLS) -->
-        <div class="controls">
-
-            <input type="file" id="imageInput">
-
-            <input type="text" id="topText" placeholder="Top Text">
-            <input type="text" id="bottomText" placeholder="Bottom Text">
-
-            <div class="control-box">
-                <label>Font Size</label>
-                <input type="range" id="fontSize" min="20" max="60" value="30">
-
-                <label>Font Color</label>
-                <input type="color" id="fontColor" value="#ffffff">
-
-                <label>Font Style</label>
-                <select id="fontFamily">
-                    <option value="Impact">Impact</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Chiller">Chiller</option>
-                    <option value="Consolas">Consolas</option>
-                    <option value="Algerian">Algerian</option>
-                    <option value="Calibri">Calibri</option>
-                    <option value="Comic Sans MS">Comic Sans MS</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="Myriad Pro">Myriad Pro</option>
-                    <option value="Helvetica">Helvetica</option>
-                </select>
-            </div>
-
-            <div class="btn-grid">
-    <button onclick="generateMeme()">Generate</button>
-    <button onclick="downloadMeme()">Download</button>
-</div>
-
-        </div>
-
-        <!-- RIGHT SIDE (CANVAS) -->
-        <div class="preview">
-            <canvas id="memeCanvas"></canvas>
-        </div>
-
-    </div>
-</div>
-
-<!-- CHAT MEME -->
-<div id="chatPage" class="page">
-    <button class="back-btn" onclick="goHome()">⬅</button>
-    <h2 style="color: black;">Chat Meme</h2>
-<div class="chat-container">
-
-    <!-- CHAT BOX -->
-    <div id="chatBox" class="chat-box"></div>
-
-    <!-- INPUT AREA -->
-    <div class="chat-input-area">
-        <input type="text" id="chatInput" placeholder="Type a message...">
-
-        <select id="emojiPicker">
-            <option value="">😊</option>
-            <option value="😂">😂</option>
-            <option value="🔥">🔥</option>
-            <option value="💀">💀</option>
-            <option value="😎">😎</option>
-            <option value="😭">😭</option>
-            <option value="😅">😅</option>
-            <option value="🥹">🥹</option>
-            <option value="😏">😏</option>
-            <option value="😒">😒</option>
-            <option value="😘">😘</option>
-            <option value="🙏">🙏</option>
-            <option value="👍🏻">👍🏻</option>
-        </select>
-
-        <select id="sender">
-            <option value="me">Me</option>
-            <option value="friend">Friend</option>
-        </select>
-    </div>
-
-    <!-- 🔥 BUTTONS OUTSIDE -->
-    <div class="chat-btns">
-        <button onclick="downloadChat()">Download</button>
-        <button onclick="addMessage()">Send</button>
-    </div>
-
-</div></div>
-
-<!-- ================= NOTIFICATION MEME PAGE ================= -->
-
-<div id="notificationPage" class="page">
-
-    <!-- BACK BUTTON -->
-    <button class="back-btn" onclick="goHome()">⬅</button>
-
-    <h2 style="color: black;">🔔 Notification Meme</h2>
-
-    <div class="notify-container">
-
-        <!-- APP SELECT -->
-        <select id="appType">
-            <option>WhatsApp</option>
-            <option>Instagram</option>
-            <option>Telegram</option>
-        </select>
-
-        <!-- USERNAME -->
-        <input type="text" id="notifyUser" placeholder="Enter username">
-
-        <!-- MESSAGE -->
-        <input type="text" id="notifyMsg" placeholder="Enter message">
-
-        <!-- TIME -->
-        <input type="text" id="notifyTime" placeholder="2:45 PM">
-
-        <!-- BUTTONS -->
-        <div class="btn-grid">
-
-            <button onclick="generateNotification()">
-                Generate
-            </button>
-
-            <button onclick="downloadNotification()">
-                Download
-            </button>
-
-        </div>
-
-        <!-- PREVIEW -->
-       <div id="notificationPreview" class="notification-preview">
-
-    <img id="appLogo" crossorigin="anonymous" 
-    src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
-
-    <div class="notify-text">
-        <h3 id="previewName">Name</h3>
-        <p id="previewMessage">Message</p>
-    </div>
-
-    <span id="previewTime">7:55 pm</span>
-
-</div>
-
-    </div>
-
-</div>
-
-<!-- html2canvas -->
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<!-- Video meme-->
- <div id="videoMemePage" class="page">
-
-    <button class="back-btn"
-    onclick="goHome()">
-
-    ⬅ Back
-
-    </button>
-
-    <h1 style="color: black;"> Video Meme Generator</h1>
-
-    <div class="main-layout">
-
-        <!-- LEFT SIDE -->
-
-        <div class="controls">
-
-            <input type="file"
-            id="videoInput"
-            accept="video/*">
-
-            <input type="text"
-            id="topVideoText"
-            placeholder="Top Text">
-
-            <input type="text"
-            id="bottomVideoText"
-            placeholder="Bottom Text">
-
-          
-<!-- FONT SIZE -->
-
-<div class="control-box">
-
-<div class="control-item">
-    <h3>Font Size</h3>
-
-    <input type="range"
-    id="videoFontSize"
-    min="20"
-    max="60"
-    value="32">
-</div>
-
-<div class="control-item">
-        <h3>Font Color</h3>
-
-    <input type="color"
-    id="videoFontColor"
-    value="#ffffff">
-</div>
-<div class="control-item">
-       <h3>Font Style</h3>
-
-    <select id="videoFontFamily">
-
-        <option>Impact</option>
-
-        <option>Arial</option>
-
-        <option>Poppins</option>
-
-        <option>Comic Sans MS</option>
-
-        <option>Calibri</option>
-
-    </select>
-
-</div>
- 
-</div>            
-  <div class="btn-grid">
-
-                <button onclick="generateVideoMeme()">
-
-                    Generate
-
-                </button>
-
-                <button onclick="downloadVideoMeme()">
-
-                    Download
-
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- RIGHT SIDE -->
-
-        <div class="preview">
-
-            <div class="video-preview-box">
-
-                <video id="videoPreview"
-                controls></video>
-
-                <!-- TOP -->
-
-                <div id="videoTopOverlay"
-                class="video-overlay top-overlay">
-
-                TOP TEXT
-
-                </div>
-
-                <!-- BOTTOM -->
-
-                <div id="videoBottomOverlay"
-                class="video-overlay bottom-overlay">
-
-                BOTTOM TEXT
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- SAVED MEMES -->
-<div id="savedPage" class="page">
-    <button onclick="goHome()">⬅ Back</button>
-    <h2 style="color: black;">Saved Memes</h2>
-    <div id="savedContainer"></div>
-</div>
-
-<script type="module" src="./script.js"></script>
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
 </body>
+
 </html>
