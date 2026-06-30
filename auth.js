@@ -1,5 +1,5 @@
 ```javascript
-import { auth } from "../firebase.js";
+import { auth } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
@@ -19,6 +19,14 @@ window.showSignup = function () {
 
 window.showLogin = function () {
     window.location.href = "login.html";
+};window.showSignup = function () {
+    document.getElementById("loginPage").classList.remove("active");
+    document.getElementById("signupPage").classList.add("active");
+};
+
+window.showLogin = function () {
+    document.getElementById("signupPage").classList.remove("active");
+    document.getElementById("loginPage").classList.add("active");
 };
 
 

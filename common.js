@@ -1,12 +1,13 @@
 // =========================
 // COMMON FUNCTIONS
 // =========================
+window.openPage = function(page) {
+    // code
+}
 
-// Back to Home
-window.goHome = function () {
-    window.location.href = "index.html";
-};
-
+window.goHome = function() {
+    openPage("index.html");
+}
 // Logout
 window.logoutuser = async function () {
 
