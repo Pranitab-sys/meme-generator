@@ -615,8 +615,9 @@ transition:.35s;
 
 .page.active{
     animation:openPageAnimation .45s ease;
+    display: block;
 }
-#home.active{
+#home{
     display:flex;
 }
 
