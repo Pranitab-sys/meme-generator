@@ -618,7 +618,7 @@ transition:.35s;
     display: block;
 }
 #home{
-    display:flex;
+    display:none;
 }
 
 #memePage.active,
@@ -642,5 +642,4 @@ transition:.35s;
         transform:translateX(0);
         opacity:1;
     }
-
 }
