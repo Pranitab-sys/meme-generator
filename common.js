@@ -1,12 +1,24 @@
 // =========================
 // COMMON FUNCTIONS
 // =========================
-window.openPage = function(page) {
-    // code
+window.openPage = function(pageId){
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    const page=document.getElementById(pageId);
+
+    if(page){
+        page.classList.add("active");
+    }
+
 }
 
+
+
 window.goHome = function() {
-    openPage("index.html");
+    openPage("home");
 }
 // Logout
 window.logoutuser = async function () {
@@ -18,7 +30,29 @@ window.logoutuser = async function () {
 
         await signOut(auth);
 
-        window.location.href = "login.html";
+       window.logoutuser = async function(){
+
+    try{
+
+        const {signOut}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+
+        const {auth}=await import("./firebase.js");
+
+        await signOut(auth);
+
+        openPage("loginPage");
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+}
+
+
 
     }
 

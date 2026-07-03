@@ -1,4 +1,4 @@
-```javascript
+
 import { db, auth } from "./firebase.js";
 
 import {
@@ -150,4 +150,4 @@ async function loadSavedMemes() {
     }
 
 }
-```
+

@@ -1,4 +1,4 @@
-```javascript
+
 import { auth } from "./firebase.js";
 
 import {
@@ -13,13 +13,8 @@ import {
 // SHOW LOGIN / SIGNUP PAGES
 // ===============================
 
+ 
 window.showSignup = function () {
-    window.location.href = "signup.html";
-};
-
-window.showLogin = function () {
-    window.location.href = "login.html";
-};window.showSignup = function () {
     document.getElementById("loginPage").classList.remove("active");
     document.getElementById("signupPage").classList.add("active");
 };
@@ -49,7 +44,7 @@ window.signupUser = async function () {
 
         alert("Account Created Successfully 🎉");
 
-        window.location.href = "index.html";
+        showLogin();
 
     }
 
@@ -79,10 +74,13 @@ window.loginUser = async function () {
             password
         );
 
-        alert("Login Successful 🎉");
+       alert("Login Successful 🎉");
 
-        window.location.href = "index.html";
+document.getElementById("loginPage").classList.remove("active");
 
+document.getElementById("signupPage").classList.remove("active");
+
+document.getElementById("home").classList.add("active");
     }
 
     catch (error) {
@@ -94,50 +92,9 @@ window.loginUser = async function () {
 };
 
 
-// ===============================
-// AUTO LOGIN CHECK
-// ===============================
-
-onAuthStateChanged(auth, (user) => {
-
-    const currentPage = window.location.pathname.split("/").pop();
-
-    if (user) {
-
-        // Already logged in
-        if (
-            currentPage === "login.html" ||
-            currentPage === "signup.html"
-        ) {
-
-            window.location.href = "index.html";
-
-        }
-
-    }
-
-    else {
-
-        // Not logged in
-        if (
-            currentPage !== "login.html" &&
-            currentPage !== "signup.html"
-        ) {
-
-            window.location.href = "login.html";
-
-        }
-
-    }
-
-});
-
-
-// ===============================
-// LOGOUT
-// ===============================
-
 window.logoutuser = async function () {
+
+    
 
     try {
 
@@ -145,15 +102,19 @@ window.logoutuser = async function () {
 
         alert("Logged Out Successfully 👋");
 
-        window.location.href = "login.html";
+        document.getElementById("home").classList.remove("active");
+        document.getElementById("signupPage").classList.remove("active");
+        document.getElementById("loginPage").classList.add("active");
 
     }
 
-    catch (error) {
+    catch(error){
 
         alert(error.message);
 
     }
 
-};
-```
+
+    };
+
+    

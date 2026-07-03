@@ -1,4 +1,4 @@
-```javascript
+
 import { db, auth } from "./firebase.js";
 
 import {
@@ -124,4 +124,4 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 });
-```
+
