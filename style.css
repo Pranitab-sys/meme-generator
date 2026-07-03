@@ -204,18 +204,27 @@ font-size: 16px;
 /* BACK BUTTON */
 .back-btn {
     position: fixed;
-    width: 25px;
-    top: 15px;
-    left: 15px;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 6px;
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: auto;
+    padding: 10px 20px;
+
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
-    border: none;
+
     color: white;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    z-index:1000;
+
+    z-index: 1000;
+}
+}
+button:not(.back-btn){
+    width: 100%;
 }
 
 .back-btn:hover {
