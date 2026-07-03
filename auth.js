@@ -1,6 +1,4 @@
-
 import { auth } from "./firebase.js";
-
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -8,113 +6,124 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+/* =========================
+   AUTH STATE CONTROL (VERY IMPORTANT)
+========================= */
 
-// ===============================
-// SHOW LOGIN / SIGNUP PAGES
-// ===============================
+onAuthStateChanged(auth, (user) => {
 
- 
-window.showSignup = function () {
-    document.getElementById("loginPage").classList.remove("active");
-    document.getElementById("signupPage").classList.add("active");
+    if (user) {
+        // show dashboard
+        showPage("home");
+    } else {
+        // show login
+        showPage("loginPage");
+    }
+
+});
+
+/* =========================
+   PAGE SWITCHER (GLOBAL FIX)
+========================= */
+
+window.showPage = function (id) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.style.display = "none";
+    });
+
+    const el = document.getElementById(id);
+    if (el) el.style.display = "block";
 };
 
-window.showLogin = function () {
-    document.getElementById("signupPage").classList.remove("active");
-    document.getElementById("loginPage").classList.add("active");
-};
-
-
-// ===============================
-// SIGN UP
-// ===============================
+/* =========================
+   SIGNUP
+========================= */
 
 window.signupUser = async function () {
 
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
 
+    if (!email || !password) {
+        alert("Fill all fields");
+        return;
+    }
+
     try {
+        await createUserWithEmailAndPassword(auth, email, password);
 
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        alert("Account Created 🎉");
 
-        alert("Account Created Successfully 🎉");
+        showPage("home");
 
-        showLogin();
-
+    } catch (err) {
+        alert(err.message);
     }
-
-    catch (error) {
-
-        alert(error.message);
-
-    }
-
 };
 
-
-// ===============================
-// LOGIN
-// ===============================
+/* =========================
+   LOGIN
+========================= */
 
 window.loginUser = async function () {
 
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
+    if (!email || !password) {
+        alert("Enter email & password");
+        return;
+    }
+
     try {
+        await signInWithEmailAndPassword(auth, email, password);
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        alert("Login Successful 🎉");
 
-       alert("Login Successful 🎉");
+        showPage("home");
 
-document.getElementById("loginPage").classList.remove("active");
-
-document.getElementById("signupPage").classList.remove("active");
-
-document.getElementById("home").classList.add("active");
+    } catch (err) {
+        alert(err.message);
     }
-
-    catch (error) {
-
-        alert(error.message);
-
-    }
-
 };
 
+/* =========================
+   LOGOUT
+========================= */
 
 window.logoutuser = async function () {
 
-    
-
     try {
-
         await signOut(auth);
-
-        alert("Logged Out Successfully 👋");
-
-        document.getElementById("home").classList.remove("active");
-        document.getElementById("signupPage").classList.remove("active");
-        document.getElementById("loginPage").classList.add("active");
-
+        showPage("loginPage");
+    } catch (err) {
+        alert(err.message);
     }
+};
 
-    catch(error){
+/* =========================
+   NAV HELPERS
+========================= */
 
-        alert(error.message);
+window.showSignup = function () {
+    showPage("signupPage");
+};
 
+window.showLogin = function () {
+    showPage("loginPage");
+};
+
+window.goHome = function () {
+    showPage("home");
+};
+
+window.openPage = function (id) {
+    showPage(id);
+
+    if (id === "savedPage") {
+        if (typeof loadSavedMemes === "function") {
+            loadSavedMemes();
+        }
     }
-
-
-    };
-
-    
+};
