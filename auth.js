@@ -13,11 +13,17 @@ import {
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
-        // show dashboard
-        showPage("home");
+
+        document.getElementById("loginPage").classList.remove("active");
+
+        document.getElementById("home").style.display = "flex";
+
     } else {
-        // show login
-        showPage("loginPage");
+
+        document.getElementById("home").style.display = "none";
+
+        document.getElementById("loginPage").classList.add("active");
+
     }
 
 });
@@ -118,12 +124,20 @@ window.goHome = function () {
     showPage("home");
 };
 
-window.openPage = function (id) {
-    showPage(id);
+window.openPage = function(id){
 
-    if (id === "savedPage") {
-        if (typeof loadSavedMemes === "function") {
-            loadSavedMemes();
-        }
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    const target = document.getElementById(id);
+
+    if(target){
+        target.classList.add("active");
     }
+
+    if(id === "savedPage"){
+        loadSavedMemes();
+    }
+
 };
