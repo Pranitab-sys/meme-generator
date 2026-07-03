@@ -121,23 +121,47 @@ window.showLogin = function () {
 };
 
 window.goHome = function () {
-    showPage("home");
+
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
+
+    const home = document.getElementById("home");
+
+    home.style.display = "flex";
+
+    window.scrollTo(0,0);
 };
 
 window.openPage = function(id){
 
-    document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("active");
+    // hide all pages
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
     });
 
-    const target = document.getElementById(id);
+    // show requested page
+    const page = document.getElementById(id);
 
-    if(target){
-        target.classList.add("active");
+    if(page){
+        page.classList.add("active");
     }
 
+    // special case: saved page load
     if(id === "savedPage"){
-        loadSavedMemes();
+        if(typeof loadSavedMemes === "function"){
+            loadSavedMemes();
+        }
     }
 
+    // dashboard visibility fix
+    const home = document.getElementById("home");
+
+    if(id === "home"){
+        home.style.display = "flex";
+    } else {
+        home.style.display = "none";
+    }
+
+    window.scrollTo(0,0);
 };
