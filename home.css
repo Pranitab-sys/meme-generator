@@ -584,6 +584,7 @@ padding:12px 18px;
 
 }
 
+
 }
 .sidebar.show{
     left:0;
@@ -643,3 +644,4 @@ transition:.35s;
         opacity:1;
     }
 }
+
