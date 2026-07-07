@@ -651,3 +651,134 @@ transition:.35s;
     }
 }
 
+/* ===========================
+UPGRADE PAGE
+=========================== */
+
+.upgrade-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#111;
+
+    
+background:#f5edd7;
+
+background-image:
+linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+       
+
+    position:relative;
+
+}
+
+.coming-box{
+
+    width:650px;
+
+    text-align:center;
+
+    padding:45px;
+
+    border-radius:25px;
+
+    background:#1e1e1e;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+
+}
+
+.coming-box h1{
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+    color:#ff69b4;
+
+}
+
+.coming-box p{
+
+    font-size:20px;
+
+    margin:12px 0;
+
+    color:#ddd;
+
+}
+
+.coming-box h2{
+
+    margin-top:30px;
+
+    margin-bottom:20px;
+
+    color:#ffd54f;
+
+}
+
+.coming-box ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.coming-box li{
+
+    margin:12px 0;
+
+    font-size:18px;
+
+}
+
+.notify-btn{
+
+    margin-top:30px;
+
+    padding:15px 40px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#ff4da6;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.notify-btn:hover{
+
+    transform:scale(1.05);
+
+    background:#ff1493;
+
+}
+
+.back-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+}
