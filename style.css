@@ -81,11 +81,6 @@ canvas {
     max-width: 350px;
     margin: auto;
     
-background:#f5edd7;
-
-background-image:
-linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
-linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
 }
 
 /* Control box */
@@ -226,18 +221,17 @@ font-size: 16px;
    
 }
 /* BACK BUTTON */
+
 .back-btn {
-    position: fixed;
-.back-btn {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
     
     width: auto;
     padding: 10px 20px;
 
-    background:#ffddea;
-;
+    background:#e70c0c;
+
     backdrop-filter: blur(10px);
 
     color: white;
@@ -247,7 +241,7 @@ font-size: 16px;
 
     z-index: 1000;
 }
-}
+
 button:not(.back-btn){
     width: 100%;
 }
