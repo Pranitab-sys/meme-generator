@@ -43,7 +43,7 @@ button {
     margin: 10px;
     padding: 10px 15px;
     border: none;
-    background: #ff4757;
+    background:linear-gradient(135deg,#6a7cff,#ff67bc);
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -84,7 +84,13 @@ canvas {
 
 /* Control box */
 .control-box {
-    background: rgba(255,255,255,0.1);
+   
+background:#f5edd7;
+
+background-image:
+linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+
     padding: 15px;
     border-radius: 10px;
     margin-top: 15px;
@@ -128,7 +134,13 @@ canvas {
 /* Left controls */
 .controls {
     width: 300px;
-    background: rgba(255,255,255,0.1);
+   
+background:#f5edd7;
+
+background-image:
+linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+
     padding: 20px;
     border-radius: 15px;
     backdrop-filter: blur(15px);
@@ -136,7 +148,13 @@ canvas {
 }
 /* Right preview */
 .preview {
-    background: rgba(255,255,255,0.1);
+    
+background:#f5edd7;
+
+background-image:
+linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+
     padding: 15px;
     border-radius: 15px;
     backdrop-filter: blur(15px);
@@ -186,7 +204,7 @@ button {
     padding: 0;
     border-radius: 10px;
     border: none;
-    background: linear-gradient(135deg, #ff4757, #ff6b81);
+   background:linear-gradient(135deg,#6a7cff,#ff67bc);
     color: white;
     cursor: pointer;
     transition: 0.3s;
@@ -338,7 +356,7 @@ button:not(.back-btn){
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: #ffddea;
+    background:linear-gradient(135deg,#6a7cff,#ff67bc);
     color: white;
     cursor: pointer;
     transition: 0.3s;
@@ -590,7 +608,7 @@ button:hover {
 
     border-radius: 10px;
 
-    background: linear-gradient(135deg, #25d366, #128c7e);
+    background:linear-gradient(135deg,#6a7cff,#ff67bc);
 
     color: white;
 
