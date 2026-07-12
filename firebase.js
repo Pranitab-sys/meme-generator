@@ -1,15 +1,13 @@
 // Import Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Paste your config here
-// Import the functions you need from the SDKs you need
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBdkf-FuxYQBQR7V9ZOcrz4dtVytKXYCzM",
   authDomain: "meme-generator-1148c.firebaseapp.com",
@@ -22,8 +20,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
-// Export DB
+// Exports
 export const db = getFirestore(app);
 
 export const auth = getAuth(app);
+
+export const storage = getStorage(app);
