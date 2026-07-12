@@ -1,19 +1,19 @@
+
 import { db, auth } from "./firebase.js";
 
 import {
     collection,
     addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
 // ==========================
 // TEXT MEME GENERATOR
 // ==========================
 
-
 const canvas = document.getElementById("textCanvas");
 const ctx = canvas.getContext("2d");
 
-
-// Controls
 
 const textInput = document.getElementById("memeText");
 const fontStyle = document.getElementById("fontStyle");
@@ -24,13 +24,11 @@ const bgColor = document.getElementById("bgColor");
 
 
 // ==========================
-// GENERATE MEME
+// GENERATE
 // ==========================
 
 function generateTextMeme(){
 
-
-    // Clear canvas
 
     ctx.clearRect(
         0,
@@ -53,22 +51,17 @@ function generateTextMeme(){
 
 
 
-    // Text Style
+    // Text
 
     ctx.fillStyle = textColor.value;
-
 
     ctx.font =
     `bold ${fontSize.value}px ${fontStyle.value}`;
 
 
     ctx.textAlign = "center";
-
     ctx.textBaseline = "middle";
 
-
-
-    // Text wrapping
 
     let text = textInput.value;
 
@@ -81,70 +74,15 @@ function generateTextMeme(){
 
 
 
-    let words = text.split(" ");
+    ctx.fillText(
 
-    let line="";
+        text,
 
-    let lines=[];
+        canvas.width/2,
 
+        canvas.height/2
 
-
-    words.forEach(word=>{
-
-
-        let testLine = line + word + " ";
-
-
-        if(
-            ctx.measureText(testLine).width > 420
-        ){
-
-            lines.push(line);
-
-            line = word + " ";
-
-        }
-
-        else{
-
-            line = testLine;
-
-        }
-
-
-    });
-
-
-
-    lines.push(line);
-
-
-
-    // Draw Text
-
-
-    let startY =
-    canvas.height/2 -
-    ((lines.length-1)*40);
-
-
-
-    lines.forEach((line,index)=>{
-
-
-        ctx.fillText(
-
-            line,
-
-            canvas.width/2,
-
-            startY + (index*80)
-
-        );
-
-
-    });
-
+    );
 
 
 }
@@ -152,69 +90,75 @@ function generateTextMeme(){
 
 
 
-
 // ==========================
-// DOWNLOAD + AUTO SAVE
+// DOWNLOAD + SAVE FIREBASE
 // ==========================
 
+async function downloadTextMeme(){
 
-function downloadTextMeme(){
-
-
-    // Generate before download
 
     generateTextMeme();
 
 
-
-    let image =
+    const data =
     canvas.toDataURL("image/png");
 
 
 
     // Download
 
-
-    let link=document.createElement("a");
+    const link =
+    document.createElement("a");
 
 
     link.download =
-    "UK_Text_Meme.png";
+    "text-meme.png";
 
 
-    link.href=image;
+    link.href=data;
 
 
     link.click();
 
 
 
-    // AUTO SAVE TO SAVED MEMES
+    // Firebase Save
+
+    try{
 
 
-    let savedMemes =
-    JSON.parse(
-        localStorage.getItem("savedMemes")
-    ) || [];
+        await addDoc(
+            collection(db,"memes"),
+            {
+
+                imageUrl:data,
+
+                type:"text",
+
+                createdAt:Date.now(),
+
+                ownerId:auth.currentUser.uid
+
+            }
+        );
 
 
-
-    savedMemes.push(image);
-
-
-
-    localStorage.setItem(
-        "savedMemes",
-        JSON.stringify(savedMemes)
-    );
+        alert(
+            "Text meme downloaded and saved 🚀"
+        );
 
 
+    }
 
-    alert("Meme downloaded and saved ❤️");
+
+    catch(error){
+
+        alert(error.message);
+
+    }
 
 
 }
-
 
 
 
@@ -223,28 +167,54 @@ function downloadTextMeme(){
 // LIVE PREVIEW
 // ==========================
 
-
-[
-    textInput,
-    fontStyle,
-    fontSize,
-    textColor,
-    bgColor
-
-].forEach(control=>{
+textInput.addEventListener(
+    "input",
+    generateTextMeme
+);
 
 
-    control.addEventListener(
-        "input",
-        generateTextMeme
-    );
+fontStyle.addEventListener(
+    "change",
+    generateTextMeme
+);
 
 
-});
+fontSize.addEventListener(
+    "input",
+    generateTextMeme
+);
+
+
+textColor.addEventListener(
+    "input",
+    generateTextMeme
+);
+
+
+bgColor.addEventListener(
+    "input",
+    generateTextMeme
+);
 
 
 
-
-// First preview
+// First Preview
 
 generateTextMeme();
+
+
+
+// Make buttons work with onclick
+
+document.getElementById("generateBtn")
+.addEventListener(
+    "click",
+    generateTextMeme
+);
+
+
+document.getElementById("downloadBtn")
+.addEventListener(
+    "click",
+    downloadTextMeme
+);

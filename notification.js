@@ -1,4 +1,3 @@
-
 import { db, auth } from "./firebase.js";
 
 import {
@@ -6,135 +5,180 @@ import {
     addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    // ===============================
-    // GENERATE NOTIFICATION
-    // ===============================
+// ==========================
+// CANVAS
+// ==========================
 
-    window.generateNotification = function () {
+const canvas = document.getElementById("textCanvas");
+const ctx = canvas.getContext("2d");
 
-        const app = document.getElementById("appType").value;
 
-        const user = document.getElementById("notifyUser").value;
-
-        const msg = document.getElementById("notifyMsg").value;
-
-        const time = document.getElementById("notifyTime").value;
-
-        const preview =
-            document.getElementById("notificationPreview");
-
-        let logo = "";
-
-        // APP LOGOS
-
-        if (app === "WhatsApp") {
-
-            logo = "images/whatsapp.jpg";
-
-        }
-
-        else if (app === "Instagram") {
-
-            logo = "images/instagram.jpg";
-
-        }
-
-        else if (app === "Telegram") {
-
-            logo = "images/telegram.png";
-
-        }
-
-        // CREATE PREVIEW
-
-        preview.innerHTML = `
-
-            <div class="notify-card" id="notifyCard">
-
-                <img
-                    src="${logo}"
-                    class="notify-logo">
-
-                <div class="notify-content">
-
-                    <div class="notify-top">
-
-                        <span>${user}</span>
-
-                        <span>${time}</span>
-
-                    </div>
-
-                    <div class="notify-msg">
-
-                        ${msg}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    };
+const textInput = document.getElementById("memeText");
+const fontStyle = document.getElementById("fontStyle");
+const fontSize = document.getElementById("fontSize");
+const textColor = document.getElementById("textColor");
+const bgColor = document.getElementById("bgColor");
 
 
 
-    // ===============================
-    // DOWNLOAD + SAVE
-    // ===============================
+// ==========================
+// GENERATE
+// ==========================
 
-    window.downloadNotification = function () {
+window.generateTextMeme = function(){
 
-        const preview =
-            document.getElementById("notificationPreview");
 
-        html2canvas(preview).then(async (canvas) => {
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
-            const data = canvas.toDataURL();
 
-            // Download
+    ctx.fillStyle = bgColor.value;
 
-            const link =
-                document.createElement("a");
 
-            link.download = "notification-meme.png";
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
-            link.href = data;
 
-            link.click();
 
-            // Save to Firebase
+    ctx.fillStyle = textColor.value;
 
-            try {
 
-                await addDoc(collection(db, "memes"), {
+    ctx.font =
+    `bold ${fontSize.value}px ${fontStyle.value}`;
 
-                    imageUrl: data,
 
-                    type: "notification",
+    ctx.textAlign="center";
 
-                    createdAt: Date.now(),
+    ctx.textBaseline="middle";
 
-                    ownerId: auth.currentUser.uid
 
-                });
+    let text =
+    textInput.value || "Your Meme Text";
 
-                alert("Notification meme saved successfully 🚀");
 
-            }
+    ctx.fillText(
 
-            catch (error) {
+        text,
 
-                alert(error.message);
+        canvas.width/2,
 
-            }
+        canvas.height/2
+
+    );
+
+
+};
+
+
+
+
+
+// ==========================
+// DOWNLOAD + FIREBASE SAVE
+// ==========================
+
+
+window.downloadTextMeme = function(){
+
+
+    generateTextMeme();
+
+
+
+    const data =
+    canvas.toDataURL();
+
+
+
+    // Download
+
+    const link =
+    document.createElement("a");
+
+
+    link.download =
+    "text-meme.png";
+
+
+    link.href=data;
+
+
+    link.click();
+
+
+
+
+    // Save Firebase
+
+
+    try{
+
+
+        addDoc(collection(db,"memes"),{
+
+
+            imageUrl:data,
+
+
+            type:"text",
+
+
+            createdAt:Date.now(),
+
+
+            ownerId:auth.currentUser.uid
+
 
         });
 
-    };
+
+        alert("Text meme saved successfully 🚀");
+
+
+    }
+
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+
+};
+
+
+
+
+// Live Preview
+
+[
+textInput,
+fontStyle,
+fontSize,
+textColor,
+bgColor
+
+].forEach(item=>{
+
+
+    item.addEventListener(
+        "input",
+        generateTextMeme
+    );
+
 
 });
+
+
+
+generateTextMeme();
