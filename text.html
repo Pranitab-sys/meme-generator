@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Text Meme - UK MEMES</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
+
+</head>
+
+
+<body>
+
+
+<button class="back-btn" onclick="window.location.href='dashboard.html'">
+    ← Back
+</button>
+
+
+<h1 style="color:#ad246b; margin-top:40px;">
+    ✍️ Text Meme Creator
+</h1>
+
+
+<div class="main-layout">
+
+
+<!-- Controls -->
+
+<div class="controls">
+
+
+<h2 style="color:#111;">
+    Customize Meme
+</h2>
+
+
+<div class="control-item">
+
+<label>
+Enter Text
+</label>
+
+<textarea id="memeText"
+placeholder="Write your meme text here..."></textarea>
+
+</div>
+
+
+
+<div class="control-item">
+
+<label>
+Font Style
+</label>
+
+<select id="fontStyle">
+
+<option value="Arial">
+Arial
+</option>
+
+<option value="Impact">
+Impact
+</option>
+
+<option value="Poppins">
+Poppins
+</option>
+
+<option value="Comic Sans MS">
+Comic Sans
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="control-item">
+
+<label>
+Font Size
+</label>
+
+<input 
+type="range"
+id="fontSize"
+min="20"
+max="80"
+value="40">
+
+</div>
+
+
+
+<div class="control-item">
+
+<label>
+Text Color
+</label>
+
+<input 
+type="color"
+id="textColor"
+value="#ffffff">
+
+</div>
+
+
+
+<div class="control-item">
+
+<label>
+Background Color
+</label>
+
+<input 
+type="color"
+id="bgColor"
+value="#000000">
+
+</div>
+
+
+
+<div class="btn-grid">
+
+<button onclick="downloadTextMeme()">
+Download
+</button>
+
+
+<button onclick="generateTextMeme()">
+    Generate
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- Preview -->
+
+<div class="preview">
+
+
+<h2 style="color:#111;">
+Preview
+</h2>
+
+
+<canvas id="textCanvas"
+width="500"
+height="500">
+
+</canvas>
+
+
+</div>
+
+
+</div>
+
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="common.js"></script>
+<script src="text.js"></script>
+
+
+</body>
+
+</html>
