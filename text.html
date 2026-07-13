@@ -7,7 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Text Meme - UK MEMES</title>
+
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home.css">
 
@@ -132,14 +134,13 @@ value="#000000">
 
 
 <div class="btn-grid">
-
-<button onclick="downloadTextMeme()">
+<button id="downloadBtn">
 Download
 </button>
 
 
-<button onclick="generateTextMeme()">
-    Generate
+<button id="generateBtn">
+Generate
 </button>
 
 
@@ -172,12 +173,10 @@ height="500">
 
 </div>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script type="module" src="firebase.js"></script>
 <script type="module" src="common.js"></script>
 <script type="module" src="text.js"></script>
-
 
 </body>
 
