@@ -74,16 +74,67 @@ function generateTextMeme(){
 
 
 
-    ctx.fillText(
+    // ==========================
+// MULTI-LINE TEXT
+// ==========================
 
-        text,
+ctx.strokeStyle = "black";
+ctx.lineWidth = 4;
 
-        canvas.width/2,
+const maxWidth = canvas.width - 60;
 
-        canvas.height/2
+const words = text.split(" ");
 
+let lines = [];
+let line = "";
+
+for (let i = 0; i < words.length; i++) {
+
+    let testLine = line + words[i] + " ";
+
+    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+
+        lines.push(line);
+
+        line = words[i] + " ";
+
+    } else {
+
+        line = testLine;
+
+    }
+
+}
+
+lines.push(line);
+
+// Line spacing
+const lineHeight = Number(fontSize.value) + 10;
+
+// Start from center
+const startY =
+(canvas.height - (lines.length * lineHeight)) / 2 + lineHeight / 2;
+
+// Draw each line
+lines.forEach((line, index) => {
+
+    const y = startY + (index * lineHeight);
+
+    // Black outline
+    ctx.strokeText(
+        line,
+        canvas.width / 2,
+        y
     );
 
+    // White/selected color text
+    ctx.fillText(
+        line,
+        canvas.width / 2,
+        y
+    );
+
+});
 
 }
 
