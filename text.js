@@ -80,59 +80,63 @@ function generateTextMeme(){
 
 ctx.strokeStyle = "black";
 ctx.lineWidth = 4;
-
 const maxWidth = canvas.width - 60;
 
-const words = text.split(" ");
+const paragraphs = text.split("\n");
 
 let lines = [];
-let line = "";
 
-for (let i = 0; i < words.length; i++) {
+paragraphs.forEach(paragraph => {
 
-    let testLine = line + words[i] + " ";
+    let words = paragraph.split(" ");
 
-    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+    let line = "";
 
-        lines.push(line);
+    words.forEach(word => {
 
-        line = words[i] + " ";
+        let testLine = line + word + " ";
 
-    } else {
+        if (
+            ctx.measureText(testLine).width > maxWidth &&
+            line !== ""
+        ) {
 
-        line = testLine;
+            lines.push(line.trim());
+            line = word + " ";
 
-    }
+        } else {
 
-}
+            line = testLine;
 
-lines.push(line);
+        }
 
-// Line spacing
+    });
+
+    lines.push(line.trim());
+
+});
+
 const lineHeight = Number(fontSize.value) + 10;
 
-// Start from center
-const startY =
-(canvas.height - (lines.length * lineHeight)) / 2 + lineHeight / 2;
+const totalHeight = lines.length * lineHeight;
 
-// Draw each line
-lines.forEach((line, index) => {
+let y = (canvas.height - totalHeight) / 2 + lineHeight / 2;
 
-    const y = startY + (index * lineHeight);
+lines.forEach(line => {
 
-    // Black outline
     ctx.strokeText(
         line,
         canvas.width / 2,
         y
     );
 
-    // White/selected color text
     ctx.fillText(
         line,
         canvas.width / 2,
         y
     );
+
+    y += lineHeight;
 
 });
 

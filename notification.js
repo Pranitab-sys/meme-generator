@@ -5,180 +5,106 @@ import {
     addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// ===========================
+// GENERATE NOTIFICATION
+// ===========================
 
-// ==========================
-// CANVAS
-// ==========================
+window.generateNotification = function () {
 
-const canvas = document.getElementById("textCanvas");
-const ctx = canvas.getContext("2d");
+    const app = document.getElementById("appType").value;
+    const user = document.getElementById("notifyUser").value;
+    const msg = document.getElementById("notifyMsg").value;
+    const time = document.getElementById("notifyTime").value;
 
+    const preview = document.getElementById("notificationPreview");
 
-const textInput = document.getElementById("memeText");
-const fontStyle = document.getElementById("fontStyle");
-const fontSize = document.getElementById("fontSize");
-const textColor = document.getElementById("textColor");
-const bgColor = document.getElementById("bgColor");
+    let logo = "";
 
+    if (app === "Telegram") {
+        logo = "images/telegram.png";
+    }
 
+    if (app === "WhatsApp") {
+        logo = "images/whatsapp.jpg";
+    }
 
-// ==========================
-// GENERATE
-// ==========================
+    if (app === "Instagram") {
+        logo = "images/instagram.jpg";
+    }
 
-window.generateTextMeme = function(){
+    preview.innerHTML = `
+        <div class="notify-card" id="notifyCard">
 
+            <img src="${logo}" class="notify-logo">
 
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+            <div class="notify-content">
 
+                <div class="notify-top">
 
-    ctx.fillStyle = bgColor.value;
+                    <span>${user}</span>
 
+                    <span>${time}</span>
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+                </div>
 
+                <div class="notify-msg">
 
+                    ${msg}
 
-    ctx.fillStyle = textColor.value;
+                </div>
 
+            </div>
 
-    ctx.font =
-    `bold ${fontSize.value}px ${fontStyle.value}`;
-
-
-    ctx.textAlign="center";
-
-    ctx.textBaseline="middle";
-
-
-    let text =
-    textInput.value || "Your Meme Text";
-
-
-    ctx.fillText(
-
-        text,
-
-        canvas.width/2,
-
-        canvas.height/2
-
-    );
-
+        </div>
+    `;
 
 };
 
+// ===========================
+// DOWNLOAD NOTIFICATION
+// ===========================
 
+window.downloadNotification = async function () {
 
+    const preview =
+        document.getElementById("notificationPreview");
 
+    html2canvas(preview).then(async (canvas) => {
 
-// ==========================
-// DOWNLOAD + FIREBASE SAVE
-// ==========================
+        const data = canvas.toDataURL();
 
+        const link = document.createElement("a");
 
-window.downloadTextMeme = function(){
+        link.download = "notification-meme.png";
 
+        link.href = data;
 
-    generateTextMeme();
+        link.click();
 
+        try {
 
+            await addDoc(collection(db, "memes"), {
 
-    const data =
-    canvas.toDataURL();
+                imageUrl: data,
 
+                type: "notification",
 
+                createdAt: Date.now(),
 
-    // Download
+                ownerId: auth.currentUser.uid
 
-    const link =
-    document.createElement("a");
+            });
 
+            alert("Notification meme saved 🚀");
 
-    link.download =
-    "text-meme.png";
+        }
 
+        catch (error) {
 
-    link.href=data;
+            alert(error.message);
 
+        }
 
-    link.click();
-
-
-
-
-    // Save Firebase
-
-
-    try{
-
-
-        addDoc(collection(db,"memes"),{
-
-
-            imageUrl:data,
-
-
-            type:"text",
-
-
-            createdAt:Date.now(),
-
-
-            ownerId:auth.currentUser.uid
-
-
-        });
-
-
-        alert("Text meme saved successfully 🚀");
-
-
-    }
-
-
-    catch(error){
-
-        alert(error.message);
-
-    }
-
+    });
 
 };
-
-
-
-
-// Live Preview
-
-[
-textInput,
-fontStyle,
-fontSize,
-textColor,
-bgColor
-
-].forEach(item=>{
-
-
-    item.addEventListener(
-        "input",
-        generateTextMeme
-    );
-
-
-});
-
-
-
-generateTextMeme();
