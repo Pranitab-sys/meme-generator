@@ -54,25 +54,11 @@ linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
     </div>
 
 </div>
-
-<div id="notifyPopup" class="popup">
-
-    <div class="popup-content">
-
-        <div class="popup-icon">🔔</div>
-
-        <h2>You're on the list!</h2>
-
-        <p>
-            Thank you for your interest in <b>UK Memes Pro</b>.
-            We'll notify you as soon as exciting new premium features are available.
-        </p>
-
-        <button onclick="closePopup()">Awesome!</button>
-
-    </div>
-
-</div>
+<script>
+    function notifyMe(){
+        alert("Thank you for your interest We'll notify you as soon as exciting new premium features are available.");
+    }
+</script>
 <script type="module" src="firebase.js"></script>
 <script type="module" src="common.js"></script>
 <script type="module" src="auth.js"></script>
