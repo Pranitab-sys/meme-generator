@@ -55,7 +55,10 @@ function generateTextMeme(){
 
     ctx.fillStyle = textColor.value;
 
-    ctx.font = `bold ${fontSize.value}px "Segoe UI Emoji", "Noto Color Emoji", Arial`;
+   const selectedFont = fontStyle.value;
+
+ctx.font = `bold ${fontSize.value}px ${selectedFont}`;
+console.log(ctx.font);
 
 
     ctx.textAlign = "center";
