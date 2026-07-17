@@ -145,6 +145,3 @@ window.toggleSidebar = function () {
     }
 
 };
-window.notifyPopup = function () {
-    alert("Button clicked!");
-}

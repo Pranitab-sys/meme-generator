@@ -55,8 +55,7 @@ function generateTextMeme(){
 
     ctx.fillStyle = textColor.value;
 
-    ctx.font =
-    `bold ${fontSize.value}px ${fontStyle.value}`;
+    ctx.font = `bold ${fontSize.value}px "Segoe UI Emoji", "Noto Color Emoji", Arial`;
 
 
     ctx.textAlign = "center";
@@ -273,3 +272,11 @@ document.getElementById("downloadBtn")
     "click",
     downloadTextMeme
 );
+
+const textarea = document.getElementById("memeText");
+const picker = document.getElementById("emojiPicker");
+
+picker.addEventListener("emoji-click", (event) => {
+    textarea.value += event.detail.unicode;
+      generateTextMeme();
+});
