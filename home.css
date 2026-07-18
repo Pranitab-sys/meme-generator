@@ -838,3 +838,15 @@ UPGRADE PAGE
         opacity:1;
     }
 }
+/* Emoji section */
+#emojiPicker {
+    width: 100%;
+    max-width: 100%;
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+        margin: 15px 0;
+    --num-columns:8;
+    --emoji-size:1.4rem;
+
+    }

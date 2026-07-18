@@ -54,11 +54,7 @@ placeholder="Write your meme text here..."></textarea>
 
 </div>
 <emoji-picker id="emojiPicker"></emoji-picker>
-<div class="stickers">
-    <img src="stickers/laugh.png" class="sticker">
-    <img src="stickers/fire.png" class="sticker">
-    <img src="stickers/skull.png" class="sticker">
-</div>
+
 
 
 
@@ -140,12 +136,12 @@ value="#000000">
 
 
 <div class="btn-grid">
-<button id="downloadBtn">
+<button id="downloadBtn" onclick="downloadTextMeme()">
 Download
 </button>
 
 
-<button id="generateBtn">
+<button id="generateBtn" onclick="generateTextMeme()">
 Generate
 </button>
 
