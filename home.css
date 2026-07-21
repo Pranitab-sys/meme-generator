@@ -845,7 +845,7 @@ UPGRADE PAGE
     height: 250px;
     border: 1px solid #ccc;
     border-radius: 10px;
-        margin: 15px 0;
+    margin: 15px 0;
     --num-columns:8;
     --emoji-size:1.4rem;
 

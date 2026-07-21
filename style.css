@@ -130,7 +130,9 @@ linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
     justify-content: center;
     gap: 30px;
     margin-top: 40px;
+    flex-direction: column;
 }
+
 
 /* Left controls */
 .controls {
@@ -866,5 +868,109 @@ button:hover {
 .login-box button:hover{
 
     background:#ff2e43;
+
+}
+/* =====================================
+   MOBILE RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+        padding: 10px;
+    }
+
+    /* BACK BUTTON */
+
+    .back-btn {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        display: block;
+        margin: 10px 0 20px 0;
+
+        width: fit-content;
+        padding: 12px 22px;
+        font-size: 16px;
+    }
+
+    /* PAGE HEADING */
+
+    h1 {
+        font-size: 32px !important;
+        text-align: center;
+        margin: 10px 0 25px !important;
+    }
+
+    /* MAIN LAYOUT */
+
+    .main-layout {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+
+    /* CONTROLS */
+
+    .controls {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+    /* PREVIEW */
+
+    .preview {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+    /* TEXTAREA */
+
+    #memeText {
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 120px;
+    }
+
+    /* EMOJI PICKER */
+
+    emoji-picker {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* CANVAS */
+
+    #textCanvas {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    /* SELECT AND INPUTS */
+
+    select,
+    input[type="range"],
+    input[type="color"] {
+        max-width: 100%;
+    }
+
+    /* BUTTONS */
+
+    .btn-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-grid button {
+        width: 100%;
+    }
 
 }
