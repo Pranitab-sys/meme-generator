@@ -1,0 +1,22 @@
+{
+  "name": "UK MEMES",
+  "short_name": "UK MEMES",
+  "description": "Create and share funny memes",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7efd9",
+  "theme_color": "#ad246b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icons/icon-512.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
