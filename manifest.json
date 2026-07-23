@@ -1,6 +1,7 @@
 {
   "name": "UK MEMES",
   "short_name": "UK MEMES",
+  "id": "./index.html",
   "description": "Create and share funny memes",
   "start_url": "./index.html",
   "display": "standalone",
@@ -8,15 +9,17 @@
   "theme_color": "#ad246b",
   "orientation": "portrait",
   "icons": [
-    { 
+    {
       "src": "./icons/icon-192.png",
-      "sizes":"192x192",
-      "type": "image/png"
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
