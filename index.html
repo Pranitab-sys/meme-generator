@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#ad246b">
 
 </head>
 
@@ -415,6 +418,37 @@ HOME DASHBOARD
 <script type="module" src="notification.js"></script>
 <script type="module" src="text.html"></script>
 <script type="module" src="saved.js"></script>
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker.register("./sw.js")
+
+            .then(() => {
+
+                console.log("UK MEMES PWA ready!");
+
+            })
+
+            .catch(error => {
+
+                console.log(
+                    "Service Worker Error:",
+                    error
+                );
+
+            });
+
+    });
+
+}
+
+</script>
+
+
 
 </body>
 
